@@ -16,8 +16,8 @@ public class CameraControler : MonoBehaviour
     {
         vertical = Camera.main.transform.forward;
         vertical.y = 0;
-        vertical = Vector3.Normalize(vertical);
-        horizontal = Quaternion.Euler(new Vector3(0, 90, 0)) * vertical;
+        vertical = Vector3.Normalize(vertical); // normalizacja nie pamietam co to robi xD
+        horizontal = Quaternion.Euler(new Vector3(0, 90, 0)) * vertical; // kopiowanie ustawien vertical ze znienionym katem dzialania
 
     }
 
@@ -25,26 +25,28 @@ public class CameraControler : MonoBehaviour
     {
         if(Input.anyKey)
         {
-            CmaeraKeyMove();
+            CmaeraKeyMove(); // dowolny klawisz 
         }
         if(Input.mousePosition.x >Screen.width-edgeSize)
         {
-            CmaeraMouseMove(1,0);
+            CmaeraMouseMove(1,0); // krawedz prawa
         }
         if (Input.mousePosition.x < edgeSize)
         {
-            CmaeraMouseMove(-1,0);
+            CmaeraMouseMove(-1,0);//krawedz lewa
         }
         if (Input.mousePosition.y > Screen.height - edgeSize)
         {
-            CmaeraMouseMove(0,1);
+            CmaeraMouseMove(0,1); // krawedz gorna 
         }
         if (Input.mousePosition.y < edgeSize)
         {
-            CmaeraMouseMove(0,-1);
+            CmaeraMouseMove(0,-1);//krawedz dolna 
         }
     }
-
+    /// <summary>
+    /// poruszanie sie za pomoca klawiszy wasd zdefiniowanych w pojectSetting\inputMenager
+    /// </summary>
     void CmaeraKeyMove()
     {
         //Vector3 directed = new Vector3(Input.GetAxis("horizontalKey"), 0, Input.GetAxis("verticalKey"));
@@ -57,6 +59,11 @@ public class CameraControler : MonoBehaviour
         transform.position += horizontalMove;
         transform.position += verticalMove;
     }
+    /// <summary>
+    /// poruszanie sie z pomoca myszy 
+    /// </summary>
+    /// <param name="directionX">kierunek poruszania sie w osi x</param>
+    /// <param name="directionY">kierunek poruszania sie w osi y</param>
     void CmaeraMouseMove(short directionX,short directionY)
     {
         Vector3 horizontalMove = horizontal * moveSpeed * Time.deltaTime * directionX;
