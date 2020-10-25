@@ -23,31 +23,30 @@ public class CameraControler : MonoBehaviour
 
     void Update()
     {
-        if(Input.anyKey)
         {
-            CmaeraKeyMove(); // dowolny klawisz 
+            CameraKeyMove(); // dowolny klawisz 
         }
-        if(Input.mousePosition.x >Screen.width-edgeSize)
+        else if(Input.mousePosition.x >Screen.width-edgeSize)
         {
-            CmaeraMouseMove(1,0); // krawedz prawa
+            CameraMouseMove(1,0); // krawedz prawa
         }
-        if (Input.mousePosition.x < edgeSize)
+        else if (Input.mousePosition.x < edgeSize)
         {
-            CmaeraMouseMove(-1,0);//krawedz lewa
+            CameraMouseMove(-1,0);//krawedz lewa
         }
-        if (Input.mousePosition.y > Screen.height - edgeSize)
+        else if (Input.mousePosition.y > Screen.height - edgeSize)
         {
-            CmaeraMouseMove(0,1); // krawedz gorna 
+            CameraMouseMove(0,1); // krawedz gorna 
         }
-        if (Input.mousePosition.y < edgeSize)
+        else if (Input.mousePosition.y < edgeSize)
         {
-            CmaeraMouseMove(0,-1);//krawedz dolna 
+            CameraMouseMove(0,-1);//krawedz dolna 
         }
     }
     /// <summary>
-    /// poruszanie sie za pomoca klawiszy wasd zdefiniowanych w pojectSetting\inputMenager
+    /// poruszanie sie za pomoca strzałek zdefiniowanych w pojectSetting\inputMenager
     /// </summary>
-    void CmaeraKeyMove()
+    void CameraKeyMove()
     {
         //Vector3 directed = new Vector3(Input.GetAxis("horizontalKey"), 0, Input.GetAxis("verticalKey"));
         Vector3 horizontalMove = horizontal * moveSpeed * Time.deltaTime * Input.GetAxis("horizontalKey");
@@ -64,7 +63,7 @@ public class CameraControler : MonoBehaviour
     /// </summary>
     /// <param name="directionX">kierunek poruszania sie w osi x</param>
     /// <param name="directionY">kierunek poruszania sie w osi y</param>
-    void CmaeraMouseMove(short directionX,short directionY)
+    void CameraMouseMove(short directionX,short directionY)
     {
         Vector3 horizontalMove = horizontal * moveSpeed * Time.deltaTime * directionX;
         Vector3 verticalMove = vertical * moveSpeed * Time.deltaTime * directionY;

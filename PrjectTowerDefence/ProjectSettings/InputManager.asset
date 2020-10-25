@@ -297,8 +297,8 @@ InputManager:
     m_Name: horizontalKey
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: d
-    positiveButton: a
+    negativeButton: left
+    positiveButton: right
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 1000
@@ -313,8 +313,8 @@ InputManager:
     m_Name: verticalKey
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: s
-    positiveButton: w
+    negativeButton: down
+    positiveButton: up
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 1000
