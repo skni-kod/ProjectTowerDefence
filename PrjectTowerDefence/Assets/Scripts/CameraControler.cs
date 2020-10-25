@@ -23,6 +23,7 @@ public class CameraControler : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetAxis("horizontalKey")!=0 || Input.GetAxis("verticalKey")!=0)
         {
             CameraKeyMove(); // dowolny klawisz 
         }
