@@ -10,7 +10,7 @@ public class Goblin : Enemy
     [SerializeField]
     private float Speed = 20f;
     
-    protected override void initStats()
+    protected override void InitStats()
     {
         base.hp = Hp;
 
