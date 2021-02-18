@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    float damagePerHit, hitRange, hitCooldown, lastHit;
+    float damagePerHit, hitRange, lastHit;
+
+    [HideInInspector]
+    public float hitCooldown;
+    public Collider[] enemiesInRange;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +25,10 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
+
         if (Time.time - lastHit >= hitCooldown)
         {
-            Collider[] enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
             if (enemiesInRange.Length > 0)
             {
                 // TODO: W przyszłości tutaj trzeba umieścić jakis algorytm, który wybierze
@@ -32,6 +37,7 @@ public class Tower : MonoBehaviour
                 enemiesInRange[0].GetComponent<Enemy>().Hit(damagePerHit);
                 lastHit = Time.time;
             }
+            
         }
     }
 }
