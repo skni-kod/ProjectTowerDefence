@@ -3,26 +3,32 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+abstract public class Enemy : MonoBehaviour
 {
+    [SerializeField]
     protected float hp;
+    [SerializeField]
+    [Range(0,100)]
     protected float speed;
-    protected int lvl;
 
-    Rigidbody rigidbodyComponent;
+    protected int lvl;
+    protected float deltaTime;
+
+    protected Rigidbody rigidbodyComponent;
 
     // Start is called before the first frame update
     void Start()
     {
-        hp = 100f;
+
+        deltaTime = GetEnemyDeltaTime();
 
         rigidbodyComponent = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        Movement();
+        Movement(GetEnemyDeltaTime());
 
         // Tymczasowe wyświetlanie ilości zdrowia dla ułatwienia testowania
         //Debug.Log(gameObject.name + "'s health: " + hp);
@@ -31,7 +37,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// poruszanie sie postaci
     /// </summary>
-    protected virtual void Movement()
+    protected virtual void Movement(float deltaTime)
     {
         // Tymczasowe rozwiązanie, aby obiekt się poruszał
         rigidbodyComponent.velocity = Vector3.right;
@@ -65,6 +71,10 @@ public class Enemy : MonoBehaviour
             // Usunięcie obiektu, bo umarł
             Destroy(gameObject);
         }
+    }
+    protected float GetEnemyDeltaTime()
+    {
+        return Time.deltaTime;
     }
 
 }

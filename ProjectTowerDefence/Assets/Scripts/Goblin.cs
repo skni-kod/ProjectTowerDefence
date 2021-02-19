@@ -5,16 +5,21 @@ using UnityEngine;
 
 public class Goblin : Enemy
 {
-    [SerializeField]
-    private float Hp=100f;
-    [SerializeField]
-    private float Speed = 20f;
-    
+
+    protected override void Update()
+    {
+        Movement(base.GetEnemyDeltaTime());
+    }
+
+
     protected override void InitStats()
     {
-        base.hp = Hp;
+    }
 
-        base.speed = Speed;
+    protected override void Movement(float deltaTime)
+    {
+        // chwilowe rozwiazanie poruszania
+        transform.position += new Vector3(deltaTime * (speed/10), 0, 0);
     }
 
 }

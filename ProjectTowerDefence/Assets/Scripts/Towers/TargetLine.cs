@@ -19,12 +19,12 @@ public class TargetLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        updateTargetLine();
+        UpdateTargetLine();
     }
     /// <summary>
     /// Rysowanie lini pomiędzy wieżą a a targetowanym przeciwnikiem
     /// </summary>
-    private void updateTargetLine()
+    private void UpdateTargetLine()
     {
         //Debug.Log(GetComponent<Tower>().enemiesInRange.Length);
         if (GetComponent<Tower>().enemiesInRange.Length > 0)

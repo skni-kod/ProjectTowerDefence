@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
     public float hitCooldown;
     public Collider[] enemiesInRange;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,24 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
+        EnemiesDetection();
+        TowerDealingDamage();
 
+    }
+
+    /// <summary>
+    /// wykrywanie przeciwników w danym promieniu oraz dodawanie ich do tablicy
+    /// </summary>
+    private void EnemiesDetection()
+    {
+        enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
+    }
+
+    /// <summary>
+    /// zadawanie obrazeń pierwszemu celowi w tablicy w określonch odstępach czasu
+    /// </summary>
+    private void TowerDealingDamage()
+    {
         if (Time.time - lastHit >= hitCooldown)
         {
             if (enemiesInRange.Length > 0)
@@ -37,7 +54,7 @@ public class Tower : MonoBehaviour
                 enemiesInRange[0].GetComponent<Enemy>().Hit(damagePerHit);
                 lastHit = Time.time;
             }
-            
+
         }
     }
 }
