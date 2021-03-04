@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid
+public class Grid<TGridObject>
 {
     private int width;
     private int height;
     private float cellSize;
-    private int[,] gridArray;
+    private TGridObject[,] gridArray;
     private Vector3 startPosition;
     private TextMesh[,] debugGridTextArray;
 
@@ -17,7 +17,7 @@ public class Grid
         this.height = height;
         this.cellSize = cellSize;
 
-        gridArray = new int[width, height];
+        gridArray = new TGridObject[width, height];
         debugGridTextArray = new TextMesh[width, height];
         this.startPosition = startPosition;
 
@@ -56,7 +56,7 @@ public class Grid
         return new Vector3(x, 0, z) * cellSize + startPosition;
     }
 
-    public void SetValue(int x, int y, int value)
+    public void SetValue(int x, int y, TGridObject value)
     {
         if (x >=0 && y >= 0 && y < height && x < width)
         {
@@ -64,7 +64,7 @@ public class Grid
             debugGridTextArray[x, y].text = gridArray[x, y].ToString();
         }
     }
-    public void SetValue(Vector3 worldPosition , int value)
+    public void SetValue(Vector3 worldPosition , TGridObject value)
     {
         Vector2Int coordinate =  GetCoordinate(worldPosition);
         SetValue(coordinate.x, coordinate.y, value);

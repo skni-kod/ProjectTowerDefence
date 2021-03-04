@@ -7,7 +7,9 @@ public class World : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Grid worldGrid = new Grid(2, 5, 5f, new Vector3(0,0,0));
+        Grid<int> worldGrid = new Grid<int>(2, 5, 5f, new Vector3(0,0,0));
+        int[] a = {1,2};
+        
     }
 
     // Update is called once per frame
