@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class Grid<TGridObject>
     private Vector3 startPosition;
     private TextMesh[,] debugGridTextArray;
 
-    public Grid(int width,int height,float cellSize, Vector3 startPosition)
+    public Grid(int width,int height,float cellSize, Vector3 startPosition, Func<TGridObject> gridObjectType)
     {
         this.width = width;
         this.height = height;
@@ -25,7 +26,15 @@ public class Grid<TGridObject>
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
-                debugGridTextArray[x,y] = CreateGridText(null, gridArray[x, y].ToString(), GetWorldPosition(x, y) + (new Vector3(cellSize,0,cellSize)/2f));
+                gridArray[x, y] = gridObjectType();
+            }
+        }
+
+        for (int x = 0; x < gridArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < gridArray.GetLength(1); y++)
+            {
+                debugGridTextArray[x,y] = CreateGridText(null, gridArray[x, y]?.ToString(), GetWorldPosition(x, y) + (new Vector3(cellSize,0,cellSize)/2f));
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white,10f);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x+1, y), Color.white, 10f);
             }
@@ -61,7 +70,7 @@ public class Grid<TGridObject>
         if (x >=0 && y >= 0 && y < height && x < width)
         {
             gridArray[x, y] = value;
-            debugGridTextArray[x, y].text = gridArray[x, y].ToString();
+            debugGridTextArray[x, y].text = gridArray[x, y]?.ToString();
         }
     }
     public void SetValue(Vector3 worldPosition , TGridObject value)
