@@ -11,6 +11,8 @@ public class Grid<TGridObject>
     public int Heigth{ get {return height; }}
 
     private float cellSize;
+
+    public float CellSize { get;}
     private TGridObject[,] gridArray;
     private Vector3 startPosition;
     private TextMesh[,] debugGridTextArray;
@@ -83,7 +85,7 @@ public class Grid<TGridObject>
     }
     
 
-    private Vector2Int GetCoordinate(Vector3 worldPosition)
+    public Vector2Int GetCoordinate(Vector3 worldPosition)
     {
         Vector2Int coordinate = new Vector2Int(0,0);
 

@@ -7,22 +7,29 @@ abstract public class Enemy : MonoBehaviour
 {
     [SerializeField]
     protected float maxHp;
+
     [SerializeField]
     [Range(0,100)]
     protected float speed;
+    protected List<Vector3> pathVectorList;
+    protected int currentPathIndex;
 
     protected float hp;
     protected int lvl;
-    protected float deltaTime;
 
     protected Rigidbody rigidbodyComponent;
     protected BarControl healthBar;
 
+    protected Pathfinding pathfinding;
     // Start is called before the first frame update
     void Start()
     {
+        // fix it later
+        //pathfinding = new Pathfinding(10, 10);
+        //pathfinding.GetGrid().GetCoordinate(new Vector3(5, 0, 0));
+        //List<GridNode> path = pathfinding.Path(0, 0, 5, 0);
+        //SetDestinationPosition(new Vector3(5, 0, 0));
 
-        deltaTime = GetEnemyDeltaTime();
 
         rigidbodyComponent = GetComponent<Rigidbody>();
 
@@ -30,12 +37,14 @@ abstract public class Enemy : MonoBehaviour
         //healthBar.Initialize();
 
         hp = maxHp;
+
+        
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        Movement(GetEnemyDeltaTime());
+        Movement();
 
         // Aktualizacja paska zdrowia
         healthBar.SetValue(100 * hp / maxHp);
@@ -47,7 +56,7 @@ abstract public class Enemy : MonoBehaviour
     /// <summary>
     /// poruszanie sie postaci
     /// </summary>
-    protected virtual void Movement(float deltaTime)
+    protected virtual void Movement()
     {
         // Tymczasowe rozwiązanie, aby obiekt się poruszał
         rigidbodyComponent.velocity = Vector3.right;
@@ -82,9 +91,16 @@ abstract public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    protected float GetEnemyDeltaTime()
+    protected void SetDestinationPosition(Vector3 targetPosition)
     {
-        return Time.deltaTime;
+        currentPathIndex = 0;
+        //pathVectorList = Pathfinding.Instance.Path(transform.position, targetPosition);
+        pathVectorList = pathfinding.Path(transform.position, targetPosition);
+
+        if (pathVectorList != null && pathVectorList.Count > 1)
+        {
+            pathVectorList.RemoveAt(0);
+        }
     }
 
 }
