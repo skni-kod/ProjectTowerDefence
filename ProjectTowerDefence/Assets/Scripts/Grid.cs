@@ -7,12 +7,15 @@ public class Grid<TGridObject>
 {
     private int width;
     private int height;
+    public int Width { get { return width; }}
+    public int Heigth{ get {return height; }}
+
     private float cellSize;
     private TGridObject[,] gridArray;
     private Vector3 startPosition;
     private TextMesh[,] debugGridTextArray;
 
-    public Grid(int width,int height,float cellSize, Vector3 startPosition, Func<TGridObject> gridObjectType)
+    public Grid(int width,int height,float cellSize, Vector3 startPosition, Func<Grid<TGridObject> , int, int, TGridObject> gridObjectType)
     {
         this.width = width;
         this.height = height;
@@ -26,7 +29,7 @@ public class Grid<TGridObject>
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
-                gridArray[x, y] = gridObjectType();
+                gridArray[x, y] = gridObjectType(this,x,y);
             }
         }
 
@@ -65,7 +68,7 @@ public class Grid<TGridObject>
         return new Vector3(x, 0, z) * cellSize + startPosition;
     }
 
-    public void SetValue(int x, int y, TGridObject value)
+    public void SetObject(int x, int y, TGridObject value)
     {
         if (x >=0 && y >= 0 && y < height && x < width)
         {
@@ -73,10 +76,10 @@ public class Grid<TGridObject>
             debugGridTextArray[x, y].text = gridArray[x, y]?.ToString();
         }
     }
-    public void SetValue(Vector3 worldPosition , TGridObject value)
+    public void SetObject(Vector3 worldPosition , TGridObject value)
     {
         Vector2Int coordinate =  GetCoordinate(worldPosition);
-        SetValue(coordinate.x, coordinate.y, value);
+        SetObject(coordinate.x, coordinate.y, value);
     }
     
 
@@ -89,4 +92,16 @@ public class Grid<TGridObject>
 
         return coordinate;
     }
+    public TGridObject GetObject(int x, int y)
+    {
+        if (x >= 0 && y >= 0 && y < height && x < width)
+        {
+            return gridArray[x,y];
+        }
+        else
+        {
+            return default(TGridObject);
+        }
+    }
+
 }
