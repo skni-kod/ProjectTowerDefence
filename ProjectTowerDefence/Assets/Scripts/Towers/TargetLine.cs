@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TargetLine : MonoBehaviour
 {
+    Color32 activeColor, inactiveColor;
+
     LineRenderer targetLine;
     Collider[] towerEnemiesInRange;
     float towerHitCooldown;
@@ -14,6 +16,10 @@ public class TargetLine : MonoBehaviour
         targetLine.positionCount = 2;
         targetLine.SetPosition(0, GetComponent<Transform>().position);
         towerHitCooldown = GetComponent<Tower>().hitCooldown;
+
+        activeColor = new Color32(255, 0, 0, 255);
+        inactiveColor = new Color32(128, 0, 0, 255);
+        targetLine.startColor = inactiveColor;
     }
 
     // Update is called once per frame
@@ -34,6 +40,9 @@ public class TargetLine : MonoBehaviour
                 targetLine.enabled = true;
                 towerEnemiesInRange = GetComponent<Tower>().enemiesInRange;
                 targetLine.SetPosition(1, towerEnemiesInRange[0].GetComponent<Transform>().position);
+
+                if (Time.time - GetComponent<Tower>().lastHit < 0.25f) targetLine.endColor = activeColor;
+                else targetLine.endColor = inactiveColor;
             }
             catch (MissingReferenceException)
             {

@@ -6,15 +6,17 @@ using UnityEngine;
 abstract public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    protected float hp;
+    protected float maxHp;
     [SerializeField]
     [Range(0,100)]
     protected float speed;
 
+    protected float hp;
     protected int lvl;
     protected float deltaTime;
 
     protected Rigidbody rigidbodyComponent;
+    protected BarControl healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +25,20 @@ abstract public class Enemy : MonoBehaviour
         deltaTime = GetEnemyDeltaTime();
 
         rigidbodyComponent = GetComponent<Rigidbody>();
+
+        healthBar = transform.GetComponentInChildren<BarControl>();
+        //healthBar.Initialize();
+
+        hp = maxHp;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
         Movement(GetEnemyDeltaTime());
+
+        // Aktualizacja paska zdrowia
+        healthBar.SetValue(100 * hp / maxHp);
 
         // Tymczasowe wyświetlanie ilości zdrowia dla ułatwienia testowania
         //Debug.Log(gameObject.name + "'s health: " + hp);

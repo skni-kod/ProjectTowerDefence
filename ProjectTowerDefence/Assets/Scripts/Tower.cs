@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    float damagePerHit, hitRange, lastHit;
+    private BarControl cooldownBar;
+
+    protected float damagePerHit, hitRange;
 
     [HideInInspector]
-    public float hitCooldown;
+    public float hitCooldown, lastHit;
     public Collider[] enemiesInRange;
 
 
@@ -21,6 +23,9 @@ public class Tower : MonoBehaviour
 
         // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
         lastHit = -hitCooldown;
+
+        cooldownBar = GetComponentInChildren<BarControl>();
+        //cooldownBar.Initialize();
     }
 
     // Update is called once per frame
@@ -28,7 +33,7 @@ public class Tower : MonoBehaviour
     {
         EnemiesDetection();
         TowerDealingDamage();
-
+        CooldownBarUpdate();
     }
 
     /// <summary>
@@ -56,5 +61,13 @@ public class Tower : MonoBehaviour
             }
 
         }
+    }
+
+    /// <summary>
+    /// Aktualizacja paska czasu oczekiwania
+    /// </summary>
+    private void CooldownBarUpdate()
+    {
+        cooldownBar.SetValue(100 * (1 - ((Time.time - lastHit) / hitCooldown)));
     }
 }

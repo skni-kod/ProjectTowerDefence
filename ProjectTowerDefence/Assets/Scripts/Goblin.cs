@@ -9,6 +9,8 @@ public class Goblin : Enemy
     protected override void Update()
     {
         Movement(base.GetEnemyDeltaTime());
+
+        healthBar.SetValue(100 * hp / maxHp);
     }
 
 
