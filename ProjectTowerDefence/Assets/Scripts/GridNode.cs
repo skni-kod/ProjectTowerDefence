@@ -6,9 +6,9 @@ public class GridNode
 {
     private Grid<GridNode> grid;
     private int x;
-    public int X { get { return x; } }
+    public int X { get { return x; } set { x = value; } }
     private int y;
-    public int Y { get { return y; } }
+    public int Y { get { return y; } set { y = value; } }
 
     public bool isAvailable;
 
@@ -32,6 +32,9 @@ public class GridNode
         return x + " , " + y;
     }
 
+    /// <summary>
+    /// Metoda oblicza fCost 
+    /// </summary>
     public void fCostCalculate()
     {
         fCost = gCost + hCost;

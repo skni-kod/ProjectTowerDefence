@@ -47,6 +47,13 @@ public class Grid<TGridObject>
         Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width,height), Color.white, 10f);
         Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width,height), Color.white, 10f);
     }
+    /// <summary>
+    /// Metoda ustawia wyswietalnie sie tekstu kazdego wezła grida
+    /// </summary>
+    /// <param name="parent"> komponent za którym bedzie podazac tekst</param>
+    /// <param name="text">jaki text ma sie wyswietlic</param>
+    /// <param name="localPosition"> współrzędne textu </param>
+    /// <returns></returns>
     private TextMesh CreateGridText(Transform parent, string text, Vector3 localPosition)
     {
         GameObject textMeshObject = new GameObject("GridText", typeof(TextMesh));
@@ -84,16 +91,23 @@ public class Grid<TGridObject>
         SetObject(coordinate.x, coordinate.y, value);
     }
     
-
+    /// <summary>
+    /// Metoda oblicza koordynaty grida na podstawie podanego wektora
+    /// </summary>
+    /// <param name="worldPosition"> vektor/pozycja z którego oblicznane sa koordynaty</param>
+    /// <returns> zwraca vektor2 jako koordynaty grida </returns>
     public Vector2Int GetCoordinate(Vector3 worldPosition)
     {
-        Vector2Int coordinate = new Vector2Int(0,0);
+        Vector2Int coordinate = new Vector2Int();
 
         coordinate.x = Mathf.FloorToInt((worldPosition - startPosition).x/ cellSize);
         coordinate.y = Mathf.FloorToInt((worldPosition - startPosition).z/ cellSize);
 
+        //Debug.Log("y "+(worldPosition - startPosition).y);
+        //Debug.Log("z "+(worldPosition - startPosition).z);
         return coordinate;
     }
+
     public TGridObject GetObject(int x, int y)
     {
         if (x >= 0 && y >= 0 && y < height && x < width)

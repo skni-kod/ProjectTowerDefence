@@ -16,13 +16,21 @@ public class Pathfinding
     public Pathfinding(int width, int height)
     {
         //Instance = this;
-        grid = new Grid<GridNode>(width, height, 10f, new Vector3(0, 0, 0), (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
+        grid = new Grid<GridNode>(width, height, 10f, Vector3.zero, (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
     }
 
-    public List<GridNode> Path(int startX, int startY, int endX, int endY)
+    /// <summary>
+    /// Metoda oblicza najkrótsza dorgę miedzy punktamim o podanych współrzędnych
+    /// </summary>
+    /// <param name="startX"> współrzędna x punktu początkowego </param>
+    /// <param name="startZ"> współrzędna y punktu początkowego </param>
+    /// <param name="endX"> współrzędna x punktu końcowego </param>
+    /// <param name="endZ"> współrzędna y punktu początkowego </param>
+    /// <returns> zwraca liste węzłów wyznaczajacych najkrótsza trase </returns>
+    public List<GridNode> Path(int startX, int startZ, int endX, int endZ)
     {
-        GridNode startNode = grid.GetObject(startX, startY);
-        GridNode endNode = grid.GetObject(endX, endY);
+        GridNode startNode = grid.GetObject(startX, startZ);
+        GridNode endNode = grid.GetObject(endX, endZ);
 
         openList = new List<GridNode> { startNode };
         closedList = new List<GridNode>();
@@ -83,6 +91,12 @@ public class Pathfinding
         }
         return null;
     }
+    /// <summary>
+    /// Metoda oblicza najkrótsza dorgę miedzy punktamim o podanych współrzędnych
+    /// </summary>
+    /// <param name="startWorldPosition"> współrzędne punktu startowego</param>
+    /// <param name="endWorldPosition"> współrzędne punktu koncowego </param>
+    /// <returns></returns>
     public List<Vector3> Path(Vector3 startWorldPosition, Vector3 endWorldPosition)
     {
         List<GridNode> path = Path(grid.GetCoordinate(startWorldPosition).x, grid.GetCoordinate(startWorldPosition).y, grid.GetCoordinate(endWorldPosition).x, grid.GetCoordinate(endWorldPosition).y);
@@ -96,12 +110,17 @@ public class Pathfinding
             List<Vector3> vectorPath = new List<Vector3>();
             foreach (GridNode node in path)
             {
-                vectorPath.Add(new Vector3(node.X, node.Y) * grid.CellSize + Vector3.one * grid.CellSize * 0.5f);
+                vectorPath.Add(new Vector3(node.X,0, node.Y) * grid.CellSize + Vector3.one * grid.CellSize * 0.5f);
             }
 
             return vectorPath;
         }
     }
+    /// <summary>
+    /// Metoda przechodzi od koncowego wezla scierzki poprzez poprzednie wezy i zwraca najkrótsza liste wezłów takich aby dotrzec podanego wezła
+    /// </summary>
+    /// <param name="gridNode"></param>
+    /// <returns> zwraca liste wezłów potrzebnych do osiagniecia podanego wezła </returns>
     private List<GridNode> FinalPath(GridNode gridNode)
     {
         List<GridNode> path = new List<GridNode>();
@@ -116,7 +135,12 @@ public class Pathfinding
         path.Reverse();
         return path;
     }
-
+    /// <summary>
+    /// Metoda zwraca koszt przejscia pomiedzy wezłami
+    /// </summary>
+    /// <param name="from">wezel z którego wyruszamy</param>
+    /// <param name="where">wezel do ktrorego zmierzamy </param>
+    /// <returns> zwraca koszt przejscia miedzy wezłami </returns>
     private int DistanceCost(GridNode from, GridNode where)
     {
         int distanceX = Mathf.Abs(from.X - where.X);
@@ -125,11 +149,16 @@ public class Pathfinding
         return DIAGONAL_COST * Mathf.Min(distanceY, distanceX) + STRAIGHT_COST * rest;
     }
 
+    /// <summary>
+    /// Metoda sprawdza który wezeł z podanej listy ma najmniejszy FCost
+    /// </summary>
+    /// <param name="gridNodeList">lista węzłów do sprawdzenia</param>
+    /// <returns> zwraca węzeł który z podanych ma najmniejszy fCost</returns>
     private GridNode GetLowestCostNode(List<GridNode> gridNodeList)
     {
         GridNode lowerstCostNode = gridNodeList[0];
 
-        for (int i = 0; i < gridNodeList.Count; i++)
+        for (int i = 1; i < gridNodeList.Count; i++)
         {
             if (gridNodeList[i].fCost < lowerstCostNode.fCost)
             {
@@ -138,7 +167,11 @@ public class Pathfinding
         }
         return lowerstCostNode;
     }
-
+    /// <summary>
+    /// Metoda zwraca listę wezłow z ktorymi sasiaduje podany wezel
+    /// </summary>
+    /// <param name="currentNode">wezeł ktorego sasiadow chcesz znalesc</param>
+    /// <returns> zwraca liste wezlow sasadujacych z podanym wezlem </returns>
     private List<GridNode> GetNeighbourList(GridNode currentNode)
     {
         List<GridNode> neighbourList = new List<GridNode>();
@@ -160,11 +193,11 @@ public class Pathfinding
             neighbourList.Add(GetNode(currentNode.X + 1, currentNode.Y));
             if (currentNode.Y - 1 >= 0)
             {
-                neighbourList.Add(GetNode(currentNode.X - 1, currentNode.Y - 1));
+                neighbourList.Add(GetNode(currentNode.X + 1, currentNode.Y - 1));
             }
             if (currentNode.Y + 1 < grid.Heigth)
             {
-                neighbourList.Add(GetNode(currentNode.X - 1, currentNode.Y + 1));
+                neighbourList.Add(GetNode(currentNode.X + 1, currentNode.Y + 1));
             }
         }
         if (currentNode.Y - 1 >= 0)
@@ -177,11 +210,20 @@ public class Pathfinding
         }
         return neighbourList;
     }
-
+    /// <summary>
+    /// Metoda zwraca wskazany wezeł grida
+    /// </summary>
+    /// <param name="x">współrzędna x gridaz</param>
+    /// <param name="y">współrzędna y grida</param>
+    /// <returns> zwraca wskazany węzeł grida</returns>
     private GridNode GetNode(int x, int y)
     {
         return grid.GetObject(x, y);
     }
+    /// <summary>
+    /// Metoda zwraca grid uzywany przez PathFinding
+    /// </summary>
+    /// <returns> grid uzywany przez PathFinding</returns>
     public Grid<GridNode> GetGrid()
     {
         return grid;
