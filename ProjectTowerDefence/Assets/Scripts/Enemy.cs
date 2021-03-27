@@ -18,7 +18,7 @@ abstract public class Enemy : MonoBehaviour
     protected int lvl;
 
     protected Rigidbody rigidbodyComponent;
-    protected BarControl healthBar;
+    protected BarControler healthBar;
 
     protected Pathfinding pathfinding;
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ abstract public class Enemy : MonoBehaviour
 
         rigidbodyComponent = GetComponent<Rigidbody>();
 
-        healthBar = transform.GetComponentInChildren<BarControl>();
+        healthBar = transform.GetComponentInChildren<BarControler>();
         //healthBar.Initialize();
 
         hp = maxHp;
@@ -70,9 +70,12 @@ abstract public class Enemy : MonoBehaviour
     /// <summary>
     /// inicjalizacja statystyk
     /// </summary>
-    protected virtual void InitStats()
+    /// <param name="maxHp">Ilość punktów zdrowia</param>
+    /// <param name="speed">Szybkość</param>
+    public void InitStats(float maxHp, float speed)
     {
-        Debug.Log("coś poszło nie tak, Zjebałeś");
+        this.maxHp = maxHp;
+        this.speed = speed;
     }
 
     /// <summary>

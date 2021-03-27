@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -1757532394275819616}
   m_Layer: 8
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Towers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitCooldown: 0
+  lastHit: 0
   enemiesInRange: []
 --- !u!120 &-8233708127972997966
 LineRenderer:

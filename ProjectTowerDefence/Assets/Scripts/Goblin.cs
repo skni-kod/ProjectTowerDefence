@@ -14,11 +14,6 @@ public class Goblin : Enemy
         healthBar.SetValue(100 * hp / maxHp);
     }
 
-
-    protected override void InitStats()
-    {
-    }
-
     protected override void Movement()
     {
         // chwilowe rozwiazanie poruszania
