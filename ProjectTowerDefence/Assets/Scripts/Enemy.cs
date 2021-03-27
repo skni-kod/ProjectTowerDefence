@@ -46,9 +46,6 @@ abstract public class Enemy : MonoBehaviour
     {
         Movement();
 
-        // Aktualizacja paska zdrowia
-        healthBar.SetValue(100 * hp / maxHp);
-
         // Tymczasowe wyświetlanie ilości zdrowia dla ułatwienia testowania
         //Debug.Log(gameObject.name + "'s health: " + hp);
     }
@@ -89,7 +86,10 @@ abstract public class Enemy : MonoBehaviour
         {
             // Usunięcie obiektu, bo umarł
             Destroy(gameObject);
+            return;
         }
+        // Aktualizacja paska zdrowia
+        healthBar.SetValue(100 * hp / maxHp);
     }
     protected void SetDestinationPosition(Vector3 targetPosition)
     {
