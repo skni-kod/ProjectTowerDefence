@@ -16,7 +16,7 @@ public class Pathfinding
     public Pathfinding(int width, int height)
     {
         //Instance = this;
-        grid = new Grid<GridNode>(width, height, 10f, Vector3.zero, (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
+        grid = new Grid<GridNode>(width, height, 2f, Vector3.zero, (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ public class Pathfinding
     public List<Vector3> Path(Vector3 startWorldPosition, Vector3 endWorldPosition)
     {
         List<GridNode> path = Path(grid.GetCoordinate(startWorldPosition).x, grid.GetCoordinate(startWorldPosition).y, grid.GetCoordinate(endWorldPosition).x, grid.GetCoordinate(endWorldPosition).y);
-
+        
         if (path == null)
         {
             return null;
@@ -110,9 +110,10 @@ public class Pathfinding
             List<Vector3> vectorPath = new List<Vector3>();
             foreach (GridNode node in path)
             {
-                vectorPath.Add(new Vector3(node.X,0, node.Y) * grid.CellSize + Vector3.one * grid.CellSize * 0.5f);
-            }
+                vectorPath.Add(new Vector3(node.X,0, node.Y) * grid.CellSize + new Vector3(1,0,1) * grid.CellSize * 0.5f);
 
+            }
+            
             return vectorPath;
         }
     }

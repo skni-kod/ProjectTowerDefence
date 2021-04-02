@@ -31,7 +31,7 @@ public class Test : MonoBehaviour
                 {
                     for (int i = 0; i < path.Count -1 ; i++)
                     {
-                        Debug.DrawLine(new Vector3(path[i].X,0, path[i].Y) * 10f + new Vector3(1,0,1) * 5f, new Vector3(path[i + 1].X,0, path[i + 1].Y) *10f+ new Vector3(1, 0, 1) * 5f, Color.green,10f);
+                        Debug.DrawLine(new Vector3(path[i].X,0, path[i].Y) * 10f + new Vector3(1,0,1) * 5f, new Vector3(path[i + 1].X,0, path[i + 1].Y) *10f+ new Vector3(1, 0, 1) * 5f, Color.green,2f);
                     }
                 }
             }

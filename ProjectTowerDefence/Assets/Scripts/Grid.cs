@@ -12,7 +12,7 @@ public class Grid<TGridObject>
 
     private float cellSize;
 
-    public float CellSize { get;}
+    public float CellSize { get { return cellSize; } }
     private TGridObject[,] gridArray;
     private Vector3 startPosition;
     private TextMesh[,] debugGridTextArray;
@@ -39,7 +39,7 @@ public class Grid<TGridObject>
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
-                debugGridTextArray[x,y] = CreateGridText(null, gridArray[x, y]?.ToString(), GetWorldPosition(x, y) + (new Vector3(cellSize,0,cellSize)/2f));
+               // debugGridTextArray[x,y] = CreateGridText(null, gridArray[x, y]?.ToString(), GetWorldPosition(x, y) + (new Vector3(cellSize,0,cellSize)/2f));
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white,10f);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x+1, y), Color.white, 10f);
             }

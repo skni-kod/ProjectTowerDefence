@@ -24,11 +24,8 @@ abstract public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // fix it later
-        //pathfinding = new Pathfinding(10, 10);
-        //pathfinding.GetGrid().GetCoordinate(new Vector3(5, 0, 0));
-        //List<GridNode> path = pathfinding.Path(0, 0, 5, 0);
-        //SetDestinationPosition(new Vector3(5, 0, 0));
+        pathfinding = new Pathfinding(100, 100);
+        SetDestinationPosition(new Vector3(33, 0, 7));
 
 
         rigidbodyComponent = GetComponent<Rigidbody>();
@@ -94,16 +91,29 @@ abstract public class Enemy : MonoBehaviour
         // Aktualizacja paska zdrowia
         healthBar.SetValue(100 * hp / maxHp);
     }
+
+    /**
+     * metoda ustawia punkt docelowy sciezki
+     * @param targetPosition Vector3 współrzędnych punktu docelowego
+     */
     protected void SetDestinationPosition(Vector3 targetPosition)
     {
         currentPathIndex = 0;
         //pathVectorList = Pathfinding.Instance.Path(transform.position, targetPosition);
         pathVectorList = pathfinding.Path(transform.position, targetPosition);
-
         if (pathVectorList != null && pathVectorList.Count > 1)
         {
             pathVectorList.RemoveAt(0);
         }
+    }
+
+    /**
+     * metoda zwraca współrzedne X oraz Z obiektu
+     * @return Vektor3 pozycji obiektu o współrzędnej Y równej 0
+     */
+    protected Vector3 GetPositionXZ()
+    {
+        return new Vector3(transform.position.x, 0, transform.position.z);
     }
 
 }
