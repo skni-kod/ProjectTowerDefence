@@ -803,10 +803,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662ed2b9af0c5a145bbe3d2c290d53d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesSpawnPoints:
+  - {x: 3, y: 1, z: 11}
+  - {x: 3, y: 1, z: 7}
   enemySpawningCooldown: 2
   enemiesPrefabs:
   - {fileID: 8852445604156773834, guid: c48ee31bd50b3404fb53bf6a2dded77f, type: 3}
   enemiesParentObject: {fileID: 858500699}
+  enemiesWavesSetId: 0
 --- !u!4 &2038495202
 Transform:
   m_ObjectHideFlags: 0
@@ -815,7 +819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038495200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.999818, y: 2.1979618, z: 9.464962}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
