@@ -14,7 +14,7 @@ public class LevelControler : MonoBehaviour
     /// <summary>
     /// Lista przeciwników pozostałych do zespawnowania podczas obecnej fali
     /// </summary>
-    protected List<EnemiesWave> enemiesToSpawn = new List<EnemiesWave>();
+    protected List<EnemyWavePart> enemiesToSpawn = new List<EnemyWavePart>();
 
     /// <summary>
     /// Czas ostatniego zespawnowania przeciwnika
@@ -66,12 +66,12 @@ public class LevelControler : MonoBehaviour
     protected Transform enemiesParentObject;
 
     /// <summary>
-    /// Lista zestawów fal przeciwników dla różnych poziomów
+    /// Lista fal przeciwników dla obecnego poziomów
     /// </summary>
-    protected List<List<List<EnemiesWave>>> allEnemiesWaves = new List<List<List<EnemiesWave>>>();
+    protected List<List<EnemyWavePart>> enemiesWaves = new List<List<EnemyWavePart>>();
 
     /// <summary>
-    /// Index zestawu fal przeciwników, który mas być użyty
+    /// Numer zestawu fal przeciwników, który mas być użyty. Można ustawiać z edytorze Unity
     /// </summary>
     [SerializeField]
     protected int enemiesWavesSetId;
@@ -134,23 +134,17 @@ public class LevelControler : MonoBehaviour
     {
         Debug.Log($"Starting wave {currentEnemiesWave}");
 
-        if (enemiesWavesSetId < 0 || enemiesWavesSetId >= allEnemiesWaves.Count)
-        {
-            Debug.LogError("Nieprawidłowy numer zestawu fal przeciwników");
-            enemiesWavesSetId = 0;
-        }
-
-        int definiedWavesCount = allEnemiesWaves[enemiesWavesSetId].Count;
-        int statsMultiplier = currentEnemiesWave / definiedWavesCount + 1;
+        int wavesCount = enemiesWaves.Count;
+        int statsMultiplier = currentEnemiesWave / wavesCount + 1;
 
         enemiesToSpawn.Clear();
-        foreach (EnemiesWave ew in allEnemiesWaves[enemiesWavesSetId][currentEnemiesWave % definiedWavesCount])
+        foreach (EnemyWavePart ew in enemiesWaves[currentEnemiesWave % wavesCount])
         {
             if (ew.count > 0)
             {
                 for (int i = 0; i < ew.count; i++)
                 {
-                    enemiesToSpawn.Add(new EnemiesWave(ew.prefabId, ew.hp * statsMultiplier, ew.speed * statsMultiplier));
+                    enemiesToSpawn.Add(new EnemyWavePart(ew.prefabId, ew.hp * statsMultiplier, ew.speed * statsMultiplier));
                 }
             }
         }
@@ -177,7 +171,7 @@ public class LevelControler : MonoBehaviour
     {
         if (enemiesToSpawn.Count > 0)
         {
-            EnemiesWave enemyToSpawn = enemiesToSpawn[0];
+            EnemyWavePart enemyToSpawn = enemiesToSpawn[0];
 
             int randomSpawnPointIndex = Random.Range(0, enemiesSpawnPoints.Count);
             int prefabId = enemyToSpawn.prefabId;
@@ -196,40 +190,52 @@ public class LevelControler : MonoBehaviour
     }
 
     /// <summary>
-    /// Utworzenie listy wszystkich fal przeciwników
+    /// Utworzenie listy fal przeciwników. Tutaj zdefiniowane są wszystkie zestawy fal
     /// </summary>
     private void DefineEnemiesWaves()
     {
-        allEnemiesWaves.Clear();
+        enemiesWaves.Clear();
 
-        // zestaw 0
-        allEnemiesWaves.Add(new List<List<EnemiesWave>>());
-        // fala 0
-        allEnemiesWaves[0].Add(new List<EnemiesWave>());
-        allEnemiesWaves[0][0].Add(new EnemiesWave(0, 50, 1, 2));
-        // fala 1
-        allEnemiesWaves[0].Add(new List<EnemiesWave>());
-        allEnemiesWaves[0][1].Add(new EnemiesWave(0, 60, 1.25f, 3));
-        // fala 2
-        allEnemiesWaves[0].Add(new List<EnemiesWave>());
-        allEnemiesWaves[0][2].Add(new EnemiesWave(0, 80, 1.25f, 5));
-        // fala 3
-        allEnemiesWaves[0].Add(new List<EnemiesWave>());
-        allEnemiesWaves[0][3].Add(new EnemiesWave(0, 100, 1.5f, 6));
-        // fala 4
-        allEnemiesWaves[0].Add(new List<EnemiesWave>());
-        allEnemiesWaves[0][4].Add(new EnemiesWave(0, 100, 1.5f, 8));
-        // fala 5
-        allEnemiesWaves[0].Add(new List<EnemiesWave>());
-        allEnemiesWaves[0][5].Add(new EnemiesWave(0, 100, 2, 10));
-        // fala 6
-        allEnemiesWaves[0].Add(new List<EnemiesWave>());
-        allEnemiesWaves[0][6].Add(new EnemiesWave(0, 100, 2, 15));
+        switch (enemiesWavesSetId)
+        {
+            default:
+                Debug.LogError("Nieprawidłowy numer zestawu fal - ładowanie zestawu 0");
+                enemiesWavesSetId = 0;
+                DefineEnemiesWaves();
+                break;
+            case 0:
+                // zestaw 0
+                // fala 0
+                enemiesWaves.Add(new List<EnemyWavePart>());
+                enemiesWaves[0].Add(new EnemyWavePart(0, 50, 1, 2));
+                // fala 1
+                enemiesWaves.Add(new List<EnemyWavePart>());
+                enemiesWaves[1].Add(new EnemyWavePart(0, 60, 1.25f, 3));
+                // fala 2
+                enemiesWaves.Add(new List<EnemyWavePart>());
+                enemiesWaves[2].Add(new EnemyWavePart(0, 80, 1.25f, 5));
+                // fala 3
+                enemiesWaves.Add(new List<EnemyWavePart>());
+                enemiesWaves[3].Add(new EnemyWavePart(0, 100, 1.5f, 6));
+                // fala 4
+                enemiesWaves.Add(new List<EnemyWavePart>());
+                enemiesWaves[4].Add(new EnemyWavePart(0, 100, 1.5f, 8));
+                // fala 5
+                enemiesWaves.Add(new List<EnemyWavePart>());
+                enemiesWaves[5].Add(new EnemyWavePart(0, 100, 2, 10));
+                // fala 6
+                enemiesWaves.Add(new List<EnemyWavePart>());
+                enemiesWaves[6].Add(new EnemyWavePart(0, 100, 2, 15));
+                break;
 
+            /*case 1:
+                // TODO: Tutaj będą zdefiniowane kolejne zestawy fal przeciwników
+                break;*/
+        }
     }
 }
 
-public class EnemiesWave
+public class EnemyWavePart
 {
     /// <summary>
     /// Indeks w liście prefabów przeciwników
@@ -251,7 +257,7 @@ public class EnemiesWave
     /// </summary>
     public int count;
 
-    public EnemiesWave(int prefabId, float hp, float speed, int count = 1)
+    public EnemyWavePart(int prefabId, float hp, float speed, int count = 1)
     {
         this.prefabId = prefabId;
         this.hp = hp;
