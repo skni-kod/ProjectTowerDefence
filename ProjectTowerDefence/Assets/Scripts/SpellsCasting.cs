@@ -90,11 +90,22 @@ public class SpellsCasting : MonoBehaviour
                 }                
             }
         }
-    }    
+    }
     #endregion
 
+    List<SpellBook> spellList;
+
+    private IceSpell ice;
+
+    private void Start()
+    {
+        ice = new IceSpell();
+        spellList.Add(ice);
+        spellList[0].run();
+    }
     void Update()
     {
+        
         //Uruchamianie skryptu
         if (Input.GetKeyDown(KeyCode.Space))
         {
