@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface SpellBook 
+public class SpellBook
 {
-    void run();
+    public virtual float AreaRadius { get; }    
+    public virtual Vector3 Position { get; set; }
+    public virtual bool IsRunning { get; }
 
+    public virtual void Run()
+    {
+        ;
+    }
 
-    void dealDMG();
-
-
+    public virtual void DealDMG()
+    {
+        ;
+    }
 }

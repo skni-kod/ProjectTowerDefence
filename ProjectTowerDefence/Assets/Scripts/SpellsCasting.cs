@@ -5,23 +5,30 @@ using UnityEngine;
 
 public class SpellsCasting : MonoBehaviour
 {
-    public Camera current_camera;              
+    public Camera currentCamera;
     public GameObject cylinder;
-    
-    public bool active = false;
 
-    private GameObject spell;
-    private GameObject cylinder_instance;
-    private GameObject cast_area;
+    //w celu debugowania jest publiczne
+    public bool setArea = false;
+    public bool preparedSpell = false;
+    public bool workingSpell = false;
 
-    #region PublicMethods
+    private SpellBook spell;
+    private GameObject cylinderInstance;
+    private GameObject castArea;
 
-    public void CastSpell(GameObject input_spell)
+    private List<SpellBook> spellList = new List<SpellBook>( new SpellBook[] { new TestSpell(), new IceSpell(), new IceSpell() });
+
+    private IceSpell ice;
+
+    #region PublicMethods       
+
+    public void ActivePrepareCastingSpell(int index)
     {
-        if(!active)
+        if(!setArea)
         {
-            active = true;
-            spell = input_spell;
+            setArea = true;
+            spell = spellList[index];
             CreateInstance();
         }            
     }        
@@ -29,10 +36,10 @@ public class SpellsCasting : MonoBehaviour
     // Dezaktywacja skryptu
     public void Deacivate()
     {
-        if(active)
+        if(setArea)
         {
-            Destroy(cylinder_instance);
-            active = false;
+            Destroy(cylinderInstance);
+            setArea = false;
         }        
     }
     #endregion
@@ -42,28 +49,33 @@ public class SpellsCasting : MonoBehaviour
     private void CreateInstance()
     {
         // Utworzenie instncji obiektu
-        cylinder_instance = Instantiate(cylinder);
-        // Ustawienie obiektu na warstwie nr 2, na której obiekty są ignorowane przez Raycast'a
-        cylinder_instance.layer = 2;
+        cylinderInstance = Instantiate(cylinder);
 
-        SetInstanceInLayer2(cylinder_instance);
+        // ustawienie rozmiaru obszaru na podstawie danych z klasy zaklęcia
+        Vector3 new_scale = Vector3.Scale(cylinderInstance.transform.localScale, new Vector3(spell.AreaRadius, spell.AreaRadius, 0.3f));
+        cylinderInstance.transform.localScale = new_scale;
+
+        // Ustawienie obiektu na warstwie nr 2, na której obiekty są ignorowane przez Raycast'a
+        cylinderInstance.layer = 2;
+
+        SetInstanceInLayer2(cylinderInstance);
     }
     
     // Ustawienie wszystkich podobiektów na warstwe nr 2
     private void SetInstanceInLayer2(GameObject instance)
     {
-        foreach (Transform child_tranform in instance.GetComponentsInChildren<Transform>())
+        foreach (Transform childTranform in instance.GetComponentsInChildren<Transform>())
         {
-            child_tranform.gameObject.layer = 2;
+            childTranform.gameObject.layer = 2;
         }
     }
     
     // Zarządzanie rzucaniem zaklęć
-    private void HandleCasting()
+    private void HandlePrepareCastingSpell()
     {
         RaycastHit[] hits;
         // Przypisanie promienia, który prowadzony jest z kursora myszki i zwraca wszystkie trafione elementy
-        hits = Physics.RaycastAll(current_camera.ScreenPointToRay(Input.mousePosition));
+        hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Input.mousePosition));
 
         // Iteracja po każdym trafionym obiekcie
         foreach (RaycastHit hit in hits)
@@ -72,19 +84,21 @@ public class SpellsCasting : MonoBehaviour
             if (hit.collider.CompareTag("Terrain"))
             {
                 // Ustawia pozycje obiektu na miejsce trafienia promienia w teren
-                cylinder_instance.transform.localPosition = hit.point;
+                cylinderInstance.transform.localPosition = hit.point;
                 // Jeśli kliknięty LPM to jest zatwierdzane rzucenie zaklęcia
                 if (Input.GetMouseButtonDown(0))
                 {                 
                     // Tworzenie instancji obiektu w miejscu kursora
-                    cast_area = Instantiate(cylinder, hit.point, cylinder_instance.transform.rotation);
+                    castArea = Instantiate(cylinderInstance, hit.point, cylinderInstance.transform.rotation);                    
 
-                    Vector3 new_scale = Vector3.Scale(cast_area.transform.localScale, new Vector3(1, 1, 0.3f));
-
-                    cast_area.transform.localScale = new_scale;
+                    //zapisanie miejsca rzucania zaklęcia
+                    spell.Position = castArea.transform.position;                    
 
                     // Utworzony obiekt jest ustawiany jako podobiekt "SpellsCaster"
-                    cast_area.transform.SetParent(this.transform);
+                    castArea.transform.SetParent(this.transform);
+
+                    // Potwierdzenie zakończenia przygotowania
+                    preparedSpell = true;
 
                     Deacivate();
                 }                
@@ -93,26 +107,22 @@ public class SpellsCasting : MonoBehaviour
     }
     #endregion
 
-    List<SpellBook> spellList;
-
-    private IceSpell ice;
-
-    private void Start()
+    void Awake()
     {
         ice = new IceSpell();
         spellList.Add(ice);
-        spellList[0].run();
     }
+
+
     void Update()
-    {
-        
+    {        
         //Uruchamianie skryptu
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            CastSpell(spell);
+            ActivePrepareCastingSpell(0);
         }                       
 
-        if (active)
+        if (setArea)
         {
             // Wyłączanie skryptu
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -120,7 +130,23 @@ public class SpellsCasting : MonoBehaviour
                 Deacivate();
             }
 
-            HandleCasting();
+            HandlePrepareCastingSpell();
+        }
+
+        if(preparedSpell)
+        {
+            spell.Run();
+            preparedSpell = false;
+            workingSpell = true;
+        }
+        if(workingSpell)
+        {
+            workingSpell = spell.IsRunning;
+            spell.DealDMG();
+        }
+        else
+        {
+            Destroy(castArea);
         }
     }
 }

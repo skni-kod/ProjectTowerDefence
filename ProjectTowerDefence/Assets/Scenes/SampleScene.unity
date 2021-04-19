@@ -212,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193949316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.89, y: 1.23, z: 8.2}
+  m_LocalPosition: {x: 19.42, y: 2.62, z: 11.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -700,9 +700,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7ef98d26fd74f4e98219ea9aac2ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current_camera: {fileID: 1940149068}
+  currentCamera: {fileID: 1940149068}
   cylinder: {fileID: 7017406191813697067, guid: b5cdc5c71588b884fbca4c01f9bc9a94, type: 3}
-  active: 0
+  setArea: 0
+  preparedSpell: 0
+  workingSpell: 0
 --- !u!4 &2024578623
 Transform:
   m_ObjectHideFlags: 0

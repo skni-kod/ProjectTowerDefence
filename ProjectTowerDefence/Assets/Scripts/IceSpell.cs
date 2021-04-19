@@ -4,26 +4,43 @@ using UnityEngine;
 
 public class IceSpell : SpellBook
 {
-    
+    private float areaRadius = 5f;
+    private Vector3 position;
+    private bool isRunning = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void run()
+    public override void Run()
     {
         //wykonanie zaklecia
     }
 
-    public void dealDMG()
+    public override void DealDMG()
     {
 
+    }
+
+    public override float AreaRadius
+    {
+        get
+        {
+            return areaRadius;
+        }
+    }
+    public override Vector3 Position 
+    { 
+        get
+        {
+            return position;
+        }
+        set
+        {
+            position = value;
+        }
+    }
+    public override bool IsRunning
+    {
+        get
+        {
+            return isRunning;
+        }
     }
 }
