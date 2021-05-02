@@ -431,16 +431,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1194845916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fd345a60ec0b4e478d5befdd1b917ad, type: 3}
+  m_Script: {fileID: 11500000, guid: dd3cb20997f8dfa4f86a19df6af99a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current_camera: {fileID: 1940149068}
-  green_material: {fileID: 2100000, guid: 3527f78ef5d08674f9a79fd64731103d, type: 2}
-  red_material: {fileID: 2100000, guid: 19ec15ce71e4e6142b3073d8af508bd5, type: 2}
-  buildings_to_place:
-  - {fileID: 4967390986138071350, guid: 4b018e8b13a47f54199b8b982d7a99b6, type: 3}
+  currentCamera: {fileID: 1940149068}
+  greenMaterial: {fileID: 2100000, guid: 3527f78ef5d08674f9a79fd64731103d, type: 2}
+  redMaterial: {fileID: 2100000, guid: 19ec15ce71e4e6142b3073d8af508bd5, type: 2}
+  buildingsToPlace:
   - {fileID: 2542965845261479495, guid: cf9172915fe05524d904532d47312762, type: 3}
   - {fileID: 3037807327482619778, guid: 79ba29b0be2a797459c2d25800fddbdd, type: 3}
+  - {fileID: 4967390986138071350, guid: 4b018e8b13a47f54199b8b982d7a99b6, type: 3}
   active: 0
 --- !u!4 &1194845918
 Transform:

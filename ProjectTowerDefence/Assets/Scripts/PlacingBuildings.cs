@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class PlacingBuildings : MonoBehaviour
 {
-    public Camera current_camera;       
-    public Material green_material;
-    public Material red_material;
-    public GameObject[] buildings_to_place;
+    public Camera currentCamera;       
+    public Material greenMaterial;
+    public Material redMaterial;
+    public GameObject[] buildingsToPlace;
     
     public bool active = false;
 
-    private int building_id = 0;
-    private GameObject object_to_place;
-    private GameObject green_placeholder;
-    private GameObject placed_building;
+    private int buildingId = 0;
+    private GameObject objectToPlace;
+    private GameObject greenPlaceholder;
+    private GameObject placedBuilding;
 
     #region PublicMethods
 
@@ -25,7 +25,7 @@ public class PlacingBuildings : MonoBehaviour
         if(!active)
         {
             active = true;
-            object_to_place = new_object;
+            objectToPlace = new_object;
             CreateGreenCopy();
         }            
     }        
@@ -35,20 +35,30 @@ public class PlacingBuildings : MonoBehaviour
     {
         if(active)
         {
-            Destroy(green_placeholder);
+            Destroy(greenPlaceholder);
             active = false;
         }        
     }
     #endregion
 
     #region PrivateMethods
+    // ustawienie tagu wszystkich podobiektów
+    void SetAllChildrenTag(GameObject gameObject, string tag)
+    {
+        Transform[] allChildren = gameObject.GetComponentsInChildren<Transform>(true);
+        foreach (Transform child in allChildren)
+        {
+            child.gameObject.tag = tag;
+        }
+    }
+
     // Utworzenie zielonej kopii obiektu, który będziemy stawiać
     private void CreateGreenCopy()
     {
         // Utworzenie instncji obiektu
-        green_placeholder = Instantiate(object_to_place);
+        greenPlaceholder = Instantiate(objectToPlace);
         // Ustawienie obiektu na warstwie nr 2, na której obiekty są ignorowane przez Raycast'a
-        green_placeholder.layer = 2;
+        greenPlaceholder.layer = 2;
 
         SetGreenCopyGreenMaterial();
         SetGreenCopyInLayer2();
@@ -57,30 +67,30 @@ public class PlacingBuildings : MonoBehaviour
     // Ustawienie wszystkich podobiektów w obiekcie na zielony kolor
     private void SetGreenCopyGreenMaterial()
     {
-        foreach (MeshRenderer child_renderer in green_placeholder.GetComponentsInChildren<MeshRenderer>())
+        foreach (MeshRenderer childRenderer in greenPlaceholder.GetComponentsInChildren<MeshRenderer>())
         {
-            child_renderer.material = green_material;
+            childRenderer.material = greenMaterial;
         }
     }
     // Ustawienie wszystkich podobiektów na warstwe nr 2
     private void SetGreenCopyInLayer2()
     {
-        foreach (Transform child_tranform in green_placeholder.GetComponentsInChildren<Transform>())
+        foreach (Transform childTranform in greenPlaceholder.GetComponentsInChildren<Transform>())
         {
-            child_tranform.gameObject.layer = 2;
+            childTranform.gameObject.layer = 2;
         }
     }
     // Obracanie obiektu o 45 stopni
     private void RotateBuilding()
     {
-        green_placeholder.transform.Rotate(Vector3.down, 45);        
+        greenPlaceholder.transform.Rotate(Vector3.down, 45);        
     }
     // Zarządzanie stawianiem budynków
     private void HandlePlacing()
     {
         RaycastHit[] hits;
         // Przypisanie promienia, który prowadzony jest z kursora myszki i zwraca wszystkie trafione elementy
-        hits = Physics.RaycastAll(current_camera.ScreenPointToRay(Input.mousePosition));
+        hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Input.mousePosition));
 
         // Iteracja po każdym trafionym obiekcie
         foreach (RaycastHit hit in hits)
@@ -89,15 +99,18 @@ public class PlacingBuildings : MonoBehaviour
             if (hit.collider.CompareTag("Terrain"))
             {
                 // Ustawia pozycje obiektu na miejsce trafienia promienia w teren
-                green_placeholder.transform.localPosition = hit.point;
+                greenPlaceholder.transform.localPosition = hit.point;
                 // Jeśli kliknięty LPM to jest zatwierdzane postawienie budynku
                 if (Input.GetMouseButtonDown(0))
                 {
                     // Tworzenie instancji obiektu w miejscu kursora i z danym obrotem
-                    placed_building = Instantiate(object_to_place, hit.point, green_placeholder.transform.rotation);                    
+                    placedBuilding = Instantiate(objectToPlace, hit.point, greenPlaceholder.transform.rotation);
+
+                    SetAllChildrenTag(placedBuilding, "Building");
+
                     Deacivate();
                     // Utworzony obiekt jest ustawiany jako podobiekt "BuildingPlacer"
-                    placed_building.transform.SetParent(this.transform);
+                    placedBuilding.transform.SetParent(this.transform);
                 }
                 if (Input.GetMouseButtonDown(1))               
                     RotateBuilding();
@@ -111,7 +124,7 @@ public class PlacingBuildings : MonoBehaviour
         //Uruchamianie skryptu
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            PlaceBuilding(buildings_to_place[building_id]);
+            PlaceBuilding(buildingsToPlace[buildingId]);
         }                       
 
         if (active)
@@ -126,29 +139,29 @@ public class PlacingBuildings : MonoBehaviour
             // Funkcja tymczasowa, aby urozmaicić działanie skryptu
             if (Input.GetKeyDown(KeyCode.A))
             {
-                if (building_id == 0)
+                if (buildingId == 0)
                 {
-                    building_id = buildings_to_place.Length - 1;
+                    buildingId = buildingsToPlace.Length - 1;
                 }
                 else
                 {
-                    building_id--;
+                    buildingId--;
                 }
                 Deacivate();
-                PlaceBuilding(buildings_to_place[building_id]);
+                PlaceBuilding(buildingsToPlace[buildingId]);
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                if (building_id == buildings_to_place.Length - 1)
+                if (buildingId == buildingsToPlace.Length - 1)
                 {
-                    building_id = 0;
+                    buildingId = 0;
                 }
                 else
                 {
-                    building_id++;
+                    buildingId++;
                 }
                 Deacivate();
-                PlaceBuilding(buildings_to_place[building_id]);
+                PlaceBuilding(buildingsToPlace[buildingId]);
             }
 
             HandlePlacing();
