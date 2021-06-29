@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-public class CameraControler : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [SerializeField]
     float moveSpeed=4f;
