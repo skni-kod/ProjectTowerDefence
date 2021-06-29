@@ -4,10 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-
-  - Enemies
   - Towers
-
   layers:
   - Default
   - TransparentFX
