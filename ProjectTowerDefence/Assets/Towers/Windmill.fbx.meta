@@ -1,13 +1,11 @@
 fileFormatVersion: 2
-
-guid: 19a35752194f676419c8d66042588a1f
-
+guid: 019c4a2d3e3c9b043b2a6a355d2a00d8
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
-      74: 710151177591242902
-    second: Tower|PlaneAction
+      74: -8541155862892462524
+    second: 'Armature|Spinning fan '
   externalObjects: {}
   materials:
     materialImportMode: 1

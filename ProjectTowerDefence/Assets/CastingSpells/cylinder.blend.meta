@@ -1,13 +1,8 @@
 fileFormatVersion: 2
-
-guid: 19a35752194f676419c8d66042588a1f
-
+guid: 826e18caacd7baf4d96a4fa4ee322e2d
 ModelImporter:
   serializedVersion: 20101
-  internalIDToNameTable:
-  - first:
-      74: 710151177591242902
-    second: Tower|PlaneAction
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1
