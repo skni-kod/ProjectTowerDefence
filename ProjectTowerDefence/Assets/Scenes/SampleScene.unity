@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53316145}
   - component: {fileID: 53316144}
+  - component: {fileID: 53316146}
   m_Layer: 0
   m_Name: WorldGrid
   m_TagString: Untagged
@@ -167,6 +168,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &53316146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53316143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c042fcece7b35454b8506d391d8a5ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldCamera: {fileID: 1940149068}
 --- !u!4 &534738009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6899483351270843058, guid: d569ecbd395968d4ca5e15b8200c0e94, type: 3}
