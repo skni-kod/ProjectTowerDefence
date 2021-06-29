@@ -18,7 +18,7 @@ abstract public class Enemy : MonoBehaviour
     protected int lvl;
 
     protected Rigidbody rigidbodyComponent;
-    protected BarControler healthBar;
+    protected BarController healthBar;
 
     protected Pathfinding pathfinding;
     // Start is called before the first frame update
@@ -30,7 +30,7 @@ abstract public class Enemy : MonoBehaviour
 
         rigidbodyComponent = GetComponent<Rigidbody>();
 
-        healthBar = transform.GetComponentInChildren<BarControler>();
+        healthBar = transform.GetComponentInChildren<BarController>();
         //healthBar.Initialize();
 
         hp = maxHp;

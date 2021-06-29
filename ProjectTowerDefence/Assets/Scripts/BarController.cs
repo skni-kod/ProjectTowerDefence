@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarControler : MonoBehaviour
+public class BarController : MonoBehaviour
 {
     [HideInInspector]
     protected float size = 1f;

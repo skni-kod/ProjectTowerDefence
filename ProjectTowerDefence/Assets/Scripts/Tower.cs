@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    private BarControler cooldownBar;
+    private BarController cooldownBar;
 
     protected float damagePerHit, hitRange;
 
@@ -24,7 +24,7 @@ public class Tower : MonoBehaviour
         // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
         lastHit = -hitCooldown;
 
-        cooldownBar = GetComponentInChildren<BarControler>();
+        cooldownBar = GetComponentInChildren<BarController>();
         //cooldownBar.Initialize();
     }
 
