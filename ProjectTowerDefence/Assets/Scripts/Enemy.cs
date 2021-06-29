@@ -79,17 +79,18 @@ abstract public class Enemy : MonoBehaviour
     /// Zadawanie obrażeń przeciwnikowi
     /// </summary>
     /// <param name="damageAmount">Ilość obrażeń</param>
-    public void Hit(float damageAmount)
+    public bool Hit(float damageAmount)
     {
         hp -= damageAmount;
         if (hp <= 0)
         {
             // Usunięcie obiektu, bo umarł
-            Destroy(gameObject);
-            return;
+            Destroy(this.gameObject);
+            return true;
         }
         // Aktualizacja paska zdrowia
         healthBar.SetValue(100 * hp / maxHp);
+        return false;
     }
 
     /**

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -11,7 +12,7 @@ public class Tower : MonoBehaviour
     [HideInInspector]
     public float hitCooldown, lastHit;
     public Collider[] enemiesInRange;
-
+    private Collider currEnemieToHit;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class Tower : MonoBehaviour
     private void EnemiesDetection()
     {
         enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
+        
     }
 
     /// <summary>
@@ -56,7 +58,17 @@ public class Tower : MonoBehaviour
                 // TODO: W przyszłości tutaj trzeba umieścić jakis algorytm, który wybierze
                 // przeciwnika, w którego wieża ma strzelać
                 // Tymczasowo bierze pierwszego z listy
-                enemiesInRange[0].GetComponent<Enemy>().Hit(damagePerHit);
+
+                if (currEnemieToHit == null)
+                {
+                    currEnemieToHit = enemiesInRange[0];
+                }
+
+                if (currEnemieToHit.GetComponent<Enemy>().Hit(damagePerHit))
+                {
+                    currEnemieToHit = null;
+                }
+
                 lastHit = Time.time;
             }
 
