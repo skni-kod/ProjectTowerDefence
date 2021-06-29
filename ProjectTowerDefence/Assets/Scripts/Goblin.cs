@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Goblin : Enemy
 {
+
     /*chwilowe rozwiazanie do poruszania sie tam gdzie sie kliknie*/
     RaycastHit hit;
     int tmp = 0;
     /*************************************************************/
+
     protected override void Update()
     {
         Movement();
@@ -28,9 +30,10 @@ public class Goblin : Enemy
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("The ray hit at: " + hit.point);
+                destination = hit.point;
+                Debug.Log("The ray hit at: " + destination);
 
-                SetDestinationPosition(hit.point);
+                SetDestinationPosition(destination);
                 tmp = 0;
 
 

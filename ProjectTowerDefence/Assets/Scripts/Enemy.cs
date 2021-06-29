@@ -21,10 +21,17 @@ abstract public class Enemy : MonoBehaviour
     protected BarController healthBar;
 
     protected Pathfinding pathfinding;
+
+    public static List<Enemy> listOfEnemies = new List<Enemy>();
+
+    [HideInInspector]
+    public Vector3 destination;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        pathfinding = new Pathfinding(100, 100);
+        pathfinding = Pathfinding.Instance;
         SetDestinationPosition(new Vector3(33, 0, 7));
 
 
@@ -32,10 +39,10 @@ abstract public class Enemy : MonoBehaviour
 
         healthBar = transform.GetComponentInChildren<BarController>();
         //healthBar.Initialize();
+        listOfEnemies.Add(this);
 
         hp = maxHp;
 
-        
     }
 
     // Update is called once per frame
@@ -97,7 +104,7 @@ abstract public class Enemy : MonoBehaviour
      * metoda ustawia punkt docelowy sciezki
      * @param targetPosition Vector3 współrzędnych punktu docelowego
      */
-    protected void SetDestinationPosition(Vector3 targetPosition)
+    public void SetDestinationPosition(Vector3 targetPosition)
     {
         currentPathIndex = 0;
         //pathVectorList = Pathfinding.Instance.Path(transform.position, targetPosition);
@@ -115,6 +122,11 @@ abstract public class Enemy : MonoBehaviour
     protected Vector3 GetPositionXZ()
     {
         return new Vector3(transform.position.x, 0, transform.position.z);
+    }
+
+    private void OnDestroy()
+    {
+        listOfEnemies.Remove(this);
     }
 
 }

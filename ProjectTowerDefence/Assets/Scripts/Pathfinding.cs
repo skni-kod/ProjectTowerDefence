@@ -7,15 +7,16 @@ public class Pathfinding
     private const int STRAIGHT_COST = 10;
     private const int DIAGONAL_COST = 14;
 
-    //public static Pathfinding Instance { get; private set; }
+    public static Pathfinding Instance { get; private set; }
 
     private Grid<GridNode> grid;
     private List<GridNode> openList;
     private List<GridNode> closedList;
 
+
     public Pathfinding(int width, int height)
     {
-        //Instance = this;
+        Instance = this;
         grid = new Grid<GridNode>(width, height, 2f, Vector3.zero, (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
     }
 
