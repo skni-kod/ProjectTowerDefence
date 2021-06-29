@@ -123,11 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!1 &1068613243
-=======
---- !u!1 &40114860
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,17 +131,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   - component: {fileID: 1068613247}
   - component: {fileID: 1068613246}
   - component: {fileID: 1068613245}
   - component: {fileID: 1068613244}
-=======
-  - component: {fileID: 40114864}
-  - component: {fileID: 40114863}
-  - component: {fileID: 40114862}
-  - component: {fileID: 40114861}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -153,42 +142,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!65 &1068613244
-=======
---- !u!65 &40114861
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1068613243}
-=======
-  m_GameObject: {fileID: 40114860}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!23 &1068613245
-=======
---- !u!23 &40114862
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1068613243}
-=======
-  m_GameObject: {fileID: 40114860}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -223,49 +196,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!33 &1068613246
-=======
---- !u!33 &40114863
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1068613243}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1068613247
-=======
-  m_GameObject: {fileID: 40114860}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &40114864
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1068613243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 26.77, y: 1.6, z: 17.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
-=======
-  m_GameObject: {fileID: 40114860}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.1, y: 3.61, z: 18.58}
-  m_LocalScale: {x: 1, y: 7.32, z: 1}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!1 &1155241926
-=======
---- !u!1 &48957114
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,144 +226,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 48957115}
-  - component: {fileID: 48957117}
-  - component: {fileID: 48957116}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &48957115
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48957114}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.23, y: 3.1, z: -11.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 245892079}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &48957116
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48957114}
-  m_Enabled: 1
---- !u!20 &48957117
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48957114}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!1 &245892077
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   - component: {fileID: 1155241929}
   - component: {fileID: 1155241927}
   - component: {fileID: 1155241928}
-=======
-  - component: {fileID: 245892079}
-  - component: {fileID: 245892078}
-  m_Layer: 0
-  m_Name: CameraControler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &245892078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245892077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9590db11fa538334a9ff57260bfc3ceb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 4
-  edgeSize: 40
---- !u!4 &245892079
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245892077}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 5.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 48957115}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
---- !u!1 &889726049
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 889726051}
-  - component: {fileID: 889726050}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -418,22 +236,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!20 &1155241927
 Camera:
-=======
---- !u!108 &889726050
-Light:
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1155241926}
-=======
-  m_GameObject: {fileID: 889726049}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -459,7 +268,6 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -480,26 +288,11 @@ AudioListener:
   m_GameObject: {fileID: 1155241926}
   m_Enabled: 1
 --- !u!4 &1155241929
-=======
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 1
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &889726051
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1155241926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.23, y: 3.1, z: -11.5}
@@ -509,17 +302,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1582537261
-=======
-  m_GameObject: {fileID: 889726049}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1052164089
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -527,64 +309,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   - component: {fileID: 1582537262}
   - component: {fileID: 1582537263}
   m_Layer: 0
   m_Name: CameraControler
-=======
-  - component: {fileID: 1052164091}
-  - component: {fileID: 1052164090}
-  m_Layer: 0
-  m_Name: SpellsCaster
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!4 &1582537262
-=======
---- !u!114 &1052164090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052164089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e7ef98d26fd74f4e98219ea9aac2ddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCamera: {fileID: 48957117}
-  cylinder: {fileID: 7017406191813697067, guid: b5cdc5c71588b884fbca4c01f9bc9a94, type: 3}
-  setArea: 0
-  preparedSpell: 0
-  workingSpell: 0
---- !u!4 &1052164091
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1582537261}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 5.6, z: 0}
-=======
-  m_GameObject: {fileID: 1052164089}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1155241929}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!114 &1582537263
 MonoBehaviour:
@@ -601,10 +348,6 @@ MonoBehaviour:
   moveSpeed: 4
   edgeSize: 40
 --- !u!1 &1833325554
-=======
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1591919287
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -612,15 +355,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   - component: {fileID: 1833325557}
   - component: {fileID: 1833325556}
   - component: {fileID: 1833325555}
-=======
-  - component: {fileID: 1591919290}
-  - component: {fileID: 1591919289}
-  - component: {fileID: 1591919288}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Terrain
@@ -628,40 +365,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!154 &1833325555
-=======
---- !u!154 &1591919288
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 TerrainCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1833325554}
-=======
-  m_GameObject: {fileID: 1591919287}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Material: {fileID: 0}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: e559311cdc28f3b44af9f96c0578ee73, type: 2}
   m_EnableTreeColliders: 1
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!218 &1833325556
-=======
---- !u!218 &1591919289
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 Terrain:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1833325554}
-=======
-  m_GameObject: {fileID: 1591919287}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: e559311cdc28f3b44af9f96c0578ee73, type: 2}
@@ -688,33 +409,21 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!4 &1833325557
-=======
---- !u!4 &1591919290
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1833325554}
-=======
-  m_GameObject: {fileID: 1591919287}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!1 &1933997865
-=======
---- !u!1 &1929649394
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -722,17 +431,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   - component: {fileID: 1933997869}
   - component: {fileID: 1933997868}
   - component: {fileID: 1933997867}
   - component: {fileID: 1933997866}
-=======
-  - component: {fileID: 1929649398}
-  - component: {fileID: 1929649397}
-  - component: {fileID: 1929649396}
-  - component: {fileID: 1929649395}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -740,28 +442,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!65 &1933997866
-=======
---- !u!65 &1929649395
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1933997865}
-=======
-  m_GameObject: {fileID: 1929649394}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
 --- !u!23 &1933997867
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -813,15 +506,10 @@ MeshFilter:
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1933997869
 Transform:
-=======
---- !u!23 &1929649396
-MeshRenderer:
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 1933997865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.89, y: 1.23, z: 8.2}
@@ -832,50 +520,10 @@ MeshRenderer:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2057642327
 GameObject:
-=======
-  m_GameObject: {fileID: 1929649394}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1929649397
-MeshFilter:
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2057642329}
@@ -908,17 +556,11 @@ MonoBehaviour:
   - {fileID: 4967390986138071350, guid: 4b018e8b13a47f54199b8b982d7a99b6, type: 3}
   active: 0
 --- !u!4 &2057642329
-=======
-  m_GameObject: {fileID: 1929649394}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1929649398
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:ProjectTowerDefence/Assets/Scenes/PlacingBuildings.unity
   m_GameObject: {fileID: 2057642327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 26.304684, y: 4.7422147, z: 11.426546}
@@ -1019,13 +661,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
-=======
-  m_GameObject: {fileID: 1929649394}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.42, y: 2.62, z: 11.15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> SpellsCasting:ProjectTowerDefence/Assets/Scenes/SpellsCasting.unity

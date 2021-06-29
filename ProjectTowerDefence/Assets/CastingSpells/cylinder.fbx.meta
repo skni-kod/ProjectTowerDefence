@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: 019c4a2d3e3c9b043b2a6a355d2a00d8
+guid: aa37bc5c262aacb43887b722182570db
 ModelImporter:
   serializedVersion: 20101
-  internalIDToNameTable:
-  - first:
-      74: -8541155862892462524
-    second: 'Armature|Spinning fan '
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1
