@@ -18,7 +18,7 @@ abstract public class Enemy : MonoBehaviour
     protected int lvl;
 
     protected Rigidbody rigidbodyComponent;
-    protected BarControler healthBar;
+    protected BarController healthBar;
 
     protected Pathfinding pathfinding;
 
@@ -37,7 +37,7 @@ abstract public class Enemy : MonoBehaviour
 
         rigidbodyComponent = GetComponent<Rigidbody>();
 
-        healthBar = transform.GetComponentInChildren<BarControler>();
+        healthBar = transform.GetComponentInChildren<BarController>();
         //healthBar.Initialize();
         listOfEnemies.Add(this);
 
