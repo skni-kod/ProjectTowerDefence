@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Towers
-  - Terrain
-  - Building
-  - UpgradeUI
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -17,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - Towers
-  - Enemies
+  - 
+  - 
   - 
   - 
   - 
