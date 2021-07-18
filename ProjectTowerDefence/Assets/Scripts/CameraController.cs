@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetAxis("horizontalKey")!=0 || Input.GetAxis("verticalKey")!=0)
+        if(Input.GetAxis("HorizontalKey")!=0 || Input.GetAxis("VerticalKey")!=0)
         {
             CameraKeyMove(); // dowolny klawisz 
         }
@@ -50,8 +50,8 @@ public class CameraController : MonoBehaviour
     void CameraKeyMove()
     {
         //Vector3 directed = new Vector3(Input.GetAxis("horizontalKey"), 0, Input.GetAxis("verticalKey"));
-        Vector3 horizontalMove = horizontal * moveSpeed * Time.deltaTime * Input.GetAxis("horizontalKey");
-        Vector3 verticalMove = vertical * moveSpeed * Time.deltaTime * Input.GetAxis("verticalKey");
+        Vector3 horizontalMove = horizontal * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
+        Vector3 verticalMove = vertical * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
         //Debug.Log(Input.GetAxis("verticalKey"));
         //Vector3 heading = Vector3.Normalize(horizontalMove + verticalMove);
 

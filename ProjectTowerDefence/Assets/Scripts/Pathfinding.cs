@@ -17,7 +17,7 @@ public class Pathfinding
     public Pathfinding(int width, int height)
     {
         Instance = this;
-        grid = new Grid<GridNode>(width, height, 2f, Vector3.zero, (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
+        grid = new Grid<GridNode>(width, height, 1f, Vector3.zero, (Grid<GridNode> g, int x, int y) => new GridNode(g, x, y));
     }
 
     /// <summary>

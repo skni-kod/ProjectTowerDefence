@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Grid<TGridObject>
@@ -16,16 +17,20 @@ public class Grid<TGridObject>
     private TGridObject[,] gridArray;
     private Vector3 startPosition;
     private TextMesh[,] debugGridTextArray;
+    public Vector2 girdArraySize;
 
     public Grid(int width,int height,float cellSize, Vector3 startPosition, Func<Grid<TGridObject> , int, int, TGridObject> gridObjectType)
     {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
-
+        
         gridArray = new TGridObject[width, height];
         debugGridTextArray = new TextMesh[width, height];
         this.startPosition = startPosition;
+
+        girdArraySize = new Vector2(gridArray.GetLength(0), gridArray.GetLength(1));
+
 
         for (int x = 0; x < gridArray.GetLength(0); x++)
         {
@@ -34,19 +39,47 @@ public class Grid<TGridObject>
                 gridArray[x, y] = gridObjectType(this,x,y);
             }
         }
+        //drawGridGizmos();
 
+
+    }
+    /// <summary>
+    /// Metoda rysuje siekte jako gizmos
+    /// </summary>
+    public void drawGridGizmos()
+    {
         for (int x = 0; x < gridArray.GetLength(0); x++)
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
-               // debugGridTextArray[x,y] = CreateGridText(null, gridArray[x, y]?.ToString(), GetWorldPosition(x, y) + (new Vector3(cellSize,0,cellSize)/2f));
-                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white,10f);
-                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x+1, y), Color.white, 10f);
+                // debugGridTextArray[x,y] = CreateGridText(null, gridArray[x, y]?.ToString(), GetWorldPosition(x, y) + (new Vector3(cellSize,0,cellSize)/2f));
+                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white);
+                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white);
+
+                
             }
         }
-        Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width,height), Color.white, 10f);
-        Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width,height), Color.white, 10f);
+        Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white);
+        Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white);
     }
+
+    public void drawGridBlockedNodes(List<Vector2Int> indexes)
+    {
+        for (int n = 0; n < indexes.Count; n++)
+        {
+            int x = indexes[n].x;
+            int y = indexes[n].y;
+            Debug.DrawLine(new Vector3(GetWorldPosition(x, y).x - 0.5f, 0, GetWorldPosition(x, y).z - 0.5f) * cellSize + new Vector3(1, 0, 1) * cellSize * 0.5f, new Vector3(GetWorldPosition(x, y).x + 0.5f, 0, GetWorldPosition(x, y).z + 0.5f) * cellSize + new Vector3(1, 0, 1) * cellSize * 0.5f, Color.red);
+            Debug.DrawLine(new Vector3(GetWorldPosition(x, y).x - 0.5f, 0, GetWorldPosition(x, y).z + 0.5f) * cellSize + new Vector3(1, 0, 1) * cellSize * 0.5f, new Vector3(GetWorldPosition(x, y).x + 0.5f, 0, GetWorldPosition(x, y).z - 0.5f) * cellSize + new Vector3(1, 0, 1) * cellSize * 0.5f, Color.red);
+            //Gizmos.color = Color.red;
+            //Gizmos.DrawCube(GetWorldPosition(x, y) + new Vector3(0.5f * CellSize, 0, 0.5f * CellSize), new Vector3(0.5f * CellSize, 0, 0.5f * CellSize));
+            //EditorGUI.DrawRect(new Rect(GetWorldPosition(x, y), GetWorldPosition(x, y) + new Vector3(0.5f * CellSize, 0, 0.5f * CellSize)),Color.red);
+        }
+
+
+    }
+
+
     /// <summary>
     /// Metoda ustawia wyswietalnie sie tekstu kazdego wezła grida
     /// </summary>
