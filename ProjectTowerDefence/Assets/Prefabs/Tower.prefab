@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4155128869105002752}
   - component: {fileID: -8233708127972997966}
   - component: {fileID: -1757532394275819616}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Tower
   m_TagString: Towers
   m_Icon: {fileID: 0}
@@ -234,6 +234,10 @@ PrefabInstance:
     - target: {fileID: 192851949679987773, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_Name
       value: CooldownBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 192851949679987773, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_LocalPosition.x

@@ -3633,8 +3633,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesSpawnPoints:
-  - {x: 3, y: 1, z: 11}
-  - {x: 3, y: 1, z: 7}
+  - {x: 40, y: 1, z: 0}
+  - {x: 45, y: 1, z: 0}
   enemySpawningCooldown: 2
   enemiesPrefabs:
   - {fileID: 8852445604156773834, guid: c48ee31bd50b3404fb53bf6a2dded77f, type: 3}
@@ -6101,7 +6101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720211767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.72, y: 0, z: 0.47}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
