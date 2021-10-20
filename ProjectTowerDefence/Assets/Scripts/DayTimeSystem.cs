@@ -6,43 +6,71 @@ public class DayTimeSystem : MonoBehaviour
 {
     // bool potrzebny do ustawiania dnia albo nocy 
     private bool set;
-    [Header("intensity w nocy")]
+    private bool night;
+    [Header("intensity in night")]
     [Range(0f,1f)]
     public float minIntensity;
-    [Header("predkosc zmiany dnia na noc albo noc na dzien")]
+    private float intensityCounterForWave;
+    [Header("how fast change day or night , animation")]
     [Range(0.1f,1f)]
-    public float predkoscZmianyDnia;
-
-
-
+    public float howFastChangeDay;
+    [Header("how much day or night have waves ")]
+    public int howMuchDayHaveWaves;
+    private int waveCounter; 
+    private float intensityWhenTorchOn;
+    private bool setTorch;
+    private void Start()
+    {
+        intensityCounterForWave = (1f - minIntensity)/howMuchDayHaveWaves;
+        intensityWhenTorchOn = (1 + minIntensity)/2 ;
+        
+        night = true;
+    }
     // Update is called once per frame
     void Update()
     {
        if(FindObjectOfType<LevelController>().GetCurrentPhase==LevelController.levelPhase.preparations)//sprawdza czy jest nowa fala
         {
             set = true;
-
+            waveCounter++;
+            if (waveCounter > howMuchDayHaveWaves) 
+            {
+                waveCounter = 0;
+                night = !night;
+                setTorch = false;
+            }
+            
         }
         if (set) { SetDayOrNight(); }
     }
-    void SetDayOrNight()//ustawia dzien albo noc w zaleznosci czy fala jest parzysta (nieparzyste fale sa w nocy a parzyste w dzien) --------------------------------------------------------------------------------------------------------
+    void SetDayOrNight()//set light for day or night --------------------------------------------------------------------------------------------------------
     {
-        if(FindObjectOfType<LevelController>().GetCurrentWave%2==1)
+        
+        if(night)
         {
-            GetComponent<Light>().intensity = Mathf.Max(minIntensity, GetComponent<Light>().intensity - predkoscZmianyDnia * Time.deltaTime);
-            if (GetComponent<Light>().intensity == minIntensity) { set = false; ustawPochodnie(true); }
+            GetComponent<Light>().intensity = Mathf.Max(minIntensity +(howMuchDayHaveWaves- waveCounter) * intensityCounterForWave, GetComponent<Light>().intensity - howFastChangeDay * Time.deltaTime);
+            if(GetComponent<Light>().intensity== minIntensity + (howMuchDayHaveWaves - waveCounter) * intensityCounterForWave)
+            {
+                set = false;
+            }
+            if (GetComponent<Light>().intensity < intensityWhenTorchOn && !setTorch) { setTorch = true;setTorches(true); }
         }
-        if (FindObjectOfType<LevelController>().GetCurrentWave % 2 == 0)
+        else
         {
-            GetComponent<Light>().intensity = Mathf.Min(1f, GetComponent<Light>().intensity + predkoscZmianyDnia * Time.deltaTime);
-            if (GetComponent<Light>().intensity == 1f) { set = false; ustawPochodnie(false); }
+            GetComponent<Light>().intensity = Mathf.Min(1f - (howMuchDayHaveWaves-waveCounter) * intensityCounterForWave, GetComponent<Light>().intensity + howFastChangeDay * Time.deltaTime);
+            if (GetComponent<Light>().intensity == 1f - (howMuchDayHaveWaves - waveCounter) * intensityCounterForWave)
+            {
+                set = false;
+            }
+            if (GetComponent<Light>().intensity > intensityWhenTorchOn && !setTorch) { setTorch = true; setTorches(false); }
         }
+ 
     }
-    void ustawPochodnie(bool on)//wlacza albo wylacza swiatlo pochodni albo ognisk
+    void setTorches(bool on)//set on or off torch light or camprire
     {
         foreach(var i in FindObjectsOfType<Light>())
         {
-            if(i.gameObject!=gameObject) //sprawdza czy to nie jest ogolne swiatlo 
+            if(i.gameObject!=gameObject) //check if it isn't main source of light or smth like that xd 
             {
                 i.GetComponent<Light>().enabled = on;
             }
