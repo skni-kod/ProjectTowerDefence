@@ -9,7 +9,7 @@ abstract public class Enemy : MonoBehaviour
     protected float maxHp;
 
     [SerializeField]
-    [Range(0,100)]
+    [Range(0, 100)]
     protected float speed;
     protected List<Vector3> pathVectorList;
     protected int currentPathIndex;
@@ -27,12 +27,15 @@ abstract public class Enemy : MonoBehaviour
     [HideInInspector]
     public Vector3 destination;
 
+    [SerializeField]
+    protected GameObject nexus;
+
 
     // Start is called before the first frame update
     void Start()
     {
         pathfinding = Pathfinding.Instance;
-        SetDestinationPosition(new Vector3(33, 0, 7));
+        SetDestinationPosition(nexus.transform.Find("nexus").position);
 
 
         rigidbodyComponent = GetComponent<Rigidbody>();

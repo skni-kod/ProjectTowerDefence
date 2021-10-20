@@ -130,6 +130,7 @@ MonoBehaviour:
   maxHp: 100
   speed: 5
   destination: {x: 0, y: 0, z: 0}
+  nexus: {fileID: 2995028554988265554, guid: 93824320133cee24a9675575ed3c9182, type: 3}
 --- !u!1001 &9199383733818705873
 PrefabInstance:
   m_ObjectHideFlags: 0
