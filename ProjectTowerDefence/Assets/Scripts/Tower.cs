@@ -8,7 +8,13 @@ public class Tower : MonoBehaviour
     private BarController cooldownBar;
 
     protected float damagePerHit, hitRange;
-
+    public float maxCooldown;
+    public struct Stats
+    {
+        public int spdLvl;
+        public int dmgLvl;
+    }
+    public Stats stats;
     [HideInInspector]
     public float hitCooldown, lastHit;
     public Collider[] enemiesInRange;
@@ -17,10 +23,11 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxCooldown = 1.5f;
         // Ustawienie statystyk wieży
         damagePerHit = 15f;
         hitRange = 5f;
-        hitCooldown = 1.5f;
+        hitCooldown = maxCooldown;
 
         // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
         lastHit = -hitCooldown;
@@ -64,7 +71,7 @@ public class Tower : MonoBehaviour
                     currEnemieToHit = enemiesInRange[0];
                 }
 
-                if (currEnemieToHit.GetComponent<Enemy>().Hit(damagePerHit))
+                if (currEnemieToHit.GetComponent<Enemy>().Hit(damagePerHit+stats.dmgLvl))
                 {
                     currEnemieToHit = null;
                 }

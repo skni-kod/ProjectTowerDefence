@@ -105,6 +105,7 @@ public class PlacingBuildings : MonoBehaviour
                 {
                     // Tworzenie instancji obiektu w miejscu kursora i z danym obrotem
                     placedBuilding = Instantiate(objectToPlace, hit.point, greenPlaceholder.transform.rotation);
+                    placedBuilding.name ="Tower "+transform.childCount.ToString();
 
                     SetAllChildrenTag(placedBuilding, "Building");
 
@@ -116,9 +117,12 @@ public class PlacingBuildings : MonoBehaviour
                     RotateBuilding();
             }
         }
-    }    
+    }
     #endregion
-
+    private void Start()
+    {
+        currentCamera =FindObjectOfType<Camera>();
+    }
     void Update()
     {
         //Uruchamianie skryptu

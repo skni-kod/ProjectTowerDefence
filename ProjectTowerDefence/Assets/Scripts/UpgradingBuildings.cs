@@ -15,7 +15,8 @@ public class UpgradingBuildings : MonoBehaviour
     private PointerEventData pointerEventData;
 
     private GameObject clickedBuilding;
-
+    [SerializeField]
+    private Text lvlSpeedText, lvlDmgText;
     private Text buildingName;
 
     public void UpgradeBuilding()
@@ -28,12 +29,13 @@ public class UpgradingBuildings : MonoBehaviour
         RaycastHit[] hits;
         // Przypisanie promienia, który prowadzony jest z kursora myszki i zwraca wszystkie trafione elementy
         hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Input.mousePosition));
-
+    
         // Iteracja po każdym trafionym obiekcie
         foreach (RaycastHit hit in hits)
-        {            
+        {
             // Sprawdza czy trafiony obiekt ma ustawiony tag "tag"
-            if (hit.transform.gameObject.CompareTag(tag))
+
+            if (hit.transform.gameObject.CompareTag(tag) || hit.transform.gameObject.GetComponent<Tower>())
             {
                 clickedBuilding = hit.transform.gameObject;
                 return true;
@@ -63,7 +65,11 @@ public class UpgradingBuildings : MonoBehaviour
         upgradeUI.SetActive(check);        
         if(check)
         {
+          
             buildingName.text = clickedBuilding.name;
+            lvlDmgText.text = clickedBuilding.GetComponent<Tower>().stats.dmgLvl.ToString();
+            lvlSpeedText.text = clickedBuilding.GetComponent<Tower>().stats.spdLvl.ToString();
+
             upgradeUI.transform.position = Input.mousePosition;
         }        
     }
@@ -72,7 +78,9 @@ public class UpgradingBuildings : MonoBehaviour
     {
         graphicRaycaster = GetComponentInChildren<GraphicRaycaster>(true);
         eventSystem = GetComponent<EventSystem>();
-
+    
+        currentCamera = FindObjectOfType<Camera>();
+        
         buildingName = transform.Find("UpgradeUI/Canvas/Background/BuildingName").gameObject.GetComponent<Text>();
 
         upgradeUI = transform.Find("UpgradeUI").gameObject;
@@ -96,4 +104,21 @@ public class UpgradingBuildings : MonoBehaviour
             }
         }        
     }    
+    public void upgradeSpeed()
+    {
+        GameObject tower = GameObject.Find(buildingName.text);
+        if(tower.GetComponent<Tower>().hitCooldown > 0.1)
+        {
+        tower.GetComponent<Tower>().hitCooldown -= 0.1f;
+        tower.GetComponent<Tower>().stats.spdLvl++;
+        }
+
+        Debug.Log("speed ulepszony");
+    }
+    public void upgradeDmg()
+    {
+        GameObject tower = GameObject.Find(buildingName.text);
+        tower.GetComponent<Tower>().stats.dmgLvl++;
+        Debug.Log("dmg ulepszony");
+    }
 }
