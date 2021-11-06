@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class PlacingBuildings : MonoBehaviour
@@ -16,6 +17,7 @@ public class PlacingBuildings : MonoBehaviour
     private GameObject objectToPlace;
     private GameObject greenPlaceholder;
     private GameObject placedBuilding;
+    private InputMaster controls;
 
     #region PublicMethods
 
@@ -88,9 +90,10 @@ public class PlacingBuildings : MonoBehaviour
     // Zarządzanie stawianiem budynków
     private void HandlePlacing()
     {
+        if (!active) { return; }
         RaycastHit[] hits;
         // Przypisanie promienia, który prowadzony jest z kursora myszki i zwraca wszystkie trafione elementy
-        hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Input.mousePosition));
+        hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
 
         // Iteracja po każdym trafionym obiekcie
         foreach (RaycastHit hit in hits)
@@ -101,8 +104,7 @@ public class PlacingBuildings : MonoBehaviour
                 // Ustawia pozycje obiektu na miejsce trafienia promienia w teren
                 greenPlaceholder.transform.localPosition = hit.point;
                 // Jeśli kliknięty LPM to jest zatwierdzane postawienie budynku
-                if (Input.GetMouseButtonDown(0))
-                {
+            
                     // Tworzenie instancji obiektu w miejscu kursora i z danym obrotem
                     placedBuilding = Instantiate(objectToPlace, hit.point, greenPlaceholder.transform.rotation);
                     placedBuilding.name ="Tower "+transform.childCount.ToString();
@@ -112,63 +114,131 @@ public class PlacingBuildings : MonoBehaviour
                     Deacivate();
                     // Utworzony obiekt jest ustawiany jako podobiekt "BuildingPlacer"
                     placedBuilding.transform.SetParent(this.transform);
-                }
-                if (Input.GetMouseButtonDown(1))               
-                    RotateBuilding();
+                
+               // if (Input.GetMouseButtonDown(1))               
+               //     RotateBuilding();
             }
         }
     }
+    private void setPositionBuilding()
+    {
+        if (!active) { return; }
+        RaycastHit[] hits;
+        // Przypisanie promienia, który prowadzony jest z kursora myszki i zwraca wszystkie trafione elementy
+        hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
+
+        // Iteracja po każdym trafionym obiekcie
+        foreach (RaycastHit hit in hits)
+        {
+            // Sprawdza czy trafiony obiekt ma ustawiony tag "Terrain"
+            if (hit.collider.CompareTag("Terrain"))
+            {
+                // Ustawia pozycje obiektu na miejsce trafienia promienia w teren
+                greenPlaceholder.transform.localPosition = hit.point;
+                // Jeśli kliknięty LPM to jest zatwierdzane postawienie budynku
+
+                // Tworzenie instancji obiektu w miejscu kursora i z danym obrotem
+
+                // Utworzony obiekt jest ustawiany jako podobiekt "BuildingPlacer"
+              //  placedBuilding.transform.SetParent(this.transform);
+
+                // if (Input.GetMouseButtonDown(1))               
+                //     RotateBuilding();
+            }
+        }
+    }
+    //Zarządzanie rodzajem stawianego budynku
+    private void changeId(bool plus)
+    {
+        if (!active) { return; }
+        if(plus)
+        {
+            if (buildingId == 0)
+            {
+                buildingId = buildingsToPlace.Length - 1;
+            }
+            else
+            {
+                buildingId--;
+            }
+            Deacivate();
+            PlaceBuilding(buildingsToPlace[buildingId]);
+        }
+        else
+        {
+            if (buildingId == buildingsToPlace.Length - 1)
+            {
+                buildingId = 0;
+            }
+            else
+            {
+                buildingId++;
+            }
+            Deacivate();
+            PlaceBuilding(buildingsToPlace[buildingId]);
+        }
+    }
     #endregion
+    private void Awake()
+    {
+        controls = new InputMaster();
+        controls.Enable();
+        controls.Buildings.Buildstart.performed += val => PlaceBuilding(buildingsToPlace[buildingId]);
+        controls.Buildings.Buildcancel.performed += val => Deacivate();
+        controls.Buildings.BuildchangeId.performed += val => changeId(val.ReadValue<float>()>0);
+        controls.Buildings.Buildnew.performed += val => HandlePlacing();
+    }
     private void Start()
     {
         currentCamera =FindObjectOfType<Camera>();
     }
     void Update()
     {
+      //  return;
         //Uruchamianie skryptu
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlaceBuilding(buildingsToPlace[buildingId]);
-        }                       
+      //  if (Input.GetKeyDown(KeyCode.Space))
+       // {
+        //    PlaceBuilding(buildingsToPlace[buildingId]);
+      //  }                       
 
-        if (active)
+       if (active)
         {
             // Wyłączanie skryptu
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Deacivate();
-            }
+            //  if (Input.GetKeyDown(KeyCode.Escape))
+            //  {
+            //    Deacivate();
+            //  }
 
             // Zmiana aktualnie stawianego obiektu
             // Funkcja tymczasowa, aby urozmaicić działanie skryptu
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                if (buildingId == 0)
-                {
-                    buildingId = buildingsToPlace.Length - 1;
-                }
-                else
-                {
-                    buildingId--;
-                }
-                Deacivate();
-                PlaceBuilding(buildingsToPlace[buildingId]);
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                if (buildingId == buildingsToPlace.Length - 1)
-                {
-                    buildingId = 0;
-                }
-                else
-                {
-                    buildingId++;
-                }
-                Deacivate();
-                PlaceBuilding(buildingsToPlace[buildingId]);
-            }
-
-            HandlePlacing();
+            /* if (Input.GetKeyDown(KeyCode.A))
+             {
+                 if (buildingId == 0)
+                 {
+                     buildingId = buildingsToPlace.Length - 1;
+                 }
+                 else
+                 {
+                     buildingId--;
+                 }
+                 Deacivate();
+                 PlaceBuilding(buildingsToPlace[buildingId]);
+             }
+             else if (Input.GetKeyDown(KeyCode.D))
+             {
+                 if (buildingId == buildingsToPlace.Length - 1)
+                 {
+                     buildingId = 0;
+                 }
+                 else
+                 {
+                     buildingId++;
+                 }
+                 Deacivate();
+                 PlaceBuilding(buildingsToPlace[buildingId]);
+             }
+            */
+            setPositionBuilding();
         }
     }
 }

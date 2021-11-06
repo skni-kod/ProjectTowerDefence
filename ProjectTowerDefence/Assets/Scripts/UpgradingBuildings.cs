@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class UpgradingBuildings : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class UpgradingBuildings : MonoBehaviour
     {
         RaycastHit[] hits;
         // Przypisanie promienia, który prowadzony jest z kursora myszki i zwraca wszystkie trafione elementy
-        hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Input.mousePosition));
+        hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
     
         // Iteracja po każdym trafionym obiekcie
         foreach (RaycastHit hit in hits)
@@ -47,7 +48,7 @@ public class UpgradingBuildings : MonoBehaviour
     bool CheckUIHit()
     {
         pointerEventData = new PointerEventData(eventSystem);
-        pointerEventData.position = Input.mousePosition;
+        pointerEventData.position = Mouse.current.position.ReadValue();
 
         List<RaycastResult> results = new List<RaycastResult>();
 
@@ -70,7 +71,7 @@ public class UpgradingBuildings : MonoBehaviour
             lvlDmgText.text = clickedBuilding.GetComponent<Tower>().stats.dmgLvl.ToString();
             lvlSpeedText.text = clickedBuilding.GetComponent<Tower>().stats.spdLvl.ToString();
 
-            upgradeUI.transform.position = Input.mousePosition;
+            upgradeUI.transform.position = Mouse.current.position.ReadValue();
         }        
     }
     
@@ -92,7 +93,8 @@ public class UpgradingBuildings : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+      //  return;
+        if(Mouse.current.leftButton.wasPressedThisFrame)
         {            
             if(!upgradeUI.activeSelf)
             {                

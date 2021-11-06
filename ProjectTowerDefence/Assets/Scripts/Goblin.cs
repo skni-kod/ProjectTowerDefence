@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Goblin : Enemy
 {
@@ -20,14 +21,17 @@ public class Goblin : Enemy
 
     protected override void Movement()
     {
+   
         // chwilowe rozwiazanie poruszania
         //transform.position += new Vector3(Time.deltaTime * (speed/10), 0, 0);
 
         /*chwilowe rozwiazanie do poruszania sie tam gdzie sie kliknie*/
-        if (Input.GetMouseButtonDown(0))
+      //  return;
+        if (Mouse.current.leftButton.wasPressedThisFrame)//Input.GetMouseButtonDown(0))
         {
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //  Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out hit))
             {
                 destination = hit.point;

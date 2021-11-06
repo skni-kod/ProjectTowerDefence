@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PathfindingController : MonoBehaviour
 {
@@ -43,10 +44,11 @@ public class PathfindingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+    //    return;
+        if (Mouse.current.rightButton.wasPressedThisFrame)
         {
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out hit))
             {
                 Debug.Log("Zablokowano na: " + hit.point);
@@ -77,7 +79,7 @@ public class PathfindingController : MonoBehaviour
 
             }
         }
-        if (Input.GetKeyDown("m"))
+        if (Keyboard.current.mKey.wasPressedThisFrame)//Input.GetKeyDown("m"))
         {
             showGridGizmos = !showGridGizmos;
         }
