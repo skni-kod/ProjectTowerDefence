@@ -62,16 +62,16 @@ public class PlacingBuildings : MonoBehaviour
         // Ustawienie obiektu na warstwie nr 2, na której obiekty są ignorowane przez Raycast'a
         greenPlaceholder.layer = 2;
 
-        SetGreenCopyGreenMaterial();
+        SetGreenCopyGreenMaterial(false);
         SetGreenCopyInLayer2();
     }
 
     // Ustawienie wszystkich podobiektów w obiekcie na zielony kolor
-    private void SetGreenCopyGreenMaterial()
+    private void SetGreenCopyGreenMaterial(bool red)
     {
         foreach (MeshRenderer childRenderer in greenPlaceholder.GetComponentsInChildren<MeshRenderer>())
         {
-            childRenderer.material = greenMaterial;
+            childRenderer.material = !red?greenMaterial:redMaterial;
         }
     }
     // Ustawienie wszystkich podobiektów na warstwe nr 2
@@ -94,31 +94,45 @@ public class PlacingBuildings : MonoBehaviour
         RaycastHit[] hits;
         // Przypisanie promienia, który prowadzony jest z kursora myszki i zwraca wszystkie trafione elementy
         hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
-
+        bool isEmpty = true;
+        Vector3 poz=Vector3.zero;
         // Iteracja po każdym trafionym obiekcie
         foreach (RaycastHit hit in hits)
         {   
             // Sprawdza czy trafiony obiekt ma ustawiony tag "Terrain"
             if (hit.collider.CompareTag("Terrain"))
             {
-                // Ustawia pozycje obiektu na miejsce trafienia promienia w teren
-                greenPlaceholder.transform.localPosition = hit.point;
-                // Jeśli kliknięty LPM to jest zatwierdzane postawienie budynku
             
-                    // Tworzenie instancji obiektu w miejscu kursora i z danym obrotem
-                    placedBuilding = Instantiate(objectToPlace, hit.point, greenPlaceholder.transform.rotation);
-                    placedBuilding.name ="Tower "+transform.childCount.ToString();
-
-                    SetAllChildrenTag(placedBuilding, "Building");
-
-                    Deacivate();
-                    // Utworzony obiekt jest ustawiany jako podobiekt "BuildingPlacer"
-                    placedBuilding.transform.SetParent(this.transform);
-                
-               // if (Input.GetMouseButtonDown(1))               
-               //     RotateBuilding();
             }
+            else if (hit.collider.CompareTag("Building") || hit.collider.CompareTag("Towers"))
+            {
+                isEmpty = false;
+                //   SetGreenCopyGreenMaterial(true);
+            }
+            poz = hit.point;
         }
+
+        if (isEmpty)
+        {
+            // Ustawia pozycje obiektu na miejsce trafienia promienia w teren
+           
+            // Jeśli kliknięty LPM to jest zatwierdzane postawienie budynku
+
+            // Tworzenie instancji obiektu w miejscu kursora i z danym obrotem
+            placedBuilding = Instantiate(objectToPlace, poz, greenPlaceholder.transform.rotation);
+            placedBuilding.name = "Tower " + transform.childCount.ToString();
+
+            SetAllChildrenTag(placedBuilding, "Building");
+
+            Deacivate();
+            // Utworzony obiekt jest ustawiany jako podobiekt "BuildingPlacer"
+            placedBuilding.transform.SetParent(this.transform);
+
+            // if (Input.GetMouseButtonDown(1))               
+            //     RotateBuilding();
+        }
+        else
+        { return; }
     }
     private void setPositionBuilding()
     {
@@ -126,7 +140,7 @@ public class PlacingBuildings : MonoBehaviour
         RaycastHit[] hits;
         // Przypisanie promienia, który prowadzony jest z kursora myszki i zwraca wszystkie trafione elementy
         hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
-
+        bool isEmpty=true ;
         // Iteracja po każdym trafionym obiekcie
         foreach (RaycastHit hit in hits)
         {
@@ -140,12 +154,20 @@ public class PlacingBuildings : MonoBehaviour
                 // Tworzenie instancji obiektu w miejscu kursora i z danym obrotem
 
                 // Utworzony obiekt jest ustawiany jako podobiekt "BuildingPlacer"
-              //  placedBuilding.transform.SetParent(this.transform);
+                //  placedBuilding.transform.SetParent(this.transform);
 
                 // if (Input.GetMouseButtonDown(1))               
                 //     RotateBuilding();
+
+
+            }
+            else if(hit.collider.CompareTag("Building") || hit.collider.CompareTag("Towers"))
+            {
+                isEmpty = false;
+       
             }
         }
+        SetGreenCopyGreenMaterial(!isEmpty);
     }
     //Zarządzanie rodzajem stawianego budynku
     private void changeId(bool plus)
@@ -194,50 +216,12 @@ public class PlacingBuildings : MonoBehaviour
     }
     void Update()
     {
-      //  return;
-        //Uruchamianie skryptu
-      //  if (Input.GetKeyDown(KeyCode.Space))
-       // {
-        //    PlaceBuilding(buildingsToPlace[buildingId]);
-      //  }                       
+                    
 
        if (active)
         {
-            // Wyłączanie skryptu
-            //  if (Input.GetKeyDown(KeyCode.Escape))
-            //  {
-            //    Deacivate();
-            //  }
-
-            // Zmiana aktualnie stawianego obiektu
-            // Funkcja tymczasowa, aby urozmaicić działanie skryptu
-            /* if (Input.GetKeyDown(KeyCode.A))
-             {
-                 if (buildingId == 0)
-                 {
-                     buildingId = buildingsToPlace.Length - 1;
-                 }
-                 else
-                 {
-                     buildingId--;
-                 }
-                 Deacivate();
-                 PlaceBuilding(buildingsToPlace[buildingId]);
-             }
-             else if (Input.GetKeyDown(KeyCode.D))
-             {
-                 if (buildingId == buildingsToPlace.Length - 1)
-                 {
-                     buildingId = 0;
-                 }
-                 else
-                 {
-                     buildingId++;
-                 }
-                 Deacivate();
-                 PlaceBuilding(buildingsToPlace[buildingId]);
-             }
-            */
+       
+         
             setPositionBuilding();
         }
     }
