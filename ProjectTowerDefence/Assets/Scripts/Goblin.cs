@@ -37,8 +37,17 @@ public class Goblin : Enemy
                 destination = hit.point;
                 Debug.Log("The ray hit at: " + destination);
 
-                SetDestinationPosition(destination);
-                tmp = 0;
+                int x = pathfinding.GetGrid().GetCoordinate(hit.point).x;
+                int y = pathfinding.GetGrid().GetCoordinate(hit.point).y;
+                Grid<GridNode> grid = pathfinding.GetGrid();
+                GridNode gridNode = grid.GetObject(x, y);
+
+                if (gridNode.isAvailable)
+                {
+                    Debug.Log(gridNode.isAvailable);
+                    SetDestinationPosition(destination);
+                    tmp = 0;
+                }
 
 
             }

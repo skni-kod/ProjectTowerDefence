@@ -24,10 +24,10 @@ public class PathfindingController : MonoBehaviour
         Vector3 mapsize = terrain.terrainData.size;
         Debug.Log(mapsize);
         pathfinding = new Pathfinding((int)mapsize.x, (int)mapsize.z);
-        UbdateBlockedNodes();
+        UpdateBlockedNodes();
     }
 
-    public void UbdateBlockedNodes()
+    public void UpdateBlockedNodes()
     {
         blockedNodeIndexes = new List<Vector2Int>();
         for (int i = 0; i < pathfinding.GetGrid().girdArraySize.x; i++)
@@ -58,7 +58,7 @@ public class PathfindingController : MonoBehaviour
                 GridNode gridNode = grid.GetObject(x, y);
 
                 gridNode.isAvailable = !gridNode.isAvailable;
-                UbdateBlockedNodes();
+                UpdateBlockedNodes();
 
 
                 //foreach (GameObject enemy in Enemy.listOfEnemies)
