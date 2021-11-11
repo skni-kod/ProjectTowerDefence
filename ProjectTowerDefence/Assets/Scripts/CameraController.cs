@@ -11,16 +11,17 @@ public class CameraController : MonoBehaviour
     float moveSpeed=4f;
     [SerializeField]
     float edgeSize=40f;
-    private InputMaster controls;
+    //
+    //private InputMaster controls;
     Vector3 horizontal , vertical;
     private bool isMoving;
     private Vector2 newXY;
-    private void Awake()
-    {
-        controls = new InputMaster();
-        controls.Enable();
-        controls.Camera.movment.performed += Val => startMove(Val.ReadValue<Vector2>());
-    }
+    //private void Awake()
+    //{
+    //    controls = new InputMaster();
+    //    controls.Enable();
+    //    controls.Camera.movment.performed += Val => startMove(Val.ReadValue<Vector2>());
+    //}
     void Start()
     {
         
@@ -71,10 +72,12 @@ public class CameraController : MonoBehaviour
         transform.position += horizontalMove;
         transform.position += verticalMove;
     }
-    void startMove(Vector2 xy)
+    void OnMovment(InputValue inputValue)
     {
-      //  Debug.Log(xy);
-        isMoving = xy!=Vector2.zero;
+        //  Debug.Log(xy);
+        
+        Vector2 xy = inputValue.Get<Vector2>();
+        isMoving = xy != Vector2.zero;
         //if (!isMoving) { newXY = Vector2.zero;  }
         if (xy.x > 0) { newXY.x = 1; }
         else if (xy.x < 0) { newXY.x = -1; }

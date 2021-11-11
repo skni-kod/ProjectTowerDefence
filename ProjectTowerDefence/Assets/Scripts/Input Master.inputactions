@@ -7,9 +7,9 @@
             "actions": [
                 {
                     "name": "movment",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "79a3c449-7d08-42d2-889a-9a4f0f493116",
-                    "expectedControlType": "Dpad",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -18,7 +18,7 @@
                 {
                     "name": "KeyBoard",
                     "id": "114d9769-9845-47d3-9caa-a25fdf6dac82",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -173,6 +173,52 @@
                     "processors": "",
                     "groups": "",
                     "action": "Build new",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Spells",
+            "id": "4df09a64-35c7-4b5e-9360-33e9591b1f01",
+            "actions": [
+                {
+                    "name": "CastTestSpell",
+                    "type": "Button",
+                    "id": "1d9b34a0-b654-4580-9564-40ede7725129",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DeacivateSpell",
+                    "type": "Button",
+                    "id": "89970206-467d-4bf5-996c-563548aceb25",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b1b232cb-e4c3-475a-96c3-398d331a62fc",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CastTestSpell",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7574b7f4-8fc6-4a35-bbf7-adb47f9ddb13",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DeacivateSpell",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

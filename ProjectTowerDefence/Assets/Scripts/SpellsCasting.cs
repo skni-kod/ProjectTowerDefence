@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 public class SpellsCasting : MonoBehaviour
 {
@@ -115,21 +115,10 @@ public class SpellsCasting : MonoBehaviour
 
 
     void Update()
-    {        
-        //Uruchamianie skryptu
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ActivePrepareCastingSpell(0);
-        }                       
+    {                            
 
         if (setArea)
         {
-            // Wyłączanie skryptu
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Deacivate();
-            }
-
             HandlePrepareCastingSpell();
         }
 
@@ -149,4 +138,18 @@ public class SpellsCasting : MonoBehaviour
             Destroy(castArea);
         }
     }
+    private void OnCastTestSpell(InputValue inputAction)
+    {
+        Debug.Log("TestSpell");
+        //ActivePrepareCastingSpell(0);
+        
+    }
+
+    private void OnDeacivateSpell(InputValue inputAction)
+    {
+        //Deacivate();
+        Debug.Log("DeactivateSpell");
+    }
+
+
 }

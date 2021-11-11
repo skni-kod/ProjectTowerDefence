@@ -311,6 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245892079}
   - component: {fileID: 245892078}
+  - component: {fileID: 245892080}
   m_Layer: 0
   m_Name: CameraControler
   m_TagString: Untagged
@@ -347,6 +348,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+--- !u!114 &245892080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245892077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ce5565095601a9f4288c537cb026acc9, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Camera
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &889726049
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,6 +480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1052164091}
   - component: {fileID: 1052164090}
+  - component: {fileID: 1052164092}
   m_Layer: 0
   m_Name: SpellsCaster
   m_TagString: Untagged
@@ -487,6 +519,76 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1052164092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052164089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ce5565095601a9f4288c537cb026acc9, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79a3c449-7d08-42d2-889a-9a4f0f493116
+    m_ActionName: Camera/movment[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 44ea28d7-f3f3-4b98-94aa-cbb60adf5885
+    m_ActionName: Buildings/Build start[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: af0d9b76-9041-4cbd-8aa2-07bd66d86cc8
+    m_ActionName: Buildings/Build cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46e77adc-830c-4383-aa95-d1b55a95732c
+    m_ActionName: Buildings/Build change Id[/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bce87a92-3228-46fe-853f-bbc32981d17b
+    m_ActionName: Buildings/Build new[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1052164090}
+        m_TargetAssemblyTypeName: SpellsCasting, Assembly-CSharp
+        m_MethodName: OnCastTestSpell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1d9b34a0-b654-4580-9564-40ede7725129
+    m_ActionName: Spells/CastTestSpell[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 89970206-467d-4bf5-996c-563548aceb25
+    m_ActionName: Spells/DeacivateSpell[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 4df09a64-35c7-4b5e-9360-33e9591b1f01
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1591919287
 GameObject:
   m_ObjectHideFlags: 0
