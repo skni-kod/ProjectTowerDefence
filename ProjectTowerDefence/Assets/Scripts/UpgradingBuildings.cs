@@ -94,7 +94,7 @@ public class UpgradingBuildings : MonoBehaviour
     void Update()
     {
       //  return;
-        if(Mouse.current.leftButton.wasPressedThisFrame)
+        if(Mouse.current.leftButton.wasPressedThisFrame && !GetComponent<PlacingBuildings>().isBuild)
         {            
             if(!upgradeUI.activeSelf)
             {                
@@ -113,6 +113,7 @@ public class UpgradingBuildings : MonoBehaviour
         {
         tower.GetComponent<Tower>().hitCooldown -= 0.1f;
         tower.GetComponent<Tower>().stats.spdLvl++;
+            lvlSpeedText.text = tower.GetComponent<Tower>().stats.spdLvl.ToString();
         }
 
         Debug.Log("speed ulepszony");
@@ -121,6 +122,7 @@ public class UpgradingBuildings : MonoBehaviour
     {
         GameObject tower = GameObject.Find(buildingName.text);
         tower.GetComponent<Tower>().stats.dmgLvl++;
+        lvlSpeedText.text = tower.GetComponent<Tower>().stats.dmgLvl.ToString();
         Debug.Log("dmg ulepszony");
     }
 }

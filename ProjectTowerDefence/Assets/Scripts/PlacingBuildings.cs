@@ -18,22 +18,22 @@ public class PlacingBuildings : MonoBehaviour
     private GameObject greenPlaceholder;
     private GameObject placedBuilding;
     private InputMaster controls;
-
+    public bool isBuild;
     #region PublicMethods
 
     // metoda do uruchamiania skryptu, będzie używana w innych skryptach
-    public void PlaceBuilding(GameObject new_object)
+    public void OnBuildstart()
     {
         if(!active)
         {
             active = true;
-            objectToPlace = new_object;
+            objectToPlace = buildingsToPlace[buildingId];
             CreateGreenCopy();
         }            
     }        
 
     // Dezaktywacja skryptu
-    public void Deacivate()
+    public void OnBuildcancel()
     {
         if(active)
         {
@@ -88,7 +88,7 @@ public class PlacingBuildings : MonoBehaviour
         greenPlaceholder.transform.Rotate(Vector3.down, 45);        
     }
     // Zarządzanie stawianiem budynków
-    private void HandlePlacing()
+    private void OnBuildnew()
     {
         if (!active) { return; }
         RaycastHit[] hits;
@@ -124,7 +124,7 @@ public class PlacingBuildings : MonoBehaviour
 
             SetAllChildrenTag(placedBuilding, "Building");
 
-            Deacivate();
+            OnBuildcancel();
             // Utworzony obiekt jest ustawiany jako podobiekt "BuildingPlacer"
             placedBuilding.transform.SetParent(this.transform);
 
@@ -170,8 +170,9 @@ public class PlacingBuildings : MonoBehaviour
         SetGreenCopyGreenMaterial(!isEmpty);
     }
     //Zarządzanie rodzajem stawianego budynku
-    private void changeId(bool plus)
+    private void OnBuildchangeId(InputValue val)
     {
+      bool plus = val.Get<float>() > 0;
         if (!active) { return; }
         if(plus)
         {
@@ -183,8 +184,8 @@ public class PlacingBuildings : MonoBehaviour
             {
                 buildingId--;
             }
-            Deacivate();
-            PlaceBuilding(buildingsToPlace[buildingId]);
+            OnBuildcancel();
+            OnBuildstart();
         }
         else
         {
@@ -196,20 +197,12 @@ public class PlacingBuildings : MonoBehaviour
             {
                 buildingId++;
             }
-            Deacivate();
-            PlaceBuilding(buildingsToPlace[buildingId]);
+            OnBuildcancel();
+            OnBuildstart();
         }
     }
     #endregion
-    private void Awake()
-    {
-        controls = new InputMaster();
-        controls.Enable();
-        controls.Buildings.Buildstart.performed += val => PlaceBuilding(buildingsToPlace[buildingId]);
-        controls.Buildings.Buildcancel.performed += val => Deacivate();
-        controls.Buildings.BuildchangeId.performed += val => changeId(val.ReadValue<float>()>0);
-        controls.Buildings.Buildnew.performed += val => HandlePlacing();
-    }
+
     private void Start()
     {
         currentCamera =FindObjectOfType<Camera>();
@@ -220,9 +213,17 @@ public class PlacingBuildings : MonoBehaviour
 
        if (active)
         {
-       
-         
+
+            isBuild = true;
             setPositionBuilding();
         }
+       else
+        {
+            Invoke("buildOff", 0.1f);
+        }
+    }
+    private void buildOff()
+    {
+        isBuild = false;
     }
 }

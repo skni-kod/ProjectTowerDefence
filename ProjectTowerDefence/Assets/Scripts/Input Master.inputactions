@@ -136,7 +136,7 @@
                     "name": "1D Axis",
                     "id": "d9541d0b-06c1-4892-8b9f-1002a6a47864",
                     "path": "1DAxis",
-                    "interactions": "",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
                     "action": "Build change Id",
