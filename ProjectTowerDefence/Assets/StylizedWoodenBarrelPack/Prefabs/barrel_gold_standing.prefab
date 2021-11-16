@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 33248967416351762}
   - component: {fileID: 23272905234613848}
   - component: {fileID: 64760982176649488}
+  - component: {fileID: 6974405147883682090}
   m_Layer: 0
   m_Name: barrel_gold_standing
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,3 +97,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5189f1e26dd562840b1f9bcb161c77e1, type: 3}
+--- !u!65 &6974405147883682090
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509607895093206}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0099999, y: 1.0200502, z: 1.01}
+  m_Center: {x: 0, y: 0.5100251, z: -0.000000029802322}

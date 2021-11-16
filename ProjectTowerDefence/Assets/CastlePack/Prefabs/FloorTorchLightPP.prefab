@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4168301760040769795}
   - component: {fileID: -2077541029899101156}
   - component: {fileID: 8424272455752271393}
+  - component: {fileID: 8772020505834697990}
   m_Layer: 0
   m_Name: FloorTorchLightPP
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -112,6 +113,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 8de0996ac7a0c764495e0f39491372dc, type: 3}
+--- !u!65 &8772020505834697990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510814162510297302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.084066525, y: 0.25750375, z: 0.11729481}
+  m_Center: {x: 0, y: 0.12605816, z: -0.016334187}
 --- !u!1 &3569393704026333353
 GameObject:
   m_ObjectHideFlags: 0
