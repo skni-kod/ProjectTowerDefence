@@ -464,7 +464,7 @@ MonoBehaviour:
   - {x: 45, y: 1, z: 0}
   enemySpawningCooldown: 2
   enemiesPrefabs:
-  - {fileID: 8852445604156773834, guid: c48ee31bd50b3404fb53bf6a2dded77f, type: 3}
+  - {fileID: 7957412994024024671, guid: 04c48925a39e8d744b64b4725f0e9ef9, type: 3}
   enemiesParentObject: {fileID: 1720211768}
   enemiesWavesSetId: 0
 --- !u!4 &1054877645
@@ -607,7 +607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698570463}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 10, y: 15, z: -10}
+  m_LocalPosition: {x: 45, y: 15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 277941932}

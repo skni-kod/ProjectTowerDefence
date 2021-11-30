@@ -37,11 +37,11 @@ abstract public class Enemy : MonoBehaviour
         pathfinding = Pathfinding.Instance;
         SetDestinationPosition(nexus.transform.Find("nexus").position);
 
-
         rigidbodyComponent = GetComponent<Rigidbody>();
 
-        healthBar = transform.GetComponentInChildren<BarController>();
         //healthBar.Initialize();
+        healthBar = transform.GetComponentInChildren<BarController>();
+        Debug.Log(healthBar);
         listOfEnemies.Add(this);
 
         hp = maxHp;
@@ -69,7 +69,7 @@ abstract public class Enemy : MonoBehaviour
     /// <summary>
     /// atak przeciwnika
     /// </summary>
-    protected virtual void Atack()
+    protected virtual void Attack()
     {
         Debug.Log("coś poszło nie tak, Zjebałeś");
     }
@@ -101,6 +101,11 @@ abstract public class Enemy : MonoBehaviour
         // Aktualizacja paska zdrowia
         healthBar.SetValue(100 * hp / maxHp);
         return false;
+    }
+
+    public virtual void EnemyKilled()
+    {
+        Destroy(this.gameObject);
     }
 
     /**

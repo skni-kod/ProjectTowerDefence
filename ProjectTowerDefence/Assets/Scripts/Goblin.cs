@@ -6,27 +6,34 @@ using UnityEngine.InputSystem;
 
 public class Goblin : Enemy
 {
+    Animator animator;
 
     /*chwilowe rozwiazanie do poruszania sie tam gdzie sie kliknie*/
     RaycastHit hit;
     int tmp = 0;
     /*************************************************************/
 
+    void Start()
+    {
+        this.animator = GetComponent<Animator>();
+    }
+
     protected override void Update()
     {
         Movement();
 
         healthBar.SetValue(100 * hp / maxHp);
+        Debug.Log(healthBar);
     }
 
     protected override void Movement()
     {
-   
+
         // chwilowe rozwiazanie poruszania
         //transform.position += new Vector3(Time.deltaTime * (speed/10), 0, 0);
 
         /*chwilowe rozwiazanie do poruszania sie tam gdzie sie kliknie*/
-      //  return;
+        //  return;
         if (Mouse.current.leftButton.wasPressedThisFrame)//Input.GetMouseButtonDown(0))
         {
 
@@ -47,6 +54,13 @@ public class Goblin : Enemy
                     Debug.Log(gridNode.isAvailable);
                     SetDestinationPosition(destination);
                     tmp = 0;
+
+                    // turn on running animation
+                    animator.SetBool("isRunning", true);
+                }
+                else
+                {
+                    // turn off animations
                 }
 
 
@@ -87,4 +101,18 @@ public class Goblin : Enemy
 
     }
 
+    protected override void Attack()
+    {
+        // do something...
+
+        // turn on attack animation
+    }
+    
+    //public override void EnemyKilled()
+    //{
+    //    // turn on dead animation
+    //    // wait until the animation is finised than delete object from the scene
+
+    //    Destroy(this.gameObject);
+    //}
 }
