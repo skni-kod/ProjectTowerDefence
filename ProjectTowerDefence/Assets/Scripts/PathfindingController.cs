@@ -66,10 +66,14 @@ public class PathfindingController : MonoBehaviour
                 //    Enemy enemyComponent = enemy.GetComponent<Enemy>();
                 //    enemyComponent.SetDestinationPosition(enemyComponent.destination);
                 //}
+
                 foreach (Enemy enemy in Enemy.listOfEnemies)
                 {
+                    Debug.Log(enemy);
+                    Debug.Log(enemy.destination);
                     enemy.SetDestinationPosition(enemy.destination);
                 }
+                Debug.Log(Enemy.listOfEnemies);
 
                 //Debug.DrawLine(new Vector3(gridNode.X - 0.5f, 0, gridNode.Y - 0.5f) * grid.CellSize + new Vector3(1, 0, 1) * grid.CellSize * 0.5f, new Vector3(gridNode.X + 0.5f, 0, gridNode.Y+ 0.5f) * grid.CellSize + new Vector3(1, 0, 1) * grid.CellSize * 0.5f, Color.red , 20f);
                 //Debug.DrawLine(new Vector3(gridNode.X -0.5f, 0, gridNode.Y + 0.5f) * grid.CellSize + new Vector3(1, 0, 1) * grid.CellSize * 0.5f, new Vector3(gridNode.X+ 0.5f, 0, gridNode.Y - 0.5f) * grid.CellSize + new Vector3(1, 0, 1) * grid.CellSize * 0.5f, Color.red, 20f);

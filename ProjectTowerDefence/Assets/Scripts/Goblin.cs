@@ -6,29 +6,27 @@ using UnityEngine.InputSystem;
 
 public class Goblin : Enemy
 {
-    Animator animator;
+    public Animator animator;
 
     /*chwilowe rozwiazanie do poruszania sie tam gdzie sie kliknie*/
     RaycastHit hit;
     int tmp = 0;
     /*************************************************************/
 
-    void Start()
-    {
-        this.animator = GetComponent<Animator>();
-    }
+    //void Start()
+    //{
+    //    this.animator = GetComponent<Animator>();
+    //}
 
     protected override void Update()
     {
         Movement();
 
         healthBar.SetValue(100 * hp / maxHp);
-        Debug.Log(healthBar);
     }
 
     protected override void Movement()
     {
-
         // chwilowe rozwiazanie poruszania
         //transform.position += new Vector3(Time.deltaTime * (speed/10), 0, 0);
 
@@ -37,12 +35,14 @@ public class Goblin : Enemy
         if (Mouse.current.leftButton.wasPressedThisFrame)//Input.GetMouseButtonDown(0))
         {
 
+            Debug.Log("Movement:Goblin");
             //  Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out hit))
             {
                 destination = hit.point;
                 Debug.Log("The ray hit at: " + destination);
+
 
                 int x = pathfinding.GetGrid().GetCoordinate(hit.point).x;
                 int y = pathfinding.GetGrid().GetCoordinate(hit.point).y;
@@ -57,10 +57,14 @@ public class Goblin : Enemy
 
                     // turn on running animation
                     animator.SetBool("isRunning", true);
+                    animator.SetBool("isAttacking", false);
+                    animator.SetBool("isDead", false);
                 }
                 else
                 {
-                    // turn off animations
+                    animator.SetBool("isRunning", false);
+                    animator.SetBool("isAttacking", false);
+                    animator.SetBool("isDead", false);
                 }
 
 
@@ -106,13 +110,29 @@ public class Goblin : Enemy
         // do something...
 
         // turn on attack animation
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", true);
+        animator.SetBool("isDead", false);
     }
-    
-    //public override void EnemyKilled()
-    //{
-    //    // turn on dead animation
-    //    // wait until the animation is finised than delete object from the scene
 
-    //    Destroy(this.gameObject);
-    //}
+    protected override void EnemyKilled()
+    {
+        Debug.Log("dupa");
+
+        // turn on dead animation
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isDead", true);
+
+        // wait until the animation is finised than delete object from the scene
+        //StartCoroutine(ExecuteAfterSec(30));
+
+        //Destroy(this.gameObject);
+    }
+
+    private IEnumerator ExecuteAfterSec(float time)
+    {
+        Debug.Log("chuj");
+        yield return new WaitForSeconds(time);
+    }
 }

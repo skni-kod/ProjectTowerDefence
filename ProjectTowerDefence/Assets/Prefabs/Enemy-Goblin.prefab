@@ -1371,6 +1371,7 @@ GameObject:
   - component: {fileID: 1889141855929080422}
   - component: {fileID: 23889827289746103}
   - component: {fileID: 8929729978074814891}
+  - component: {fileID: 3377064142277350821}
   m_Layer: 13
   m_Name: Enemy-Goblin
   m_TagString: Enemies
@@ -1430,6 +1431,7 @@ MonoBehaviour:
   speed: 5
   destination: {x: 0, y: 0, z: 0}
   nexus: {fileID: 2995028554988265554, guid: 93824320133cee24a9675575ed3c9182, type: 3}
+  animator: {fileID: 3768972985742810579}
 --- !u!54 &23889827289746103
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1444,7 +1446,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 32
   m_CollisionDetection: 0
 --- !u!136 &8929729978074814891
 CapsuleCollider:
@@ -1455,11 +1457,24 @@ CapsuleCollider:
   m_GameObject: {fileID: 7957412994024024671}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.25
   m_Height: 0.9
   m_Direction: 1
   m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!65 &3377064142277350821
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7957412994024024671}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.8, z: 0.5}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1 &8570087132713217194
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,9 +39,8 @@ abstract public class Enemy : MonoBehaviour
 
         rigidbodyComponent = GetComponent<Rigidbody>();
 
-        //healthBar.Initialize();
         healthBar = transform.GetComponentInChildren<BarController>();
-        Debug.Log(healthBar);
+        //Debug.Log(healthBar);
         listOfEnemies.Add(this);
 
         hp = maxHp;
@@ -95,7 +94,8 @@ abstract public class Enemy : MonoBehaviour
         if (hp <= 0)
         {
             // Usunięcie obiektu, bo umarł
-            Destroy(this.gameObject);
+            EnemyKilled();
+
             return true;
         }
         // Aktualizacja paska zdrowia
@@ -103,7 +103,7 @@ abstract public class Enemy : MonoBehaviour
         return false;
     }
 
-    public virtual void EnemyKilled()
+    protected virtual void EnemyKilled()
     {
         Destroy(this.gameObject);
     }
