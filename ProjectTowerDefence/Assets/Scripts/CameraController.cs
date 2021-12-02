@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
     //
     //private InputMaster controls;
     Vector3 horizontal , vertical;
+    public float maxX, minX, maxY, minY;
     private bool isMoving;
     private Vector2 newXY;
     //private void Awake()
@@ -69,8 +70,8 @@ public class CameraController : MonoBehaviour
         //Vector3 heading = Vector3.Normalize(horizontalMove + verticalMove);
 
         // transform.forward = heading;
-        transform.position += horizontalMove;
-        transform.position += verticalMove;
+        if ((transform.position + horizontalMove).x < maxX && (transform.position + horizontalMove).x > minX) transform.position += horizontalMove;
+        if ((transform.position + verticalMove).z < maxY && (transform.position + verticalMove).z > minY) transform.position += verticalMove;
     }
     void OnMovment(InputValue inputValue)
     {
@@ -99,8 +100,8 @@ public class CameraController : MonoBehaviour
         Vector3 horizontalMove = horizontal * moveSpeed * Time.deltaTime * directionX;
         Vector3 verticalMove = vertical * moveSpeed * Time.deltaTime * directionY;
         
-        transform.position += horizontalMove;
-        transform.position += verticalMove;
+     if((transform.position+horizontalMove).x <maxX && (transform.position + horizontalMove).x > minX)   transform.position += horizontalMove;
+        if ((transform.position + verticalMove).z < maxY && (transform.position + verticalMove).z > minY) transform.position += verticalMove;
 
     }
 }

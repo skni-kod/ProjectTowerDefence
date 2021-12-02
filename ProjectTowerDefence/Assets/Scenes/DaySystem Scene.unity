@@ -4915,6 +4915,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   edgeSize: 40
+  maxX: 86
+  minX: 10
+  maxY: 40
+  minY: -10
 --- !u!114 &931101093
 MonoBehaviour:
   m_ObjectHideFlags: 0
