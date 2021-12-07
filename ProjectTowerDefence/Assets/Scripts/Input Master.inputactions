@@ -223,6 +223,52 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Console",
+            "id": "e721ad51-9895-48c7-ae95-1fe56dc2826d",
+            "actions": [
+                {
+                    "name": "ToggleDebugConsole",
+                    "type": "Button",
+                    "id": "9282167b-ae09-4d6a-9499-65e4049f91e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Return",
+                    "type": "Button",
+                    "id": "bc76fb2b-856f-44ad-8cb8-5484f15f4a4f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d3f3a00f-168f-4c8a-b139-b4c9f70dc2c2",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleDebugConsole",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "416fe059-26e2-4612-bc0a-ac6fb5761819",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

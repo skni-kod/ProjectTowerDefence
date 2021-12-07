@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class SourceSystem : MonoBehaviour
 {
+    public static SourceSystem Instance { get; private set; }
+
+    public SourceSystem()
+    {
+        Instance = this;
+    }
+
     [System.Serializable]
     public struct source
     {
