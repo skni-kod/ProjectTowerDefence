@@ -41,6 +41,7 @@ public class Goblin : Enemy
             if (Physics.Raycast(ray, out hit))
             {
                 destination = hit.point;
+                transform.forward = new Vector3(destination.x -transform.position.x , destination.y-transform.position.y  , destination.z -transform.position.z );//obrot goblina w kierunku w którym podąża
                 Debug.Log("The ray hit at: " + destination);
 
 
