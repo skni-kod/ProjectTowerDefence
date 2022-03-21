@@ -33,12 +33,12 @@ public class TargetLine : MonoBehaviour
     private void UpdateTargetLine()
     {
         //Debug.Log(GetComponent<Tower>().enemiesInRange.Length);
-        if (GetComponent<Tower>().enemiesInRange.Length > 0)
+        if (GetComponent<Tower>().enemiesToHit.Length > 0)
         {
             try
             {
                 targetLine.enabled = true;
-                towerEnemiesInRange = GetComponent<Tower>().enemiesInRange;
+                towerEnemiesInRange = GetComponent<Tower>().enemiesToHit;
                 targetLine.SetPosition(1, towerEnemiesInRange[0].GetComponent<Transform>().position);
 
                 if (Time.time - GetComponent<Tower>().lastHit < 0.25f) targetLine.endColor = activeColor;

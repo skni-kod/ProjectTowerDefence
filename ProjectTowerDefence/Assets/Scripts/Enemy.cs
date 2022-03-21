@@ -30,6 +30,11 @@ abstract public class Enemy : MonoBehaviour
     [SerializeField]
     protected GameObject nexus;
 
+    /// <summary>
+    /// Właściwość wskazująca, czy przeciwnik został zabity (ale obiekt nie został jeszcze usunięty)
+    /// </summary>
+    public bool IsDead { get => hp <= 0; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +55,10 @@ abstract public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        Movement();
+        if (!IsDead)
+        {
+            Movement();
+        }
 
         // Tymczasowe wyświetlanie ilości zdrowia dla ułatwienia testowania
         //Debug.Log(gameObject.name + "'s health: " + hp);

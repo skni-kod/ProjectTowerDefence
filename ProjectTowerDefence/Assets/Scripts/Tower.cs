@@ -17,7 +17,7 @@ public class Tower : MonoBehaviour
     public Stats stats;
     [HideInInspector]
     public float hitCooldown, lastHit;
-    public Collider[] enemiesInRange;
+    public Collider[] enemiesToHit;
     private Collider currEnemieToHit;
 
     // Start is called before the first frame update
@@ -49,8 +49,8 @@ public class Tower : MonoBehaviour
     /// </summary>
     private void EnemiesDetection()
     {
-        enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
-        
+        var enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
+        enemiesToHit = enemiesInRange.ToList().FindAll(enemyCollider => !enemyCollider.GetComponent<Enemy>().IsDead).ToArray();
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ public class Tower : MonoBehaviour
     {
         if (Time.time - lastHit >= hitCooldown)
         {
-            if (enemiesInRange.Length > 0)
+            if (enemiesToHit.Length > 0)
             {
                 // TODO: W przyszłości tutaj trzeba umieścić jakis algorytm, który wybierze
                 // przeciwnika, w którego wieża ma strzelać
@@ -68,7 +68,7 @@ public class Tower : MonoBehaviour
 
                 if (currEnemieToHit == null)
                 {
-                    currEnemieToHit = enemiesInRange[0];
+                    currEnemieToHit = enemiesToHit.ElementAt(0);
                 }
 
                 if (currEnemieToHit.GetComponent<Enemy>().Hit(damagePerHit+stats.dmgLvl))

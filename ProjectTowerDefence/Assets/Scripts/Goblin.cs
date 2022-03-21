@@ -20,7 +20,14 @@ public class Goblin : Enemy
 
     protected override void Update()
     {
-        Movement();
+        if (!IsDead)
+        {
+            Movement();
+        }
+        else
+        {
+            DestroyOnDeathAnimationEnd();
+        }
 
         healthBar.SetValue(100 * hp / maxHp);
     }
@@ -135,5 +142,14 @@ public class Goblin : Enemy
     {
         Debug.Log("chuj");
         yield return new WaitForSeconds(time);
+    }
+
+    private void DestroyOnDeathAnimationEnd()
+    {
+        var currentAnimationState = animator.GetCurrentAnimatorStateInfo(0);
+        if (currentAnimationState.IsName("Death") && currentAnimationState.normalizedTime > 1)
+        {
+            Destroy(gameObject);
+        }
     }
 }
