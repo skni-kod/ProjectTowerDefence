@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
@@ -14,7 +13,7 @@ public class LevelController : MonoBehaviour
     /// <summary>
     /// Lista przeciwników pozostałych do zespawnowania podczas obecnej fali
     /// </summary>
-    protected List<EnemyWavePart> enemiesToSpawn = new List<EnemyWavePart>();
+    protected List<EnemyInfo> enemiesToSpawn = new List<EnemyInfo>();
 
     /// <summary>
     /// Czas ostatniego zespawnowania przeciwnika
@@ -31,12 +30,12 @@ public class LevelController : MonoBehaviour
     /// <summary>
     /// Typ wyliczeniowy faz gry
     /// </summary>
-    public enum levelPhase { preparations, defence }
+    public enum LevelPhase { PREPARATIONS, DEFENCE, LEVEL_COMPLETED }
 
     /// <summary>
     /// Obecna faza gry
     /// </summary>
-    protected levelPhase currentPhase;
+    protected LevelPhase currentPhase;
 
     /// <summary>
     /// Numer obecnej fali przeciwników
@@ -46,7 +45,7 @@ public class LevelController : MonoBehaviour
     /// <summary>
     /// Obecna faza gry
     /// </summary>
-    public levelPhase GetCurrentPhase { get { return currentPhase; } }
+    public LevelPhase GetCurrentPhase { get { return currentPhase; } }
 
     /// <summary>
     /// Numer obecnej fali przeciwników
@@ -68,7 +67,7 @@ public class LevelController : MonoBehaviour
     /// <summary>
     /// Lista fal przeciwników dla obecnego poziomów
     /// </summary>
-    protected List<List<EnemyWavePart>> enemiesWaves = new List<List<EnemyWavePart>>();
+    protected List<EnemyWave> enemiesWaves = new List<EnemyWave>();
 
     /// <summary>
     /// Numer zestawu fal przeciwników, który mas być użyty. Można ustawiać z edytorze Unity
@@ -95,7 +94,7 @@ public class LevelController : MonoBehaviour
     /// </summary>
     private void InitVariables()
     {
-        currentPhase = levelPhase.preparations;
+        currentPhase = LevelPhase.PREPARATIONS;
         currentEnemiesWave = 0;
 
         enemiesToSpawn.Clear();
@@ -109,12 +108,12 @@ public class LevelController : MonoBehaviour
     {
         switch (currentPhase)
         {
-            case levelPhase.preparations:
+            case LevelPhase.PREPARATIONS:
                 // TODO: Tutaj trzeba dodać jakieś czekanie aż gracz kliknie przycisk by rozpocząć kolejną fazę
                 StartNewWave();
                 break;
 
-            case levelPhase.defence:
+            case LevelPhase.DEFENCE:
                 if (enemiesToSpawn.Count > 0)
                 {
                     if (Time.time - lastEnemySpawnTime > enemySpawningCooldown) SpawnNextEnemy();
@@ -132,24 +131,17 @@ public class LevelController : MonoBehaviour
     /// </summary>
     protected void StartNewWave()
     {
-        Debug.Log($"Starting wave {currentEnemiesWave}");
-
-        int wavesCount = enemiesWaves.Count;
-        int statsMultiplier = currentEnemiesWave / wavesCount + 1;
-
-        enemiesToSpawn.Clear();
-        foreach (EnemyWavePart ew in enemiesWaves[currentEnemiesWave % wavesCount])
+        if (currentEnemiesWave >= enemiesWaves.Count)
         {
-            if (ew.count > 0)
-            {
-                for (int i = 0; i < ew.count; i++)
-                {
-                    enemiesToSpawn.Add(new EnemyWavePart(ew.prefabId, ew.hp * statsMultiplier, ew.speed * statsMultiplier));
-                }
-            }
+            Debug.LogError($"Cannot start wave {currentEnemiesWave} - not found");
+            return;
         }
 
-        currentPhase = levelPhase.defence;
+        Debug.Log($"Starting wave {currentEnemiesWave}");
+
+        enemiesToSpawn = enemiesWaves[currentEnemiesWave].GetEnemiesToSpawn();
+
+        currentPhase = LevelPhase.DEFENCE;
     }
 
     /// <summary>
@@ -161,7 +153,16 @@ public class LevelController : MonoBehaviour
 
         currentEnemiesWave++;
 
-        currentPhase = levelPhase.preparations;
+        if (currentEnemiesWave < enemiesWaves.Count)
+        {
+            currentPhase = LevelPhase.PREPARATIONS;
+        }
+        else
+        {
+            Debug.Log("Level completed");
+            currentPhase = LevelPhase.LEVEL_COMPLETED;
+            // TODO: Obsługa przejścia do następnej mapy, czy coś
+        }
     }
 
     /// <summary>
@@ -171,7 +172,7 @@ public class LevelController : MonoBehaviour
     {
         if (enemiesToSpawn.Count > 0)
         {
-            EnemyWavePart enemyToSpawn = enemiesToSpawn[0];
+            var enemyToSpawn = enemiesToSpawn[0];
 
             int randomSpawnPointIndex = Random.Range(0, enemiesSpawnPoints.Count);
             int prefabId = enemyToSpawn.prefabId;
@@ -199,33 +200,48 @@ public class LevelController : MonoBehaviour
         switch (enemiesWavesSetId)
         {
             default:
-                Debug.LogError("Nieprawidłowy numer zestawu fal - ładowanie zestawu 0");
+                Debug.LogError("Nieprawidłowy numer zestawu fal - ładowanie zestawu nr 0");
                 enemiesWavesSetId = 0;
                 DefineEnemiesWaves();
                 break;
             case 0:
                 // zestaw 0
+                Debug.Log("Ładowanie zestawu fal nr 0");
                 // fala 0
-                enemiesWaves.Add(new List<EnemyWavePart>());
-                enemiesWaves[0].Add(new EnemyWavePart(0, 50, 1, 2));
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(0, 50, 1))
+                    .Build()
+                    );
                 // fala 1
-                enemiesWaves.Add(new List<EnemyWavePart>());
-                enemiesWaves[1].Add(new EnemyWavePart(0, 60, 1.25f, 3));
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(0, 50, 1, 3))
+                    .Build()
+                    );
                 // fala 2
-                enemiesWaves.Add(new List<EnemyWavePart>());
-                enemiesWaves[2].Add(new EnemyWavePart(0, 80, 1.25f, 5));
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(0, 50, 1, 5))
+                    .Build()
+                    );
                 // fala 3
-                enemiesWaves.Add(new List<EnemyWavePart>());
-                enemiesWaves[3].Add(new EnemyWavePart(0, 100, 1.5f, 6));
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 2))
+                    .Build()
+                    );
                 // fala 4
-                enemiesWaves.Add(new List<EnemyWavePart>());
-                enemiesWaves[4].Add(new EnemyWavePart(0, 100, 1.5f, 8));
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 4))
+                    .Build()
+                    );
                 // fala 5
-                enemiesWaves.Add(new List<EnemyWavePart>());
-                enemiesWaves[5].Add(new EnemyWavePart(0, 100, 2, 10));
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 7))
+                    .Build()
+                    );
                 // fala 6
-                enemiesWaves.Add(new List<EnemyWavePart>());
-                enemiesWaves[6].Add(new EnemyWavePart(0, 100, 2, 15));
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 10))
+                    .Build()
+                    );
                 break;
 
             /*case 1:
@@ -235,7 +251,15 @@ public class LevelController : MonoBehaviour
     }
 }
 
-public class EnemyWavePart
+/// <summary>
+/// Typ wylieczeniowy sposobu spawnowania przeciwników
+/// </summary>
+public enum EnemiesSpawnStrategy
+{
+    RANDOM, FIXED
+}
+
+public class EnemyInfo
 {
     /// <summary>
     /// Indeks w liście prefabów przeciwników
@@ -257,11 +281,115 @@ public class EnemyWavePart
     /// </summary>
     public int count;
 
-    public EnemyWavePart(int prefabId, float hp, float speed, int count = 1)
+    public EnemyInfo(int prefabId, float hp, float speed, int count = 1)
     {
         this.prefabId = prefabId;
         this.hp = hp;
         this.speed = speed;
         this.count = count;
+    }
+}
+
+public class EnemyWave
+{
+    /// <summary>
+    /// Strategira spawnowania przeciwników w danej fali
+    /// </summary>
+    private EnemiesSpawnStrategy enemiesSpawnStrategy;
+
+    /// <summary>
+    /// Lista przeciwnków w danej fali
+    /// </summary>
+    private List<EnemyInfo> enemies = new List<EnemyInfo>();
+
+    /// <summary>
+    /// Prywatny konstruktor EnemyWave
+    /// </summary>
+    /// <param name="enemiesSpawnStrategy">Strategira spawnowania przeciwników w danej fali</param>
+    private EnemyWave(EnemiesSpawnStrategy enemiesSpawnStrategy)
+    {
+        this.enemiesSpawnStrategy = enemiesSpawnStrategy;
+    }
+
+    /// <summary>
+    /// Tworzenie nowej fali przeciwników
+    /// </summary>
+    /// <param name="enemiesSpawnStrategy">Strategira spawnowania przeciwników w danej fali</param>
+    public static Builder New(EnemiesSpawnStrategy enemiesSpawnStrategy)
+    {
+        return new Builder(enemiesSpawnStrategy);
+    }
+
+    public List<EnemyInfo> GetEnemiesToSpawn()
+    {
+        var result = new List<EnemyInfo>();
+
+        if (enemies.TrueForAll(enemyInfo => enemyInfo.count == 1))
+        {
+            result.AddRange(enemies);
+        }
+        else
+        {
+            enemies.ForEach(enemyInfo =>
+            {
+                for (int i = 0; i < enemyInfo.count; i++)
+                {
+                    result.Add(new EnemyInfo(enemyInfo.prefabId, enemyInfo.hp, enemyInfo.speed));
+                }
+            });
+        }
+
+        switch (enemiesSpawnStrategy)
+        {
+            case EnemiesSpawnStrategy.FIXED:
+            default:
+                return result;
+            case EnemiesSpawnStrategy.RANDOM:
+                int n = result.Count;
+                while (n > 1)
+                {
+                    n--;
+                    var k = Random.Range(0, n + 1);
+                    var tmp = result[k];
+                    result[k] = result[n];
+                    result[n] = tmp;
+                }
+                return result;
+        }
+    }
+
+    /// <summary>
+    /// Klasa pomocnicza do tworzenia fal przeciwnków
+    /// </summary>
+    public class Builder
+    {
+        /// <summary>
+        /// Tworzona aktualnie fala przeciwników
+        /// </summary>
+        private EnemyWave enemyWave;
+
+        public Builder(EnemiesSpawnStrategy enemiesSpawnStrategy)
+        {
+            enemyWave = new EnemyWave(enemiesSpawnStrategy);
+        }
+
+        /// <summary>
+        /// Dodanie przeciwnika(-ów) do fali
+        /// </summary>
+        /// <param name="enemyInfo">Informacje o przeciwniku(-ach)</param>
+        public Builder AddEnemy(EnemyInfo enemyInfo)
+        {
+            enemyWave.enemies.Add(enemyInfo);
+            return this;
+        }
+
+        /// <summary>
+        /// Zakończenie tworzenia fali
+        /// </summary>
+        /// <returns>Utworzona fala</returns>
+        public EnemyWave Build()
+        {
+            return enemyWave;
+        }
     }
 }

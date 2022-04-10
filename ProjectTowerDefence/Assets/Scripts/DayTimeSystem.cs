@@ -29,7 +29,7 @@ public class DayTimeSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(FindObjectOfType<LevelController>().GetCurrentPhase==LevelController.levelPhase.preparations)//sprawdza czy jest nowa fala
+       if(FindObjectOfType<LevelController>().GetCurrentPhase==LevelController.LevelPhase.PREPARATIONS)//sprawdza czy jest nowa fala
         {
             set = true;
             waveCounter++;

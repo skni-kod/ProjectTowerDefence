@@ -41,8 +41,6 @@ public class Goblin : Enemy
         //  return;
         if (Mouse.current.leftButton.wasPressedThisFrame)//Input.GetMouseButtonDown(0))
         {
-
-            Debug.Log("Movement:Goblin");
             //  Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out hit))
@@ -125,23 +123,10 @@ public class Goblin : Enemy
 
     protected override void EnemyKilled()
     {
-        Debug.Log("dupa");
-
         // turn on dead animation
         animator.SetBool("isRunning", false);
         animator.SetBool("isAttacking", false);
         animator.SetBool("isDead", true);
-
-        // wait until the animation is finised than delete object from the scene
-        //StartCoroutine(ExecuteAfterSec(30));
-
-        //Destroy(this.gameObject);
-    }
-
-    private IEnumerator ExecuteAfterSec(float time)
-    {
-        Debug.Log("chuj");
-        yield return new WaitForSeconds(time);
     }
 
     private void DestroyOnDeathAnimationEnd()
