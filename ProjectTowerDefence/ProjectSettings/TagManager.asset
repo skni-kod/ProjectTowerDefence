@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NonPlaceable
+  - Placeable
+  - NonPlaceAble
+  - Towers
+  - Building
+  - Enemies
+  - Terrain
+  - Nexus
+  - Canvas
   layers:
   - Default
   - TransparentFX
@@ -18,8 +27,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Enemies
+  - Towers
   - 
   - 
   - 
