@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1713359953414496954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711964317992773466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e37180cf728d2345ade3e25b1cd34ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3037807327482619778
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f8636638cdf0f469a2d726de46d433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePerHit: 0
+  hitRange: 0
   maxCooldown: 0
+  cooldownBarHeight: 20
+  cooldownBarSize: 4
   hitCooldown: 0
   lastHit: 0
   enemiesToHit: []
@@ -204,15 +196,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.65
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.33
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_LocalRotation.x
@@ -248,20 +240,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_LocalScale.x
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 192851949679987775, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
---- !u!1 &711964317992773466 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 192851949679987773, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
-  m_PrefabInstance: {fileID: 814098294775786343}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &711964317992773465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}

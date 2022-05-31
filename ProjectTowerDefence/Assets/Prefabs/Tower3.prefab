@@ -243,7 +243,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f8636638cdf0f469a2d726de46d433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePerHit: 0
+  hitRange: 0
   maxCooldown: 0
+  cooldownBarHeight: 1.5
+  cooldownBarSize: 1
   hitCooldown: 0
   lastHit: 0
   enemiesToHit: []
@@ -465,18 +469,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8923956100264475253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7487117915772721600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e37180cf728d2345ade3e25b1cd34ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8132314241481737821
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,11 +729,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 192851949679987775, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
---- !u!1 &7487117915772721600 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 192851949679987773, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
-  m_PrefabInstance: {fileID: 7298843787146712573}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7487117915772721603 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}

@@ -53,6 +53,6 @@ public class BarController : MonoBehaviour
     {
         transform.localPosition = new Vector3(transform.localPosition.x, height, transform.localPosition.z);
         this.size = size;
-        transform.localScale *= size;
+        transform.localScale = new Vector3(size * 10, size, size);
     }
 }

@@ -7,17 +7,23 @@ public class Tower : MonoBehaviour
 {
     private BarController cooldownBar;
 
-    protected float damagePerHit, hitRange;
-    public float maxCooldown;
+    public float damagePerHit, hitRange, maxCooldown;
+
+    public float cooldownBarHeight = 1.5f, cooldownBarSize = 1f;
+
     public struct Stats
     {
         public int spdLvl;
         public int dmgLvl;
     }
     public Stats stats;
+
     [HideInInspector]
     public float hitCooldown, lastHit;
+
+    [HideInInspector]
     public Collider[] enemiesToHit;
+
     private Collider currEnemieToHit;
 
     // Start is called before the first frame update
@@ -33,7 +39,7 @@ public class Tower : MonoBehaviour
         lastHit = -hitCooldown;
 
         cooldownBar = GetComponentInChildren<BarController>();
-        //cooldownBar.Initialize();
+        cooldownBar.Initialize(cooldownBarHeight, cooldownBarSize);
     }
 
     // Update is called once per frame
