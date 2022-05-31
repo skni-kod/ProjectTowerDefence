@@ -37,7 +37,7 @@ abstract public class Enemy : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         //pathfinding = Pathfinding.Instance;
         //SetDestinationPosition(nexus.transform.Find("nexus").position);
@@ -67,19 +67,12 @@ abstract public class Enemy : MonoBehaviour
     /// <summary>
     /// poruszanie sie postaci
     /// </summary>
-    protected virtual void Movement()
-    {
-        // Tymczasowe rozwiązanie, aby obiekt się poruszał
-        rigidbodyComponent.velocity = Vector3.right;
-    }
+    protected abstract void Movement();
 
     /// <summary>
     /// atak przeciwnika
     /// </summary>
-    protected virtual void Attack()
-    {
-        Debug.Log("coś poszło nie tak, Zjebałeś");
-    }
+    protected abstract void Attack();
 
     /// <summary>
     /// inicjalizacja statystyk
@@ -113,7 +106,7 @@ abstract public class Enemy : MonoBehaviour
 
     protected virtual void EnemyKilled()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     /**
