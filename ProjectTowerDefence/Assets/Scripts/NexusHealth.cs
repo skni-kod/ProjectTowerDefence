@@ -30,6 +30,7 @@ public class NexusHealth : MonoBehaviour
     {
         uiController = GetComponent<UiController>();
         healthBar = transform.GetComponentInChildren<BarController>();
+        healthBar.Initialize(16f, 6f);
         healthBar.SetValue(100 * hp / maxHp);
     }
     private void HealthTextStart()

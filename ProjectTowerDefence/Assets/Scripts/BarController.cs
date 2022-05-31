@@ -19,6 +19,7 @@ public class BarController : MonoBehaviour
         GameObject parentObject = transform.parent.gameObject;
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         if (parentObject.layer == LayerMask.NameToLayer("Enemies")) sprite.color = Color.red;
+        else if (parentObject.tag.Equals("Nexus")) sprite.color = Color.cyan;
         else if (parentObject.layer == LayerMask.NameToLayer("Towers") || parentObject.layer == LayerMask.NameToLayer("Building")) sprite.color = Color.yellow;
         else sprite.color = Color.black;
     }
