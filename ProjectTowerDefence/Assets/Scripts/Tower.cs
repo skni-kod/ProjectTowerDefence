@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
 
     protected float damagePerHit, hitRange;
     public float maxCooldown;
+    [System.Serializable]
     public struct Stats
     {
         public int spdLvl;
@@ -17,9 +18,12 @@ public class Tower : MonoBehaviour
     public Stats stats;
     [HideInInspector]
     public float hitCooldown, lastHit;
+    float arrowTimeToHit, fireArrowTimer;
     public Collider[] enemiesToHit;
     private Collider currEnemieToHit;
 
+    // arrow prefab
+    public GameObject Arrow;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +32,11 @@ public class Tower : MonoBehaviour
         damagePerHit = 15f;
         hitRange = 15f;
         hitCooldown = maxCooldown;
-
+        arrowTimeToHit = 0.5f;
         // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
         lastHit = -hitCooldown;
 
+        
         cooldownBar = GetComponentInChildren<BarController>();
         //cooldownBar.Initialize();
     }
@@ -40,7 +45,9 @@ public class Tower : MonoBehaviour
     void Update()
     {
         EnemiesDetection();
-        TowerDealingDamage();
+
+        FireArrow();
+        //TowerDealingDamage();
         CooldownBarUpdate();
     }
 
@@ -81,7 +88,26 @@ public class Tower : MonoBehaviour
 
         }
     }
-
+    private void FireArrow()
+    {
+        fireArrowTimer -= Time.deltaTime;
+        if(fireArrowTimer<=0.0 && enemiesToHit.Length>0)
+        {
+            if(currEnemieToHit)
+            {
+                
+                fireArrowTimer = maxCooldown;
+                GameObject tmp =Instantiate(Arrow);
+                //call  constructor of BasicArrow
+                tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl, hitRange/arrowTimeToHit, transform.position, 
+                Quaternion.FromToRotation(Vector3.left, transform.position-currEnemieToHit.transform.position),
+                currEnemieToHit.gameObject);
+            }
+            else currEnemieToHit = enemiesToHit.ElementAt(0);
+        }
+        
+        
+    }
     /// <summary>
     /// Aktualizacja paska czasu oczekiwania
     /// </summary>

@@ -61,9 +61,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxCooldown: 0
+  stats:
+    spdLvl: 2
+    dmgLvl: 30
   hitCooldown: 0
   lastHit: 0
   enemiesToHit: []
+  Arrow: {fileID: 6069580487303557460, guid: 688ae7fa1db49c342ad96910cc6b7995, type: 3}
 --- !u!114 &5652329037842268171
 MonoBehaviour:
   m_ObjectHideFlags: 0

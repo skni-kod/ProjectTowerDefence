@@ -13,6 +13,7 @@ TagManager:
   - Terrain
   - Nexus
   - Canvas
+  - Bullets
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - 
   - Enemies
   - Towers
-  - 
+  - Bullets
   - 
   - 
   - 
