@@ -122,7 +122,7 @@ public class PlacingBuildings : MonoBehaviour
             placedBuilding = Instantiate(objectToPlace, poz, greenPlaceholder.transform.rotation);
             placedBuilding.name = "Tower " + transform.childCount.ToString();
 
-            SetAllChildrenTag(placedBuilding, "Building");
+            SetAllChildrenTag(placedBuilding, "Towers");
 
             OnBuildcancel();
             // Utworzony obiekt jest ustawiany jako podobiekt "BuildingPlacer"

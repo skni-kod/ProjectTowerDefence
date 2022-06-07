@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BarController : MonoBehaviour
 {
-    [HideInInspector]
-    protected float size = 1f;
+    [SerializeField]
+    [Range(0.5f, 10f)]
+    public float size = 1f;
 
     //usunac
     // Aktualna wartość procentowa reprezentowana przez pasek
-    [HideInInspector]
     protected float currentPercentValue = 100f;
 
     // Start is called before the first frame update
@@ -19,8 +19,12 @@ public class BarController : MonoBehaviour
         GameObject parentObject = transform.parent.gameObject;
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         if (parentObject.layer == LayerMask.NameToLayer("Enemies")) sprite.color = Color.red;
+        else if (parentObject.tag.Equals("Nexus")) sprite.color = Color.cyan;
         else if (parentObject.layer == LayerMask.NameToLayer("Towers") || parentObject.layer == LayerMask.NameToLayer("Building")) sprite.color = Color.yellow;
         else sprite.color = Color.black;
+
+        // Dostosowanie wielkości
+        transform.localScale = new Vector3(size * 10, size, size);
     }
 
     // Update is called once per frame
@@ -42,17 +46,5 @@ public class BarController : MonoBehaviour
         if (value < 0) currentPercentValue = 0f;
         else if (value > 100) currentPercentValue = 100f;
         else currentPercentValue = value;
-    }
-
-    /// <summary>
-    /// Inicjalizacja właściwości paska
-    /// </summary>
-    /// <param name="height">Wysokość nad obiektem</param>
-    /// <param name="size">Wielkość paska</param>
-    public void Initialize(float height = 1.5f, float size = 1)
-    {
-        transform.localPosition = new Vector3(transform.localPosition.x, height, transform.localPosition.z);
-        this.size = size;
-        transform.localScale *= size;
     }
 }
