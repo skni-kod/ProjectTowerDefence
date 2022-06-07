@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3415727473321373905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907017670934508842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e37180cf728d2345ade3e25b1cd34ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6899483351270843022
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +42,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6899483351270843022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.21, y: 0.5, z: 33.63}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1907017670934508841}
@@ -111,9 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f8636638cdf0f469a2d726de46d433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxCooldown: 0
   hitCooldown: 0
   lastHit: 0
-  enemiesInRange: []
+  enemiesToHit: []
 --- !u!120 &-8233708127972997966
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -283,8 +296,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 192851949679987775, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
+--- !u!1 &1907017670934508842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 192851949679987773, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
+  m_PrefabInstance: {fileID: 1790800582820985111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1907017670934508841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}

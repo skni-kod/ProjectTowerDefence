@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 7716870319561951334}
   m_Layer: 14
   m_Name: Tower3
-  m_TagString: Untagged
+  m_TagString: Towers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,9 +243,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f8636638cdf0f469a2d726de46d433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagePerHit: 0
+  hitRange: 0
+  maxCooldown: 0
+  cooldownBarHeight: 1.5
+  cooldownBarSize: 1
   hitCooldown: 0
   lastHit: 0
-  enemiesInRange: []
+  enemiesToHit: []
 --- !u!114 &-8506662360146255727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,7 +726,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 192851949679987775, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
 --- !u!4 &7487117915772721603 stripped
 Transform:
