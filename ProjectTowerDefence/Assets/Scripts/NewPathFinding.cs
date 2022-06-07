@@ -5,7 +5,6 @@ public class NewPathFinding : MonoBehaviour
     //Do prawidłowego działania potrzebne jest jeszcze ustawienie skryptu WayPoints
     //Przeciwników można zrespić przyciskiem F
 
-    public float speed = 10f; //prędkość poruszania
     private Transform target;
     private int wavepointIndex = 0; //indeks aktualnego punktu
     protected NexusHealth nexusHealth;
@@ -25,7 +24,7 @@ public class NewPathFinding : MonoBehaviour
         {
             //kierowanie się do wyznaczonego punktu
             Vector3 dir = target.position - transform.position;
-            transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+            transform.Translate(dir.normalized * enemy.Speed * 10 * Time.deltaTime, Space.World);
             Vector3 rotateDir = Vector3.RotateTowards(transform.position, dir, 10f, 0f);
             transform.rotation = Quaternion.LookRotation(rotateDir);
 

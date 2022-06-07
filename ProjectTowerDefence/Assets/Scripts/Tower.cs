@@ -9,8 +9,6 @@ public class Tower : MonoBehaviour
 
     public float damagePerHit, hitRange, maxCooldown;
 
-    public float cooldownBarHeight = 1.5f, cooldownBarSize = 1f;
-
     public struct Stats
     {
         public int spdLvl;
@@ -39,7 +37,6 @@ public class Tower : MonoBehaviour
         lastHit = -hitCooldown;
 
         cooldownBar = GetComponentInChildren<BarController>();
-        cooldownBar.Initialize(cooldownBarHeight, cooldownBarSize);
     }
 
     // Update is called once per frame

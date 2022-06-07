@@ -1374,7 +1374,7 @@ GameObject:
   - component: {fileID: 3377064142277350821}
   - component: {fileID: 5301392415293360315}
   m_Layer: 13
-  m_Name: Goblin2
+  m_Name: Goblin1
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1487,7 +1487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8ee8a10f7054442bcf7912ee6b23af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!1 &8570087132713217194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1580,10 @@ PrefabInstance:
     - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_LocalScale.x
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902246994147793908, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 192851949679987775, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}

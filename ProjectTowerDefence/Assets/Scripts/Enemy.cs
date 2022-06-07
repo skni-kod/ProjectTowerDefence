@@ -35,6 +35,11 @@ abstract public class Enemy : MonoBehaviour
     /// </summary>
     public bool IsDead { get => hp <= 0; }
 
+    /// <summary>
+    /// Publiczna właściwość zwracająca prędkość przeciwnika
+    /// </summary>
+    public float Speed { get => speed; }
+
 
     // Start is called before the first frame update
     protected virtual void Start()

@@ -54407,8 +54407,9 @@ MonoBehaviour:
   enemiesPrefabs:
   - {fileID: 7957412994024024671, guid: 315e36151b6142d4aa17512591d44c51, type: 3}
   - {fileID: 7957412994024024671, guid: 46f34e74ed7036d42aa68de2acbb0e7b, type: 3}
+  - {fileID: 7957412994024024671, guid: 50f2e650e29b427428c3be748bc625f0, type: 3}
   enemiesParentObject: {fileID: 1671474422}
-  enemiesWavesSetId: 1
+  enemiesWavesSetId: 0
 --- !u!4 &1250866376
 Transform:
   m_ObjectHideFlags: 0
@@ -67191,11 +67192,11 @@ PrefabInstance:
     - target: {fileID: 7490540979562207602, guid: 1d2ec2d4894c9d74bb9a9e1dbb70b418, type: 3}
       propertyPath: buildingsToPlace.Array.data[0]
       value: 
-      objectReference: {fileID: 2542965845261479495, guid: bbb0c96dea8e465418fe78de733a6f1e, type: 3}
+      objectReference: {fileID: 2542965845261479495, guid: fad5770526ea2cf4fbdcf9767c766015, type: 3}
     - target: {fileID: 7490540979562207602, guid: 1d2ec2d4894c9d74bb9a9e1dbb70b418, type: 3}
       propertyPath: buildingsToPlace.Array.data[1]
       value: 
-      objectReference: {fileID: 3037807327482619778, guid: d3813b8c6bc038449afe0b45ad5bda16, type: 3}
+      objectReference: {fileID: 3037807327482619778, guid: 1c61b567dd8b95c4a8acfe239556ed1a, type: 3}
     - target: {fileID: 8483774350294637212, guid: 1d2ec2d4894c9d74bb9a9e1dbb70b418, type: 3}
       propertyPath: currentCamera
       value: 

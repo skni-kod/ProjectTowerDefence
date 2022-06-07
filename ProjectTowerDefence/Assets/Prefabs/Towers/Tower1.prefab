@@ -51,8 +51,6 @@ MonoBehaviour:
   damagePerHit: 0
   hitRange: 0
   maxCooldown: 0
-  cooldownBarHeight: 16
-  cooldownBarSize: 4
   hitCooldown: 0
   lastHit: 0
   enemiesToHit: []
@@ -248,6 +246,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 192851949679987774, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
       propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902246994147793908, guid: f678d474e6c14ab44815eb6bba89fa83, type: 3}
+      propertyPath: size
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
