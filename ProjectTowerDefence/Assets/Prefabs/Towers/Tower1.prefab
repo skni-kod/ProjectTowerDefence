@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6165046502282964397}
   m_Layer: 14
   m_Name: Tower1
-  m_TagString: Towers
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f8636638cdf0f469a2d726de46d433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerId: 0
   damagePerHit: 0
   hitRange: 0
   maxCooldown: 0

@@ -9,6 +9,19 @@ public class UiController : MonoBehaviour
     protected bool upgradeBool;
     protected bool destroyBool;
 
+    protected Color32 redColor;
+    protected Color32 greenColor;
+
+    protected UpgradingBuildings upgradingBuildings;
+    protected DestroyBuildings destroyBuildings;
+
+
+    public GameObject upgradeButton;
+    public GameObject destroyButton;
+
+    protected Image upgradeButtonImage;
+    protected Image destroyButtonImage;
+
     public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu");
@@ -21,58 +34,68 @@ public class UiController : MonoBehaviour
 
     private void Start()
     {
+        OnStartGet();
+
         upgradeBool = false;
         destroyBool = false;
-        GameObject.Find("BuildingsManager").GetComponent<DestroyBuildings>().enabled = false;
-        GameObject.Find("BuildingsManager").GetComponent<UpgradingBuildings>().enabled = false;
+
+        upgradingBuildings.enabled = false;
+        destroyBuildings.enabled = false;
+
+        upgradeButtonImage.color = redColor;
+        destroyButtonImage.color = redColor;
+
     }
+
     public void UpgradeButtonControl()
     {
         if (upgradeBool)
         {
-            GameObject.Find("BuildingsManager").GetComponent<UpgradingBuildings>().enabled = false;
+            upgradingBuildings.enabled = false;
+            upgradeButtonImage.color = redColor;
             upgradeBool = false;
         }
         else if(!upgradeBool)
         {
-            GameObject.Find("BuildingsManager").GetComponent<UpgradingBuildings>().enabled = true;
+            upgradingBuildings.enabled = true;
+            upgradeButtonImage.color = greenColor;
             if (destroyBool)
             {
                 DestroyButtonControl();
             }
             upgradeBool = true;
         }
-        print("Upgrade "+ upgradeBool);
-        print("Destroy "+ destroyBool);
-        print("----------");
     }
+
     public void DestroyButtonControl()
     {
         if (destroyBool)
         {
-            GameObject.Find("BuildingsManager").GetComponent<DestroyBuildings>().enabled = false;
+            destroyBuildings.enabled = false;
+            destroyButtonImage.color = redColor;
             destroyBool = false;
         }
         else if (!destroyBool)
         {
-            GameObject.Find("BuildingsManager").GetComponent<DestroyBuildings>().enabled = true;
+            destroyBuildings.enabled = true;
+            destroyButtonImage.color = greenColor;
             if (upgradeBool)
             {
                 UpgradeButtonControl();
             }
             destroyBool = true;
         }
-        print("Upgrade " + upgradeBool);
-        print("Destroy " + destroyBool);
-        print("--------------");
     }
 
-    protected void DisableScript(string objectName, string scriptName)
+    protected void OnStartGet()
     {
-        GameObject.Find("BuildingsManager").GetComponent<UpgradingBuildings>().enabled = true;
-    }
-    protected void EnableScript()
-    {
+        upgradingBuildings = GameObject.Find("BuildingsManager").GetComponent<UpgradingBuildings>();
+        destroyBuildings = GameObject.Find("BuildingsManager").GetComponent<DestroyBuildings>();
 
+        upgradeButtonImage = upgradeButton.GetComponent<Image>();
+        destroyButtonImage = destroyButton.GetComponent<Image>();
+
+        redColor = new Color32(128, 0, 0, 255);
+        greenColor = new Color32(0, 128, 0, 255);
     }
 }

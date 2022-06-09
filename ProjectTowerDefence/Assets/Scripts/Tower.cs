@@ -7,6 +7,8 @@ public class Tower : MonoBehaviour
 {
     private BarController cooldownBar;
 
+    public int towerId;//zmienna używana w UpgradingBuildings
+
     public float damagePerHit, hitRange, maxCooldown;
 
     public struct Stats
