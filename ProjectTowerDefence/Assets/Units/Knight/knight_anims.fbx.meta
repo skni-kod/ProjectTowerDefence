@@ -21,7 +21,22 @@ ModelImporter:
   - first:
       74: -4799524434163024911
     second: Armature|walk
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: goblin.003
+    second: {fileID: 2100000, guid: 0dc7ab0c1c2623144b9497bb6b6a7b92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: goblin.017
+    second: {fileID: 2100000, guid: 0dc7ab0c1c2623144b9497bb6b6a7b92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: knight
+    second: {fileID: 2100000, guid: 0dc7ab0c1c2623144b9497bb6b6a7b92, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

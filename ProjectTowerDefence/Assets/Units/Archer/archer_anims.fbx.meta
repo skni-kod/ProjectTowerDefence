@@ -1,0 +1,297 @@
+fileFormatVersion: 2
+guid: 2ae5f316d13de434087279befc62552b
+ModelImporter:
+  serializedVersion: 20101
+  internalIDToNameTable:
+  - first:
+      74: 5752237149229653715
+    second: Armature.004|Armature.002|mixamo.com|Layer0
+  - first:
+      74: 3725142454577112472
+    second: Armature.004|Armature.003|mixamo.com|Layer0
+  - first:
+      74: 7156006843370189362
+    second: run
+  - first:
+      74: -4319868315418618424
+    second: death
+  - first:
+      74: 2751571651355336285
+    second: Armature.004|Armature.005|mixamo.com|Layer0
+  - first:
+      74: 3556040904875997551
+    second: shoot
+  - first:
+      74: 1249235974158280888
+    second: Armature.004|Armature.010|Armature.010|Armature.001|mixamo.com|Layer0
+  - first:
+      74: 4689257947124904661
+    second: Armature.004|Armature.010|Armature.010|Armature.002|mixamo.com|Layer0
+  - first:
+      74: -1535918125710203561
+    second: Armature.004|Armature.010|Armature.010|Armature.003|mixamo.com|Layer0
+  - first:
+      74: -7441327185552249335
+    second: Armature.004|Armature.010|Armature.010|Armature.003|mixamo.com|Layer0.001
+  - first:
+      74: 8271211676535469014
+    second: Armature.004|Armature.010|Armature.010|Armature.003|mixamo.com|Layer0.002
+  - first:
+      74: -4278257282016852618
+    second: Armature.004|Armature.010|Armature.010|Armature.004|mixamo.com|Layer0
+  - first:
+      74: 6414361128957206064
+    second: Armature.004|Armature.010|Armature.010|Armature.005|mixamo.com|Layer0
+  - first:
+      74: -4081509814218360721
+    second: Armature.004|Armature.010|Armature.010|Armature.005|mixamo.com|Layer0.001
+  - first:
+      74: -8365292328996493579
+    second: Armature.004|Armature.010|Armature.010|Armature.006|mixamo.com|Layer0
+  - first:
+      74: 8426619442440316399
+    second: Armature.004|Armature.010|Armature.010|Armature.007|mixamo.com|Layer0
+  - first:
+      74: -5174968236398513332
+    second: Armature.004|Armature.010|Armature.010|Armature.008|mixamo.com|Layer0
+  - first:
+      74: -7073456020845844880
+    second: Armature.004|Armature.010|Armature.010|Armature.009|mixamo.com|Layer0
+  - first:
+      74: 1281978697184271001
+    second: Armature.004|Armature.010|Armature.010|Armature.009|mixamo.com|Layer0.001
+  - first:
+      74: 7275700923026000716
+    second: Armature.004|Armature.010|Armature.010|Armature.009|mixamo.com|Layer0.002
+  - first:
+      74: 5056726274248121689
+    second: Armature.004|Armature.010|Armature.010|Armature.009|mixamo.com|Layer0.003
+  - first:
+      74: 1702056948004750576
+    second: Armature.004|Armature.010|Armature.010|Armature.010|mixamo.com|Layer0
+  - first:
+      74: 7863218935632081514
+    second: Armature.004|Armature.010|Armature.010|Armature|mixamo.com|Layer0
+  - first:
+      74: 86046551434353179
+    second: Armature.004|Armature.010|Armature.010|Armature|mixamo.com|Layer0.001
+  - first:
+      74: -1301647462628662880
+    second: Armature.004|Armature.010|Armature.010|Cylinder.023Action
+  - first:
+      74: -4143954376843542394
+    second: Armature.004|Armature|mixamo.com|Layer0
+  - first:
+      74: -5081577893011784776
+    second: Armature.004|Knight_attack
+  - first:
+      74: -6091370642040456330
+    second: Armature.004|Knight_walk
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: goblin.043
+    second: {fileID: 2100000, guid: 0dc7ab0c1c2623144b9497bb6b6a7b92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: goblin.044
+    second: {fileID: 2100000, guid: 0dc7ab0c1c2623144b9497bb6b6a7b92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: knight.012
+    second: {fileID: 2100000, guid: 0dc7ab0c1c2623144b9497bb6b6a7b92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: knight.018
+    second: {fileID: 2100000, guid: 0dc7ab0c1c2623144b9497bb6b6a7b92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: knight.019
+    second: {fileID: 2100000, guid: 0dc7ab0c1c2623144b9497bb6b6a7b92, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: run
+      takeName: Armature.004|Armature.003|mixamo.com|Layer0.001
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: death
+      takeName: Armature.004|Armature.004|mixamo.com|Layer0
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 95
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: shoot
+      takeName: Armature.004|Armature.006|mixamo.com|Layer0
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
