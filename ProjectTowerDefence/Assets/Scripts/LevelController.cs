@@ -80,6 +80,11 @@ public class LevelController : MonoBehaviour
     /// Tekts przedstawiający graczowi aktualny numer fali.
     /// </summary>
     protected Text waveText;
+
+    /// <summary>
+    /// Numer pozycji, z której przeciwnik zespawnował się.
+    /// </summary>
+    public int randomSpawnPointIndex = 0;
     #endregion
 
     // Start is called before the first frame update
@@ -183,7 +188,7 @@ public class LevelController : MonoBehaviour
         {
             var enemyToSpawn = enemiesToSpawn[0];
 
-            int randomSpawnPointIndex = Random.Range(0, enemiesSpawnPoints.Count);
+            randomSpawnPointIndex = Random.Range(0, enemiesSpawnPoints.Count);
             int prefabId = enemyToSpawn.prefabId;
             if (prefabId < 0 || prefabId >= enemiesPrefabs.Count)
             {

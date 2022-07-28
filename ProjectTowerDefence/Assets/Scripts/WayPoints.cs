@@ -7,7 +7,8 @@ public class WayPoints : MonoBehaviour
     //ustawiamy na emptyobject
     //pozycje children będą punktami dla skrypthu pathfinding
     //pobranie children
-    public static Transform[] points;
+    //public static Transform[] points;
+    public Transform[] points;
 
     void Awake()
     {

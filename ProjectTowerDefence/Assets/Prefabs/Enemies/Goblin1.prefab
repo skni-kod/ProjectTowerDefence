@@ -1373,6 +1373,7 @@ GameObject:
   - component: {fileID: 8929729978074814891}
   - component: {fileID: 3377064142277350821}
   - component: {fileID: 5301392415293360315}
+  - component: {fileID: 2071569552933187192}
   m_Layer: 13
   m_Name: Goblin1
   m_TagString: Enemies
@@ -1487,6 +1488,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8ee8a10f7054442bcf7912ee6b23af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &2071569552933187192
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7957412994024024671}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 8
+  m_Acceleration: 10
+  avoidancePriority: 50
+  m_AngularSpeed: 500
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8570087132713217194
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class UiController : MonoBehaviour
 
     protected UpgradingBuildings upgradingBuildings;
     protected DestroyBuildings destroyBuildings;
-
+    protected PlacingBuildings placingBuildings;
 
     public GameObject upgradeButton;
     public GameObject destroyButton;
@@ -105,11 +105,17 @@ public class UiController : MonoBehaviour
     {
         upgradingBuildings = GameObject.Find("BuildingsManager").GetComponent<UpgradingBuildings>();
         destroyBuildings = GameObject.Find("BuildingsManager").GetComponent<DestroyBuildings>();
+        placingBuildings = GameObject.Find("BuildingsManager").GetComponent<PlacingBuildings>();
 
         upgradeButtonImage = upgradeButton.GetComponent<Image>();
         destroyButtonImage = destroyButton.GetComponent<Image>();
 
         redColor = new Color32(128, 0, 0, 255);
         greenColor = new Color32(0, 128, 0, 255);
+    }
+
+    public void SetTowerId(int towerId)
+    {
+        placingBuildings.buildingId = towerId;
     }
 }

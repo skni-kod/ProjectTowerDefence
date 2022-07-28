@@ -61,6 +61,9 @@ public class PlacingBuildings : MonoBehaviour
         greenPlaceholder = Instantiate(objectToPlace);
         // Ustawienie obiektu na warstwie nr 2, na której obiekty są ignorowane przez Raycast'a
         greenPlaceholder.layer = 2;
+        //Wyłączenie skryptu odpowiadającego za atakowanie oraz paska cooldownu
+        greenPlaceholder.GetComponent<Tower>().enabled = false;
+        greenPlaceholder.transform.Find("CooldownBar").gameObject.SetActive(false);
 
         SetGreenCopyGreenMaterial(false);
         SetGreenCopyInLayer2();
@@ -109,6 +112,11 @@ public class PlacingBuildings : MonoBehaviour
                 isEmpty = false;
                 //   SetGreenCopyGreenMaterial(true);
             }
+            else if (hit.collider.CompareTag("NonPlaceableTerrain"))
+            {
+                isEmpty = false;
+            }
+
             poz = hit.point;
         }
 
@@ -165,6 +173,11 @@ public class PlacingBuildings : MonoBehaviour
             {
                 isEmpty = false;
        
+            }
+            else if (hit.collider.CompareTag("NonPlaceableTerrain"))
+            {
+                greenPlaceholder.transform.localPosition = hit.point;
+                isEmpty = false;
             }
         }
         SetGreenCopyGreenMaterial(!isEmpty);
@@ -225,9 +238,4 @@ public class PlacingBuildings : MonoBehaviour
         isBuild = false;
     }
 
-    //Tymczasowe
-    public void BuildTowerId(int id)
-    {
-        buildingId = id;
-    }
 }
