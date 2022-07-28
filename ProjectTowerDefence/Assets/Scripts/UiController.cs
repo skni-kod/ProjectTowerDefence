@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UiController : MonoBehaviour
 {
+    protected float gameSpeed = 1.0f;
+    
     protected bool upgradeBool;
     protected bool destroyBool;
 
@@ -24,12 +26,24 @@ public class UiController : MonoBehaviour
 
     public void LoadMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void SetGameSpeed(float speed)
     {
+        gameSpeed = speed;
         Time.timeScale = speed;
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = gameSpeed;
     }
 
     private void Start()
