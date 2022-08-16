@@ -223,37 +223,37 @@ public class LevelController : MonoBehaviour
                 Debug.Log("Ładowanie zestawu fal nr 0");
                 // fala 0
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(0, 50, 1))
+                    .AddEnemy(new EnemyInfo(0, 50, 0.5f))
                     .Build()
                     );
                 // fala 1
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(0, 50, 1, 3))
+                    .AddEnemy(new EnemyInfo(0, 50, 0.5f, 2))
                     .Build()
                     );
                 // fala 2
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(0, 50, 1, 5))
+                    .AddEnemy(new EnemyInfo(0, 50, 0.5f, 3))
                     .Build()
                     );
                 // fala 3
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 2))
+                    .AddEnemy(new EnemyInfo(0, 50, 0.5f, 5))
                     .Build()
                     );
                 // fala 4
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 4))
+                    .AddEnemy(new EnemyInfo(0, 50, 0.5f, 7))
                     .Build()
                     );
                 // fala 5
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 7))
+                    .AddEnemy(new EnemyInfo(0, 50, 0.5f, 10))
                     .Build()
                     );
                 // fala 6
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 10))
+                    .AddEnemy(new EnemyInfo(0, 50, 0.5f, 15))
                     .Build()
                     );
                 break;
@@ -263,41 +263,60 @@ public class LevelController : MonoBehaviour
                 Debug.Log("Ładowanie zestawu fal nr 1");
                 // fala 0
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(0, 100, 1, 2))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f))
                     .Build()
                     );
                 // fala 1
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(0, 100, 1, 5))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f, 3))
                     .Build()
                     );
                 // fala 2
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(1, 120, 1, 2))
-                    .AddEnemy(new EnemyInfo(0, 100, 1, 5))
+                    .AddEnemy(new EnemyInfo(1, 100, 1))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f, 3))
                     .Build()
                     );
                 // fala 3
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(1, 120, 1, 5))
-                    .AddEnemy(new EnemyInfo(0, 100, 1, 7))
+                    .AddEnemy(new EnemyInfo(1, 100, 1, 2))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f, 5))
                     .Build()
                     );
                 // fala 4
-                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 7))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 15))
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(1, 100, 1, 3))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f, 7))
                     .Build()
                     );
                 // fala 5
-                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 10))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 20))
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(1, 100, 1, 5))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f, 10))
                     .Build()
                     );
                 // fala 6
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 20))
+                    .AddEnemy(new EnemyInfo(1, 100, 1, 7))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f, 15))
+                    .Build()
+                    );
+                // fala 7
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(1, 100, 1, 10))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f, 20))
+                    .Build()
+                    );
+                // fala 8
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(1, 100, 1, 10))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f, 20))
+                    .Build()
+                    );
+                // fala 9
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(1, 100, 1, 15))
+                    .AddEnemy(new EnemyInfo(0, 80, 0.7f, 25))
                     .Build()
                     );
                 break;
@@ -306,66 +325,113 @@ public class LevelController : MonoBehaviour
                 // zestaw 2
                 Debug.Log("Ładowanie zestawu fal nr 2");
                 // fala 0
-                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 1))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 5))
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 2))
                     .Build()
                     );
                 // fala 1
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 2))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 10))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 2))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 5))
                     .Build()
                     );
                 // fala 2
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 5))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 15))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 5))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 10))
                     .Build()
                     );
                 // fala 3
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
                     .AddEnemy(new EnemyInfo(2, 150, 0.5f))
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 1))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 5))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 2))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 5))
                     .Build()
                     );
                 // fala 4
-                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
                     .AddEnemy(new EnemyInfo(2, 150, 0.5f, 2))
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 5))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 10))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 5))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 10))
                     .Build()
                     );
                 // fala 5
-                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
-                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 5))
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 10))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 15))
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 3))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 7))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 15))
                     .Build()
                     );
                 // fala 6
-                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
-                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 7))
-                    .AddEnemy(new EnemyInfo(1, 120, 1.25f, 15))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.25f, 20))
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 4))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 10))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 18))
                     .Build()
                     );
                 // fala 7
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
-                    .AddEnemy(new EnemyInfo(2, 150, 0.7f, 10))
-                    .AddEnemy(new EnemyInfo(0, 100, 1.5f, 25))
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 5))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 10))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 20))
                     .Build()
                     );
                 // fala 8
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 6))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 12))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 15))
+                    .Build()
+                    );
+                // fala 9
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 7))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 15))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 10))
+                    .Build()
+                    );
+                // fala 10
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 7))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 20))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 5))
+                    .Build()
+                    );
+                // fala 11
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 8))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 20))
+                    .AddEnemy(new EnemyInfo(0, 100, 1, 5))
+                    .Build()
+                    );
+                // fala 11
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 9))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 25))
+                    .Build()
+                    );
+                // fala 12
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 10))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 30))
+                    .Build()
+                    );
+                // fala 13
+                enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.RANDOM)
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 15))
+                    .AddEnemy(new EnemyInfo(1, 120, 1.2f, 20))
+                    .Build()
+                    );
+                // fala 14
                 enemiesWaves.Add(EnemyWave.New(EnemiesSpawnStrategy.FIXED)
-                    .AddEnemy(new EnemyInfo(2, 150, 0.7f, 20))
+                    .AddEnemy(new EnemyInfo(2, 150, 0.5f, 20))
                     .Build()
                     );
                 break;
 
             /*case 3:
-                // TODO: Tutaj będą zdefiniowane kolejne zestawy fal przeciwników
+                // Tutaj będą zdefiniowane kolejne zestawy fal przeciwników
                 break;*/
         }
     }
