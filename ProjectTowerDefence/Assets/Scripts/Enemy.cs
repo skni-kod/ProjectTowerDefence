@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 abstract public class Enemy : MonoBehaviour
 {
-    [SerializeField]
     protected float maxHp;
 
-    [SerializeField]
-    [Range(0, 100)]
-    protected float speed;
     protected List<Vector3> pathVectorList;
     protected int currentPathIndex;
 
@@ -34,11 +31,6 @@ abstract public class Enemy : MonoBehaviour
     /// Właściwość wskazująca, czy przeciwnik został zabity (ale obiekt nie został jeszcze usunięty)
     /// </summary>
     public bool IsDead { get => hp <= 0; }
-
-    /// <summary>
-    /// Publiczna właściwość zwracająca prędkość przeciwnika
-    /// </summary>
-    public float Speed { get => speed; }
 
 
     // Start is called before the first frame update
@@ -83,11 +75,14 @@ abstract public class Enemy : MonoBehaviour
     /// inicjalizacja statystyk
     /// </summary>
     /// <param name="maxHp">Ilość punktów zdrowia</param>
-    /// <param name="speed">Szybkość</param>
-    public void InitStats(float maxHp, float speed)
+    /// <param name="speedMultiplier">Mnożnik podstawowej prędkości przeciwnika</param>
+    public void InitStats(float maxHp, float speedMultiplier)
     {
         this.maxHp = maxHp;
-        this.speed = speed;
+
+        var navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = navMeshAgent.speed * speedMultiplier;
+        navMeshAgent.angularSpeed = navMeshAgent.angularSpeed * speedMultiplier;
     }
 
     /// <summary>

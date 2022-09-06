@@ -8,11 +8,6 @@ public class Goblin : Enemy
 {
     public Animator animator;
 
-    /*chwilowe rozwiazanie do poruszania sie tam gdzie sie kliknie*/
-    RaycastHit hit;
-    int tmp = 0;
-    /*************************************************************/
-
     protected override void Start()
     {
         base.Start();
