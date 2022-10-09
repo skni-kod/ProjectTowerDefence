@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: c59f51c506a9a874faf8cc4e456432cc
+ModelImporter:
+  serializedVersion: 20101
+  internalIDToNameTable:
+  - first:
+      74: 1981602425890376184
+    second: glowny|Icosphere.007Action
+  - first:
+      74: 3190173393064484926
+    second: "glowny|kryszta\u0142.002Action"
+  - first:
+      74: 2474493068472505576
+    second: "glowny|kryszta\u0142Action"
+  - first:
+      74: -9173667879971060925
+    second: "glowny|obr\u0119cz.001Action"
+  - first:
+      74: -4661704291514449688
+    second: glowny|PlaneAction.001
+  - first:
+      74: 394074903302489778
+    second: "kryszta\u0142 1|Icosphere.007Action"
+  - first:
+      74: -7200384263580435288
+    second: "kryszta\u0142 1|kryszta\u0142.002Action"
+  - first:
+      74: -8823026065696576702
+    second: "kryszta\u0142 1|kryszta\u0142Action"
+  - first:
+      74: 7202167278581513082
+    second: "kryszta\u0142 1|obr\u0119cz.001Action"
+  - first:
+      74: -5753135680728919931
+    second: "kryszta\u0142 1|PlaneAction.001"
+  - first:
+      74: -587129378795250717
+    second: krysztal 2|Icosphere.007Action
+  - first:
+      74: 4893561749801002783
+    second: "krysztal 2|kryszta\u0142.002Action"
+  - first:
+      74: -1798929245740625097
+    second: "krysztal 2|kryszta\u0142Action"
+  - first:
+      74: -7879116596244967627
+    second: "krysztal 2|obr\u0119cz.001Action"
+  - first:
+      74: 3182399696541967664
+    second: krysztal 2|PlaneAction.001
+  - first:
+      74: -5809754083209642401
+    second: krysztal 3|Icosphere.007Action
+  - first:
+      74: 2413028602766798362
+    second: "krysztal 3|kryszta\u0142.002Action"
+  - first:
+      74: 9180162740053919201
+    second: "krysztal 3|kryszta\u0142Action"
+  - first:
+      74: 6927881736500123767
+    second: "krysztal 3|obr\u0119cz.001Action"
+  - first:
+      74: 261148597923991437
+    second: krysztal 3|PlaneAction.001
+  - first:
+      74: 8558246702548091759
+    second: Plane|Icosphere.007Action
+  - first:
+      74: -8914837971353975588
+    second: "Plane|kryszta\u0142.002Action"
+  - first:
+      74: -2979694156619899710
+    second: "Plane|kryszta\u0142Action"
+  - first:
+      74: 7337821735171171993
+    second: "Plane|obr\u0119cz.001Action"
+  - first:
+      74: -7218490717262395308
+    second: Plane|PlaneAction.001
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
