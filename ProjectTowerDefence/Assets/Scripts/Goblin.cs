@@ -8,15 +8,11 @@ public class Goblin : Enemy
 {
     public Animator animator;
 
-    /*chwilowe rozwiazanie do poruszania sie tam gdzie sie kliknie*/
-    RaycastHit hit;
-    int tmp = 0;
-    /*************************************************************/
-
-    //void Start()
-    //{
-    //    this.animator = GetComponent<Animator>();
-    //}
+    protected override void Start()
+    {
+        base.Start();
+        animator = GetComponent<Animator>();
+    }
 
     protected override void Update()
     {
@@ -32,6 +28,14 @@ public class Goblin : Enemy
         healthBar.SetValue(100 * hp / maxHp);
     }
 
+    protected override void Movement()
+    {
+        // turn on running animation
+        animator.SetBool("isRunning", true);
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isDead", false);
+    }
+
     protected override void Attack()
     {
         // do something...
@@ -45,10 +49,9 @@ public class Goblin : Enemy
     protected override void EnemyKilled()
     {
         // turn on dead animation
-        Destroy(gameObject);
-        //animator.SetBool("isRunning", false);
-        //animator.SetBool("isAttacking", false);
-        //animator.SetBool("isDead", true);
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isDead", true);
     }
 
     private void DestroyOnDeathAnimationEnd()

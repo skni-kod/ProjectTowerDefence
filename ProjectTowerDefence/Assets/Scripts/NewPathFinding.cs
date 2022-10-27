@@ -1,52 +1,80 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class NewPathFinding : MonoBehaviour
 {
-    //Do prawidłowego działania potrzebne jest jeszcze ustawienie skryptu WayPoints
-    //Przeciwników można zrespić przyciskiem F
+    /// <summary>
+    /// aktualny indeks punktu, do którego zmierza przeciwnik
+    /// </summary>
+    protected int wavepointIndex = 0;
 
-    public float speed = 10f; //prędkość poruszania
-    public Animator animator;
+    /// <summary>
+    /// cel, do którego zmierza przeciwnik
+    /// </summary>
     private Transform target;
-    private int wavepointIndex = 0; //indeks aktualnego punktu
+
     protected NexusHealth nexusHealth;
+    protected Enemy enemy;
+    protected WayPoints wayPoints;
+    protected LevelController levelController;
+
+    NavMeshAgent agent;
 
     private void Start()
     {
-        GameObject nexus = GameObject.FindWithTag("Nexus");
-        nexusHealth = nexus.GetComponent<NexusHealth>();
-        target = WayPoints.points[0];
-        animator.SetBool("isRunning", true);
-        animator.SetBool("isAttacking", false);
-        animator.SetBool("isDead", false);
+        OnStartGet();
+
+        //obranie pierwszego punktu za cel
+        target = wayPoints.points[0];
+        Debug.Log(GameObject.Find("Paths").gameObject.transform.GetChild(levelController.randomSpawnPointIndex));
     }
 
     private void Update()
     {
-        //kierowanie się do wyznaczonego punktu
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-        Vector3 rotateDir = Vector3.RotateTowards(transform.position, dir, 10f, 0f);
-        transform.rotation = Quaternion.LookRotation(rotateDir);
-
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+        if (!enemy.IsDead)
         {
-            GetNextWaypoint();
+
+            //dawny skrypt kierowania się do punktu
+            /*Vector3 dir = target.position - transform.position;
+            transform.Translate(dir.normalized * enemy.Speed * 10 * Time.deltaTime, Space.World);
+            Vector3 rotateDir = Vector3.RotateTowards(transform.position, dir, 10f, 0f);
+            transform.rotation = Quaternion.LookRotation(rotateDir);*/
+
+            //kierowanie się do aktualnie wyznaczonego punktu
+            agent.destination = target.position;
+            if (Vector3.Distance(transform.position, target.position) <= 1f)
+            {
+                GetNextWaypoint();
+            }
+        }
+        else
+        {
+            agent.ResetPath();
         }
     }
 
-    void GetNextWaypoint() //zmiana indeksu
+    private void GetNextWaypoint() //zmiana indeksu
     {
-        if (wavepointIndex >= WayPoints.points.Length - 1) //czynność po dotarciu do ostatniego punktu
+        if (wavepointIndex >= wayPoints.points.Length - 1) //czynność po dotarciu do ostatniego punktu
         {
             nexusHealth.Hit(20f);
             Destroy(gameObject);
             return;
         }
         wavepointIndex++;
-        animator.SetBool("isRunning", true);
-        animator.SetBool("isAttacking", false);
-        animator.SetBool("isDead", false);
-        target = WayPoints.points[wavepointIndex];
-    } 
+        target = wayPoints.points[wavepointIndex];
+        
+    }
+
+    /// <summary>
+    /// pobranie potrzebnych elementów
+    /// </summary>
+    private void OnStartGet()
+    {
+        levelController = GameObject.Find("LevelController").gameObject.GetComponent<LevelController>();
+        wayPoints = GameObject.Find("Paths").gameObject.transform.GetChild(levelController.randomSpawnPointIndex).GetComponent<WayPoints>();
+        nexusHealth = GameObject.FindWithTag("Nexus").gameObject.GetComponent<NexusHealth>();
+        enemy = GetComponent<Enemy>();
+        agent = GetComponent<NavMeshAgent>();
+    }
 }

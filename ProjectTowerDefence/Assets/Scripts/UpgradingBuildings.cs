@@ -1,128 +1,97 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class UpgradingBuildings : MonoBehaviour
 {
     public Camera currentCamera;
+    public GameObject[] buildingsToPlace;
 
-    private GameObject upgradeUI;
+    public Material yellowMaterial;
+    public Material tdPaletteMaterial;
+    protected Transform selectedObject;
 
-    private GraphicRaycaster graphicRaycaster;
-    private EventSystem eventSystem;
-    private PointerEventData pointerEventData;
+    protected Tower tower;
+    protected Vector3 oldTowerPos;
+    protected Quaternion oldTowerRot;
 
-    private GameObject clickedBuilding;
-    [SerializeField]
-    private Text lvlSpeedText, lvlDmgText;
-    private Text buildingName;
-
-    public void UpgradeBuilding()
-    {
-        // TO DO
-    }    
-
-    bool CheckObjectHit(string tag)
-    {
-        RaycastHit[] hits;
-        // Przypisanie promienia, który prowadzony jest z kursora myszki i zwraca wszystkie trafione elementy
-        hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
-    
-        // Iteracja po każdym trafionym obiekcie
-        foreach (RaycastHit hit in hits)
-        {
-            // Sprawdza czy trafiony obiekt ma ustawiony tag "tag"
-
-            if (hit.transform.gameObject.CompareTag(tag) || hit.transform.gameObject.GetComponent<Tower>())
-            {
-                clickedBuilding = hit.transform.gameObject;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    bool CheckUIHit()
-    {
-        pointerEventData = new PointerEventData(eventSystem);
-        pointerEventData.position = Mouse.current.position.ReadValue();
-
-        List<RaycastResult> results = new List<RaycastResult>();
-
-        graphicRaycaster.Raycast(pointerEventData, results);
-
-        foreach (RaycastResult result in results)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    void UpgradeUISetActive(bool check)
-    {
-        upgradeUI.SetActive(check);        
-        if(check)
-        {
-          
-            buildingName.text = clickedBuilding.name;
-            lvlDmgText.text = clickedBuilding.GetComponent<Tower>().stats.dmgLvl.ToString();
-            lvlSpeedText.text = clickedBuilding.GetComponent<Tower>().stats.spdLvl.ToString();
-
-            upgradeUI.transform.position = Mouse.current.position.ReadValue();
-        }        
-    }
-    
-    void Start()
-    {
-        graphicRaycaster = GetComponentInChildren<GraphicRaycaster>(true);
-        eventSystem = GetComponent<EventSystem>();
-    
-        currentCamera = FindObjectOfType<Camera>();
-        
-        buildingName = transform.Find("UpgradeUI/Canvas/Background/BuildingName").gameObject.GetComponent<Text>();
-
-        upgradeUI = transform.Find("UpgradeUI").gameObject;
-        if(upgradeUI == null)
-        {
-            Debug.LogError("upgradeUI not found!");
-        }        
-    }
-
+    protected GameObject newTower;
     void Update()
     {
-      //  return;
-        if(Mouse.current.leftButton.wasPressedThisFrame && !GetComponent<PlacingBuildings>().isBuild)
-        {            
-            if(!upgradeUI.activeSelf)
-            {                
-                UpgradeUISetActive(CheckObjectHit("Building"));
-            }
-            else
-            {
-                UpgradeUISetActive(CheckUIHit());
-            }
-        }        
-    }    
-    public void upgradeSpeed()
-    {
-        GameObject tower = GameObject.Find(buildingName.text);
-        if(tower.GetComponent<Tower>().hitCooldown > 0.1)
-        {
-        tower.GetComponent<Tower>().hitCooldown -= 0.1f;
-        tower.GetComponent<Tower>().stats.spdLvl++;
-            lvlSpeedText.text = tower.GetComponent<Tower>().stats.spdLvl.ToString();
-        }
+        SetNormalMaterial();
 
-        Debug.Log("speed ulepszony");
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
+        foreach (RaycastHit hit in hits)
+        {
+            var selection = hit.transform;
+            if (hit.collider.CompareTag("Towers"))
+            {
+                tower = hit.transform.gameObject.GetComponent<Tower>();
+                if ((tower.towerId + 1) % 3 != 0)
+                {
+                    var selectionRenderer = selection.GetComponentInChildren<MeshRenderer>();
+                    if (selectionRenderer != null)
+                    {
+                        selectionRenderer.material = yellowMaterial;
+                    }
+
+                    if (Mouse.current.leftButton.wasPressedThisFrame && !GetComponent<PlacingBuildings>().isBuild)
+                    {
+                        //tower = hit.transform.gameObject.GetComponent<Tower>();
+
+                        oldTowerPos = hit.transform.position;
+                        oldTowerRot = hit.transform.rotation;
+
+                        Destroy(hit.transform.gameObject);
+                        PlaceTower();
+                    }
+
+                    selectedObject = selection;
+                }
+            }
+        }
     }
-    public void upgradeDmg()
+
+    void SetNormalMaterial()
     {
-        GameObject tower = GameObject.Find(buildingName.text);
-        tower.GetComponent<Tower>().stats.dmgLvl++;
-        lvlSpeedText.text = tower.GetComponent<Tower>().stats.dmgLvl.ToString();
-        Debug.Log("dmg ulepszony");
+        if (selectedObject != null)
+        {
+            var selectionRenderer = selectedObject.GetComponentInChildren<MeshRenderer>();
+            selectionRenderer.material = tdPaletteMaterial;
+            selectedObject = null;
+        }
+    }
+
+    protected void TowerSelection()//alternatywna metoda, jeśli wieże nie zawsze miałyby 2 ulepszenia.
+    {
+        switch (tower.towerId)//lista zamiany wież
+        {
+            case 0://wieża łucznika
+                {
+                    Instantiate(buildingsToPlace[1], oldTowerPos, oldTowerRot, transform);
+                    break;
+                }
+            case 1://wieża kusznika
+                {
+                    Instantiate(buildingsToPlace[2], oldTowerPos, oldTowerRot, transform);
+                    break;
+                }
+        }
+    }
+
+    protected void PlaceTower()
+    {
+        newTower = Instantiate(buildingsToPlace[tower.towerId+1], oldTowerPos, oldTowerRot, transform);
+        newTower.name = "Tower " + transform.childCount.ToString();
+        SetAllChildrenTag(newTower, "Towers");
+    }
+
+    protected void SetAllChildrenTag(GameObject gameObject, string tag)
+    {
+        Transform[] allChildren = gameObject.GetComponentsInChildren<Transform>(true);
+        foreach (Transform child in allChildren)
+        {
+            child.gameObject.tag = tag;
+        }
     }
 }

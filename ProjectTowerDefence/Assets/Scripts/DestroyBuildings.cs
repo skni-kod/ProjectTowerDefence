@@ -1,34 +1,50 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class DestroyBuildings : MonoBehaviour
 {
     public Camera currentCamera;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Material redMaterial;
+    public Material tdPaletteMaterial;
+    protected Transform selectedObject;
 
-    // Update is called once per frame
     void Update()
     {
+        SetNormalMaterial();
+
         RaycastHit[] hits;
         hits = Physics.RaycastAll(currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
         foreach (RaycastHit hit in hits)
         {
-            // Sprawdza czy trafiony obiekt ma ustawiony tag "Terrain"
-            if (hit.collider.CompareTag("Building"))
+            var selection = hit.transform;
+            if (hit.collider.CompareTag("Towers"))
             {
-                print(hit);
-                Destroy(hit.transform.gameObject);
-            }
-            else
-            {
+                var selectionRenderer = selection.GetComponentInChildren<MeshRenderer>();
+                if (selectionRenderer != null)
+                {
+                    selectionRenderer.material = redMaterial;
+                }
+                if (Mouse.current.leftButton.wasPressedThisFrame && !GetComponent<PlacingBuildings>().isBuild)
+                {
 
+                    print(hit);
+                    Destroy(hit.transform.gameObject);
+
+                }
+                selectedObject = selection;
             }
+            
+        }
+
+    }
+
+    void SetNormalMaterial()
+    {
+        if (selectedObject != null)
+        {
+            var selectionRenderer = selectedObject.GetComponentInChildren<MeshRenderer>();
+            selectionRenderer.material = tdPaletteMaterial;
+            selectedObject = null;
         }
     }
 }

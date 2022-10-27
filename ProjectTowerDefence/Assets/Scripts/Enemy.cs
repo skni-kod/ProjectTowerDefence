@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 abstract public class Enemy : MonoBehaviour
 {
-    [SerializeField]
     protected float maxHp;
 
-    [SerializeField]
-    [Range(0, 100)]
-    protected float speed;
     protected List<Vector3> pathVectorList;
     protected int currentPathIndex;
 
@@ -37,7 +34,7 @@ abstract public class Enemy : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         //pathfinding = Pathfinding.Instance;
         //SetDestinationPosition(nexus.transform.Find("nexus").position);
@@ -67,29 +64,25 @@ abstract public class Enemy : MonoBehaviour
     /// <summary>
     /// poruszanie sie postaci
     /// </summary>
-    protected virtual void Movement()
-    {
-        // Tymczasowe rozwiązanie, aby obiekt się poruszał
-        rigidbodyComponent.velocity = Vector3.right;
-    }
+    protected abstract void Movement();
 
     /// <summary>
     /// atak przeciwnika
     /// </summary>
-    protected virtual void Attack()
-    {
-        Debug.Log("coś poszło nie tak, Zjebałeś");
-    }
+    protected abstract void Attack();
 
     /// <summary>
     /// inicjalizacja statystyk
     /// </summary>
     /// <param name="maxHp">Ilość punktów zdrowia</param>
-    /// <param name="speed">Szybkość</param>
-    public void InitStats(float maxHp, float speed)
+    /// <param name="speedMultiplier">Mnożnik podstawowej prędkości przeciwnika</param>
+    public void InitStats(float maxHp, float speedMultiplier)
     {
         this.maxHp = maxHp;
-        this.speed = speed;
+
+        var navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = navMeshAgent.speed * speedMultiplier;
+        navMeshAgent.angularSpeed = navMeshAgent.angularSpeed * speedMultiplier;
     }
 
     /// <summary>
@@ -113,7 +106,7 @@ abstract public class Enemy : MonoBehaviour
 
     protected virtual void EnemyKilled()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     /**
