@@ -64,7 +64,6 @@ public class BasicArrow : MonoBehaviour
     /// Do damage whe hit target
     /// </summary>
     void OnCollisionEnter(Collision other) {
-        Debug.Log("Damage is done");
         other.gameObject.GetComponent<Enemy>().Hit(damage);
         Destroy(gameObject);
     }

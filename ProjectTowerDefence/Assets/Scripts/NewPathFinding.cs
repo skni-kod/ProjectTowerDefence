@@ -7,7 +7,11 @@ public class NewPathFinding : MonoBehaviour
     /// aktualny indeks punktu, do którego zmierza przeciwnik
     /// </summary>
     protected int wavepointIndex = 0;
+    /// <summary>
+    /// wektor przesunięcia punktu docelowego - jest punkt do którego idzie agent i on jest przesunięty
+    /// </summary>
 
+    private Vector3 pointOffset;
     /// <summary>
     /// cel, do którego zmierza przeciwnik
     /// </summary>
@@ -17,6 +21,7 @@ public class NewPathFinding : MonoBehaviour
     protected Enemy enemy;
     protected WayPoints wayPoints;
     protected LevelController levelController;
+    
 
     NavMeshAgent agent;
 
@@ -26,6 +31,8 @@ public class NewPathFinding : MonoBehaviour
 
         //obranie pierwszego punktu za cel
         target = wayPoints.points[0];
+        pointOffset = new Vector3(Random.Range(-10, 10)/5, 0, Random.Range(-10,10)/5);
+        agent.SetDestination(target.position+pointOffset);
         Debug.Log(GameObject.Find("Paths").gameObject.transform.GetChild(levelController.randomSpawnPointIndex));
     }
 
@@ -41,10 +48,13 @@ public class NewPathFinding : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(rotateDir);*/
 
             //kierowanie się do aktualnie wyznaczonego punktu
-            agent.destination = target.position;
-            if (Vector3.Distance(transform.position, target.position) <= 1f)
+
+            //dodać jakiś wektor przesunięcia (od danego punktu), moby nie będą chodziły w jednej lini 
+            
+            if (Vector3.Distance(transform.position, target.position) <= 3.0f)
             {
                 GetNextWaypoint();
+                agent.SetDestination(target.position+pointOffset);
             }
         }
         else
@@ -62,6 +72,7 @@ public class NewPathFinding : MonoBehaviour
             return;
         }
         wavepointIndex++;
+        pointOffset = new Vector3(Random.Range(-10, 10)/5, 0, Random.Range(-10,10)/5);
         target = wayPoints.points[wavepointIndex];
         
     }

@@ -948,14 +948,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7957412994024024671}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 32
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &8929729978074814891
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -965,9 +965,9 @@ CapsuleCollider:
   m_GameObject: {fileID: 7957412994024024671}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.25
-  m_Height: 0.9
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!65 &3377064142277350821
@@ -979,7 +979,7 @@ BoxCollider:
   m_GameObject: {fileID: 7957412994024024671}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.8, z: 0.5}
   m_Center: {x: 0, y: 0.4, z: 0}
@@ -1004,16 +1004,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 7957412994024024671}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 0.3
   m_Speed: 3
   m_Acceleration: 10
-  avoidancePriority: 50
+  avoidancePriority: 80
   m_AngularSpeed: 300
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.9
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
