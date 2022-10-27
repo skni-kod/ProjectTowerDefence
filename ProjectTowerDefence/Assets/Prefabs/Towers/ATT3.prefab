@@ -49,12 +49,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerId: 2
-  damagePerHit: 0
-  hitRange: 0
+  damageBase: 35
+  hitRange: 30
   maxCooldown: 0
+  stats:
+    spdLvl: 0
+    dmgLvl: 0
   hitCooldown: 0
   lastHit: 0
   enemiesToHit: []
+  BulletOffset: {x: 0, y: 7, z: 0}
+  Arrow: {fileID: 6069580487303557460, guid: 688ae7fa1db49c342ad96910cc6b7995, type: 3}
 --- !u!114 &2272621160153138809
 MonoBehaviour:
   m_ObjectHideFlags: 0

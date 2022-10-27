@@ -6,8 +6,9 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     private BarController cooldownBar;
+    public int towerId;
 
-    protected float damagePerHit, hitRange;
+    [SerializeField] protected float damageBase, hitRange;
     public float maxCooldown;
     [System.Serializable]
     public struct Stats
@@ -21,7 +22,7 @@ public class Tower : MonoBehaviour
     float arrowTimeToHit, fireArrowTimer;
     public Collider[] enemiesToHit;
     private Collider currEnemieToHit;
-    [SerializeField] Vector3 BulletOffset = new Vector3(0,0,0);
+    [SerializeField] private Vector3 BulletOffset = new Vector3(0,0,0);
     // arrow prefab
     public GameObject Arrow;
     // Start is called before the first frame update
@@ -29,8 +30,6 @@ public class Tower : MonoBehaviour
     {
         maxCooldown = 1.5f;
         // Ustawienie statystyk wieży
-        damagePerHit = 15f;
-        hitRange = 15f;
         hitCooldown = maxCooldown;
         arrowTimeToHit = 0.5f;
         // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
@@ -75,7 +74,7 @@ public class Tower : MonoBehaviour
                 fireArrowTimer = maxCooldown;
                 GameObject tmp =Instantiate(Arrow);
                 //call  constructor of BasicArrow
-                tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl, hitRange/arrowTimeToHit, transform.position+BulletOffset, 
+                tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl+damageBase, hitRange/arrowTimeToHit, transform.position+BulletOffset, 
                 Quaternion.FromToRotation(Vector3.left, transform.position+BulletOffset-currEnemieToHit.transform.position),
                 currEnemieToHit.gameObject);
             }
