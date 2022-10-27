@@ -10,6 +10,9 @@ public class BasicArrow : MonoBehaviour
     Rigidbody rb;
     float damage,mvSpeed;
 
+    /// <summary>
+    ///initiation method, need damage bullet does, speed of bullet, initial positon and roation and target
+    /// </summary>
     public void Init(float dmg,float mvs,Vector3 position, Quaternion rotation, GameObject primT)
     {
         transform.position = position;
@@ -29,17 +32,19 @@ public class BasicArrow : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update()
     {
         Vector3 tmp1 =  Vector3.zero;
         if(primTarget)
         {
             //calculation of path Vector
-            tmp1 = primTarget.transform.position+ new Vector3(0.0f, 0.7f, 0.0f) - transform.position;
+            tmp1 = primTarget.transform.position+ new Vector3(0.0f, 1.0f, 0.0f) - transform.position;
             tmp1 = tmp1.normalized * mvSpeed;
             rb.velocity = (tmp1+rb.velocity)/2;
+            transform.rotation = Quaternion.FromToRotation(Vector3.left, rb.velocity);
             secTarget = primTarget.transform.position;
 
 
@@ -55,6 +60,9 @@ public class BasicArrow : MonoBehaviour
         }
         
     }
+    /// <summary>
+    /// Do damage whe hit target
+    /// </summary>
     void OnCollisionEnter(Collision other) {
         Debug.Log("Damage is done");
         other.gameObject.GetComponent<Enemy>().Hit(damage);
