@@ -7,25 +7,23 @@ public class Tower : MonoBehaviour
 {
     private BarController cooldownBar;
 
-    public int towerId;//zmienna używana w UpgradingBuildings
-
-    public float damagePerHit, hitRange, maxCooldown;
-
+    protected float damagePerHit, hitRange;
+    public float maxCooldown;
+    [System.Serializable]
     public struct Stats
     {
         public int spdLvl;
         public int dmgLvl;
     }
     public Stats stats;
-
     [HideInInspector]
     public float hitCooldown, lastHit;
-
-    [HideInInspector]
+    float arrowTimeToHit, fireArrowTimer;
     public Collider[] enemiesToHit;
-
     private Collider currEnemieToHit;
-
+    [SerializeField] Vector3 BulletOffset = new Vector3(0,0,0);
+    // arrow prefab
+    public GameObject Arrow;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,18 +32,22 @@ public class Tower : MonoBehaviour
         damagePerHit = 15f;
         hitRange = 15f;
         hitCooldown = maxCooldown;
-
+        arrowTimeToHit = 0.5f;
         // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
         lastHit = -hitCooldown;
 
+        
         cooldownBar = GetComponentInChildren<BarController>();
+        //cooldownBar.Initialize();
     }
 
     // Update is called once per frame
     void Update()
     {
         EnemiesDetection();
-        TowerDealingDamage();
+
+        FireArrow();
+        //TowerDealingDamage();
         CooldownBarUpdate();
     }
 
@@ -57,36 +59,31 @@ public class Tower : MonoBehaviour
         var enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
         enemiesToHit = enemiesInRange.ToList().FindAll(enemyCollider => !enemyCollider.GetComponent<Enemy>().IsDead).ToArray();
     }
-
     /// <summary>
-    /// zadawanie obrazeń pierwszemu celowi w tablicy w określonch odstępach czasu
+    //Fire arrow method, need detected enemy earlier
     /// </summary>
-    private void TowerDealingDamage()
+    private void FireArrow()
     {
-        if (Time.time - lastHit >= hitCooldown)
+        fireArrowTimer -= Time.deltaTime;
+        //if tower can fire and have a target
+        if(fireArrowTimer<=0.0 && enemiesToHit.Length>0)
         {
-            if (enemiesToHit.Length > 0)
+            //if enemie exists
+            if(currEnemieToHit)
             {
-                // TODO: W przyszłości tutaj trzeba umieścić jakis algorytm, który wybierze
-                // przeciwnika, w którego wieża ma strzelać
-                // Tymczasowo bierze pierwszego z listy
-
-                if (currEnemieToHit == null)
-                {
-                    currEnemieToHit = enemiesToHit.ElementAt(0);
-                }
-
-                if (currEnemieToHit.GetComponent<Enemy>().Hit(damagePerHit+stats.dmgLvl))
-                {
-                    currEnemieToHit = null;
-                }
-
-                lastHit = Time.time;
+                
+                fireArrowTimer = maxCooldown;
+                GameObject tmp =Instantiate(Arrow);
+                //call  constructor of BasicArrow
+                tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl, hitRange/arrowTimeToHit, transform.position+BulletOffset, 
+                Quaternion.FromToRotation(Vector3.left, transform.position+BulletOffset-currEnemieToHit.transform.position),
+                currEnemieToHit.gameObject);
             }
-
+            else currEnemieToHit = enemiesToHit.ElementAt(0);
         }
+        
+        
     }
-
     /// <summary>
     /// Aktualizacja paska czasu oczekiwania
     /// </summary>
