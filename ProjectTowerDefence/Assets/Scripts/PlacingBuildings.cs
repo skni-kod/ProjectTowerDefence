@@ -169,10 +169,9 @@ public class PlacingBuildings : MonoBehaviour
 
 
             }
-            else if(hit.collider.CompareTag("Building") || hit.collider.CompareTag("Towers") || hit.collider.CompareTag("Object"))
+            else if(hit.collider.CompareTag("Building") || hit.collider.CompareTag("Towers"))
             {
                 isEmpty = false;
-       
             }
             else if (hit.collider.CompareTag("NonPlaceableTerrain"))
             {

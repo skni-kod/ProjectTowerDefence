@@ -29,10 +29,10 @@ public class UpgradingBuildings : MonoBehaviour
                 tower = hit.transform.gameObject.GetComponent<Tower>();
                 if ((tower.towerId + 1) % 3 != 0)
                 {
-                    var selectionRenderer = selection.GetComponentInChildren<MeshRenderer>();
-                    if (selectionRenderer != null)
+                    var selectionRenderers = selection.GetComponentsInChildren<MeshRenderer>();
+                    foreach (var renderer in selectionRenderers)
                     {
-                        selectionRenderer.material = yellowMaterial;
+                        renderer.material = yellowMaterial;
                     }
 
                     if (Mouse.current.leftButton.wasPressedThisFrame && !GetComponent<PlacingBuildings>().isBuild)
@@ -56,8 +56,11 @@ public class UpgradingBuildings : MonoBehaviour
     {
         if (selectedObject != null)
         {
-            var selectionRenderer = selectedObject.GetComponentInChildren<MeshRenderer>();
-            selectionRenderer.material = tdPaletteMaterial;
+            var selectionRenderers = selectedObject.GetComponentsInChildren<MeshRenderer>();
+            foreach (var renderer in selectionRenderers)
+            {
+                renderer.material = tdPaletteMaterial;
+            }
             selectedObject = null;
         }
     }
@@ -81,6 +84,7 @@ public class UpgradingBuildings : MonoBehaviour
 
     protected void PlaceTower()
     {
+        Debug.Log("Here now " + tower.towerId);
         newTower = Instantiate(buildingsToPlace[tower.towerId+1], oldTowerPos, oldTowerRot, transform);
         newTower.name = "Tower " + transform.childCount.ToString();
         SetAllChildrenTag(newTower, "Towers");
