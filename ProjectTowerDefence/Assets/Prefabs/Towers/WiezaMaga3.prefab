@@ -48,13 +48,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f8636638cdf0f469a2d726de46d433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerId: 3
-  damagePerHit: 0
+  towerId: 5
+  damageBase: 0
   hitRange: 0
   maxCooldown: 0
+  stats:
+    spdLvl: 0
+    dmgLvl: 0
   hitCooldown: 0
   lastHit: 0
   enemiesToHit: []
+  BulletOffset: {x: 0, y: 0, z: 0}
+  Arrow: {fileID: 0}
 --- !u!114 &2272621160153138809
 MonoBehaviour:
   m_ObjectHideFlags: 0
