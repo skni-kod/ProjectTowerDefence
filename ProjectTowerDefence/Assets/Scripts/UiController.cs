@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -18,8 +16,8 @@ public class UiController : MonoBehaviour
     protected DestroyBuildings destroyBuildings;
     protected PlacingBuildings placingBuildings;
 
-    public GameObject upgradeButton;
-    public GameObject destroyButton;
+    [SerializeField] protected GameObject upgradeButton;
+    [SerializeField] protected GameObject destroyButton;
 
     protected Image upgradeButtonImage;
     protected Image destroyButtonImage;
@@ -46,6 +44,15 @@ public class UiController : MonoBehaviour
         Time.timeScale = gameSpeed;
     }
 
+    public void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if(currentSceneIndex < SceneManager.sceneCountInBuildSettings - 1)
+        {
+            SceneManager.LoadScene(currentSceneIndex+1);
+        }
+    }
+
     private void Start()
     {
         OnStartGet();
@@ -59,6 +66,14 @@ public class UiController : MonoBehaviour
         upgradeButtonImage.color = redColor;
         destroyButtonImage.color = redColor;
 
+    }
+
+    private void Update()
+    {
+        /*if(levelController.GetCurrentPhase == LevelController.LevelPhase.LEVEL_COMPLETED)
+        {
+            
+        }*/
     }
 
     public void UpgradeButtonControl()

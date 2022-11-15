@@ -85,6 +85,11 @@ public class LevelController : MonoBehaviour
     /// Numer pozycji, z której przeciwnik zespawnował się.
     /// </summary>
     public int randomSpawnPointIndex = 0;
+
+    /// <summary>
+    /// Menu wyskakujące po ukończeniu przez gracza poziomu.
+    /// </summary>
+    [SerializeField] protected GameObject levelCompletedMenu;
     #endregion
 
     // Start is called before the first frame update
@@ -175,7 +180,9 @@ public class LevelController : MonoBehaviour
         {
             Debug.Log("Level completed");
             currentPhase = LevelPhase.LEVEL_COMPLETED;
-            // TODO: Obsługa przejścia do następnej mapy, czy coś
+
+            Time.timeScale = 0;
+            levelCompletedMenu.SetActive(true);
         }
     }
 
