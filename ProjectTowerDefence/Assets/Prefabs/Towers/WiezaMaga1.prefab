@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3678235041406170856}
   - component: {fileID: 2281713159549497663}
-  - component: {fileID: 2272621160153138809}
-  - component: {fileID: 4727362242340107859}
   - component: {fileID: 6165046502282964397}
   m_Layer: 14
   m_Name: WiezaMaga1
@@ -49,9 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerId: 3
-  damageBase: 0
-  hitRange: 0
-  maxCooldown: 0
+
+  damageBase: 5
+  hitRange: 25
+  maxCooldown: 1
+
   stats:
     spdLvl: 0
     dmgLvl: 0
@@ -59,6 +59,7 @@ MonoBehaviour:
   lastHit: 0
   enemiesToHit: []
   BulletOffset: {x: 0, y: 0, z: 0}
+
   Arrow: {fileID: 0}
 --- !u!114 &2272621160153138809
 MonoBehaviour:
@@ -170,6 +171,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+
 --- !u!65 &6165046502282964397
 BoxCollider:
   m_ObjectHideFlags: 0
