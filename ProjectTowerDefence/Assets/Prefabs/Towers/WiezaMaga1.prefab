@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3678235041406170856}
-  - component: {fileID: 2281713159549497663}
   - component: {fileID: 6165046502282964397}
+  - component: {fileID: 4727362242340107859}
+  - component: {fileID: 2272621160153138809}
+  - component: {fileID: 7569553084134732503}
   m_Layer: 14
   m_Name: WiezaMaga1
   m_TagString: Building
@@ -34,45 +36,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2281713159549497663
-MonoBehaviour:
+--- !u!65 &6165046502282964397
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2542965845261479495}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f8636638cdf0f469a2d726de46d433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerId: 3
-
-  damageBase: 5
-  hitRange: 25
-  maxCooldown: 1
-
-  stats:
-    spdLvl: 0
-    dmgLvl: 0
-  hitCooldown: 0
-  lastHit: 0
-  enemiesToHit: []
-  BulletOffset: {x: 0, y: 0, z: 0}
-
-  Arrow: {fileID: 0}
---- !u!114 &2272621160153138809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2542965845261479495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12aaca0eaa7487419db8744855e0bc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Size: {x: 14.533949, y: 2, z: 16.395624}
+  m_Center: {x: -0.39057732, y: 0, z: 1.5725832}
 --- !u!120 &4727362242340107859
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -171,20 +147,54 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
-
---- !u!65 &6165046502282964397
-BoxCollider:
+--- !u!114 &2272621160153138809
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2542965845261479495}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 14.533949, y: 2, z: 16.395624}
-  m_Center: {x: -0.39057732, y: 0, z: 1.5725832}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12aaca0eaa7487419db8744855e0bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7569553084134732503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542965845261479495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de37b5791b2d8548b0d3ebd0ac58857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerId: 3
+  damageBase: 10
+  hitRange: 20
+  maxCooldown: 2.79
+  stats:
+    spdLvl: 0
+    dmgLvl: 0
+  hitCooldown: 0
+  lastHit: 0
+  arrowTimeToHit: 0.0001
+  enemiesToHit:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  BulletOffset: {x: 0, y: 0, z: 0}
+  Arrow: {fileID: 8668049595241551565, guid: 450d34b277e3ccf4282379998de0d061, type: 3}
+  maxTargets: 1
 --- !u!1 &2747638541159565149
 GameObject:
   m_ObjectHideFlags: 0

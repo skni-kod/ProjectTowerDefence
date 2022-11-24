@@ -19,7 +19,8 @@ public class Tower : MonoBehaviour
     public Stats stats;
     [HideInInspector]
     public float hitCooldown, lastHit;
-    float arrowTimeToHit, fireArrowTimer;
+    [SerializeField] public float arrowTimeToHit;
+    protected float fireTimer;
     public Collider[] enemiesToHit;
     private Collider currEnemieToHit;
     [SerializeField] private Vector3 BulletOffset = new Vector3(0,0,0);
@@ -31,7 +32,6 @@ public class Tower : MonoBehaviour
         maxCooldown = 1.5f;
         // Ustawienie statystyk wieży
         hitCooldown = maxCooldown;
-        arrowTimeToHit = 0.5f;
         // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
         lastHit = -hitCooldown;
 
@@ -45,7 +45,7 @@ public class Tower : MonoBehaviour
     {
         EnemiesDetection();
 
-        FireArrow();
+        Fire();
         //TowerDealingDamage();
         CooldownBarUpdate();
     }
@@ -53,7 +53,7 @@ public class Tower : MonoBehaviour
     /// <summary>
     /// wykrywanie przeciwników w danym promieniu oraz dodawanie ich do tablicy
     /// </summary>
-    private void EnemiesDetection()
+    protected void EnemiesDetection()
     {
         var enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
         enemiesToHit = enemiesInRange.ToList().FindAll(enemyCollider => !enemyCollider.GetComponent<Enemy>().IsDead).ToArray();
@@ -61,17 +61,17 @@ public class Tower : MonoBehaviour
     /// <summary>
     //Fire arrow method, need detected enemy earlier
     /// </summary>
-    private void FireArrow()
+    protected virtual void Fire()
     {
-        fireArrowTimer -= Time.deltaTime;
+        fireTimer -= Time.deltaTime;
         //if tower can fire and have a target
-        if(fireArrowTimer<=0.0 && enemiesToHit.Length>0)
+        if(fireTimer<=0.0 && enemiesToHit.Length>0)
         {
             //if enemie exists
             if(currEnemieToHit)
             {
                 
-                fireArrowTimer = maxCooldown;
+                fireTimer = maxCooldown;
                 GameObject tmp =Instantiate(Arrow);
                 //call  constructor of BasicArrow
                 tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl+damageBase, hitRange/arrowTimeToHit, transform.position+BulletOffset, 
@@ -86,8 +86,8 @@ public class Tower : MonoBehaviour
     /// <summary>
     /// Aktualizacja paska czasu oczekiwania
     /// </summary>
-    private void CooldownBarUpdate()
+    protected void CooldownBarUpdate()
     {
-        cooldownBar.SetValue(100 * (1 - ((Time.time - lastHit) / hitCooldown)));
+        //cooldownBar.SetValue(100 * (1 - ((Time.time - lastHit) / hitCooldown)));
     }
 }

@@ -40,8 +40,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3678235041406170856}
-  - component: {fileID: 2281713159549497663}
   - component: {fileID: 6165046502282964397}
+  - component: {fileID: 2249988360401199115}
   m_Layer: 14
   m_Name: WiezaMaga3
   m_TagString: Building
@@ -65,30 +65,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2281713159549497663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2542965845261479495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f8636638cdf0f469a2d726de46d433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerId: 5
-  damageBase: 25
-  hitRange: 75
-  maxCooldown: 1
-  stats:
-    spdLvl: 0
-    dmgLvl: 0
-  hitCooldown: 0
-  lastHit: 0
-  enemiesToHit: []
-  BulletOffset: {x: 0, y: 0, z: 0}
-  Arrow: {fileID: 6069580487303557460, guid: 688ae7fa1db49c342ad96910cc6b7995, type: 3}
 --- !u!65 &6165046502282964397
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -102,6 +78,42 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 14.533949, y: 2, z: 16.395624}
   m_Center: {x: -0.39057732, y: 0, z: 1.5725832}
+--- !u!114 &2249988360401199115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542965845261479495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de37b5791b2d8548b0d3ebd0ac58857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerId: 5
+  damageBase: 2
+  hitRange: 35
+  maxCooldown: 1
+  stats:
+    spdLvl: 0
+    dmgLvl: 0
+  hitCooldown: 0
+  lastHit: 0
+  arrowTimeToHit: 0.001
+  enemiesToHit:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  BulletOffset: {x: 0, y: 0, z: 0}
+  Arrow: {fileID: 8668049595241551565, guid: 450d34b277e3ccf4282379998de0d061, type: 3}
+  maxTargets: 3
 --- !u!1001 &393049645251263387
 PrefabInstance:
   m_ObjectHideFlags: 0
