@@ -20,8 +20,8 @@ public class Tower : MonoBehaviour
     [HideInInspector]
     public float hitCooldown, lastHit;
     [SerializeField] public float arrowTimeToHit;
-    float fireTimer;
-    protected Collider[] enemiesToHit;
+    protected float fireTimer;
+    public Collider[] enemiesToHit;
     private Collider currEnemieToHit;
     [SerializeField] private Vector3 BulletOffset = new Vector3(0,0,0);
     // arrow prefab
@@ -53,7 +53,7 @@ public class Tower : MonoBehaviour
     /// <summary>
     /// wykrywanie przeciwników w danym promieniu oraz dodawanie ich do tablicy
     /// </summary>
-    protected virtual void EnemiesDetection()
+    protected void EnemiesDetection()
     {
         var enemiesInRange = Physics.OverlapSphere(gameObject.transform.position, hitRange, 1 << LayerMask.NameToLayer("Enemies"));
         enemiesToHit = enemiesInRange.ToList().FindAll(enemyCollider => !enemyCollider.GetComponent<Enemy>().IsDead).ToArray();
@@ -88,6 +88,6 @@ public class Tower : MonoBehaviour
     /// </summary>
     protected void CooldownBarUpdate()
     {
-        cooldownBar.SetValue(100 * (1 - ((Time.time - lastHit) / hitCooldown)));
+        //cooldownBar.SetValue(100 * (1 - ((Time.time - lastHit) / hitCooldown)));
     }
 }

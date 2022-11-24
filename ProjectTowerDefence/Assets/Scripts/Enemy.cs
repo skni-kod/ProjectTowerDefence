@@ -91,6 +91,7 @@ abstract public class Enemy : MonoBehaviour
     /// <param name="damageAmount">Ilość obrażeń</param>
     public bool Hit(float damageAmount)
     {
+
         hp -= damageAmount;
         if (hp <= 0)
         {

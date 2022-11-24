@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 
 public class MageTower : Tower
 {
     [SerializeField] public int maxTargets;
-
     void  Start()
     {
-        this.maxCooldown = 1.5f;
         // Ustawienie statystyk wieży
         this.hitCooldown = maxCooldown;
         this.arrowTimeToHit = 0.0000001f;
@@ -36,11 +34,17 @@ public class MageTower : Tower
             {
                 if(enemiesToHit[i])
                 {
-                    if(enemiesToHit.ElementAt(i).gameObject.GetComponent<Enemy>().Hit(stats.dmgLvl+damageBase))
-                        Debug.Log("AAA");
+                    enemiesToHit.ElementAt(i).gameObject.GetComponent<Enemy>().Hit(stats.dmgLvl+damageBase);
+                    Debug.Log("Fire"+i);
+                    fireTimer = maxCooldown;
+                    Instantiate(Arrow, enemiesToHit.ElementAt(i).gameObject.transform.position+new Vector3(0,100,0), Quaternion.identity);
+
+                                          
 
                 }
+                
             }
+            
             
         }
     }
