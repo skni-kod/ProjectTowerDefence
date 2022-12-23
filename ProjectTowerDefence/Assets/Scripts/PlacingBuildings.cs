@@ -218,6 +218,7 @@ public class PlacingBuildings : MonoBehaviour
     private void Start()
     {
         currentCamera =FindObjectOfType<Camera>();
+        active = false;
     }
     void Update()
     {
