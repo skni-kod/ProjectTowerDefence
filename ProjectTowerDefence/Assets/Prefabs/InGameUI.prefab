@@ -4633,7 +4633,7 @@ GameObject:
   - component: {fileID: 5788334901767735174}
   - component: {fileID: 2895143019687185884}
   m_Layer: 5
-  m_Name: BuildWiezaMaga1 (1)
+  m_Name: BuildTrebuchet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

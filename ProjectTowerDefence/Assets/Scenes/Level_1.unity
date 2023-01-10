@@ -82571,6 +82571,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2895143019687185884, guid: f51816d589bc4bc499ac32056d6e0ea5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1558263556}
+    - target: {fileID: 2895143019687185884, guid: f51816d589bc4bc499ac32056d6e0ea5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnBuildstart
+      objectReference: {fileID: 0}
     - target: {fileID: 3802915019383626804, guid: f51816d589bc4bc499ac32056d6e0ea5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -25.180176
@@ -82621,7 +82629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6807917381144244962, guid: f51816d589bc4bc499ac32056d6e0ea5, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6807917381144244963, guid: f51816d589bc4bc499ac32056d6e0ea5, type: 3}
       propertyPath: m_IsActive
@@ -82662,6 +82670,10 @@ PrefabInstance:
     - target: {fileID: 6807917381278044043, guid: f51816d589bc4bc499ac32056d6e0ea5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UiController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807917381469705432, guid: f51816d589bc4bc499ac32056d6e0ea5, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6807917381469705433, guid: f51816d589bc4bc499ac32056d6e0ea5, type: 3}
       propertyPath: m_IsActive
