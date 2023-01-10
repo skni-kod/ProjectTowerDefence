@@ -67032,7 +67032,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7490540979562207602, guid: 1d2ec2d4894c9d74bb9a9e1dbb70b418, type: 3}
       propertyPath: buildingsToPlace.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7490540979562207602, guid: 1d2ec2d4894c9d74bb9a9e1dbb70b418, type: 3}
       propertyPath: currentCamera
@@ -67070,6 +67070,10 @@ PrefabInstance:
       propertyPath: buildingsToPlace.Array.data[5]
       value: 
       objectReference: {fileID: 2542965845261479495, guid: 8fbc853c683bc7c4594d7d39cc292689, type: 3}
+    - target: {fileID: 7490540979562207602, guid: 1d2ec2d4894c9d74bb9a9e1dbb70b418, type: 3}
+      propertyPath: buildingsToPlace.Array.data[6]
+      value: 
+      objectReference: {fileID: 2542965845261479495, guid: fc7bddfd37d68e6438b27f3700700f3c, type: 3}
     - target: {fileID: 8483774350294637212, guid: 1d2ec2d4894c9d74bb9a9e1dbb70b418, type: 3}
       propertyPath: currentCamera
       value: 
@@ -89187,6 +89191,7 @@ MonoBehaviour:
   - {fileID: 2542965845261479495, guid: 67091955d75dce24d9f259749abfc77d, type: 3}
   - {fileID: 2542965845261479495, guid: cdf6d49d0ce8ba946b18f9c642fb0cd6, type: 3}
   - {fileID: 2542965845261479495, guid: 8fbc853c683bc7c4594d7d39cc292689, type: 3}
+  - {fileID: 2542965845261479495, guid: fc7bddfd37d68e6438b27f3700700f3c, type: 3}
   yellowMaterial: {fileID: 2100000, guid: 331d88aa09e1dfd448ffc38fa41675ac, type: 2}
   tdPaletteMaterial: {fileID: 2100000, guid: 3f656efe924526645a77fabe99f076c2, type: 2}
 --- !u!114 &2052265016
