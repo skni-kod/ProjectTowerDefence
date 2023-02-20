@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3678235041406170856}
-  - component: {fileID: 2281713159549497663}
+  - component: {fileID: 1522703895222245792}
   - component: {fileID: 6165046502282964397}
+  - component: {fileID: 4747852291826198777}
   m_Layer: 14
   m_Name: Trebuchet1
   m_TagString: Building
@@ -34,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2281713159549497663
+--- !u!114 &1522703895222245792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,7 +44,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2542965845261479495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f8636638cdf0f469a2d726de46d433, type: 3}
+  m_Script: {fileID: 11500000, guid: 8aa2dfe82b44e144596121b508e6eb4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   towerId: 2
@@ -57,7 +58,7 @@ MonoBehaviour:
   lastHit: 0
   arrowTimeToHit: 0.2
   enemiesToHit: []
-  BulletOffset: {x: 0, y: 7, z: 0}
+  BulletOffset: {x: 0, y: 5, z: 0}
   Arrow: {fileID: 6069580487303557460, guid: 688ae7fa1db49c342ad96910cc6b7995, type: 3}
 --- !u!65 &6165046502282964397
 BoxCollider:
@@ -72,6 +73,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 14.533949, y: 2, z: 16.395624}
   m_Center: {x: -0.39057732, y: 0, z: 1.5725832}
+--- !u!95 &4747852291826198777
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542965845261479495}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3be4d4b79523a546b4b751d28b8b115, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &2154821921009458521
 MonoBehaviour:
   m_ObjectHideFlags: 0
