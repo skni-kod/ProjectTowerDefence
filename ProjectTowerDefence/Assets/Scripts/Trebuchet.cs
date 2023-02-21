@@ -14,17 +14,13 @@ namespace Assets.Scripts
         protected override void Start()
         {
             base.Start();
-            animator = GetComponent<Animator>();
+            animator = transform.Find("Trebuchet.fbx").GetComponent<Animator>();
         }
 
         protected override void Update()
         {
             base.Update();
             var currentAnimationState = animator.GetCurrentAnimatorStateInfo(0);
-            if (currentAnimationState.IsName("Shooting") && currentAnimationState.normalizedTime > 1)
-            {
-                animator.SetBool("isShooting", false);
-            }
             Debug.Log(currentAnimationState.IsName("Shooting"));
             Debug.Log(currentAnimationState.normalizedTime);
         }
@@ -38,7 +34,7 @@ namespace Assets.Scripts
                 //if enemie exists
                 if (currEnemieToHit)
                 {
-                    animator.SetBool("isShooting", true);
+                    animator.SetTrigger("Shoot");
                     fireTimer = maxCooldown;
                     GameObject tmp = Instantiate(Arrow);
                     //call  constructor of BasicArrow
