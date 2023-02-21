@@ -22,12 +22,12 @@ public class Tower : MonoBehaviour
     [SerializeField] public float arrowTimeToHit;
     protected float fireTimer;
     public Collider[] enemiesToHit;
-    private Collider currEnemieToHit;
-    [SerializeField] private Vector3 BulletOffset = new Vector3(0,0,0);
+    protected Collider currEnemieToHit;
+    [SerializeField] protected Vector3 BulletOffset = new Vector3(0,0,0);
     // arrow prefab
     public GameObject Arrow;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         maxCooldown = 1.5f;
         // Ustawienie statystyk wieży
@@ -41,7 +41,7 @@ public class Tower : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         EnemiesDetection();
 

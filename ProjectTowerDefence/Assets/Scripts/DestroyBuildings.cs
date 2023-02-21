@@ -19,8 +19,7 @@ public class DestroyBuildings : MonoBehaviour
             var selection = hit.transform;
             if (hit.collider.CompareTag("Towers"))
             {
-                var selectionRenderer = selection.GetComponentInChildren<MeshRenderer>();
-                if (selectionRenderer != null)
+                foreach (var selectionRenderer in selection.GetComponentsInChildren<MeshRenderer>())
                 {
                     selectionRenderer.material = redMaterial;
                 }
@@ -42,8 +41,10 @@ public class DestroyBuildings : MonoBehaviour
     {
         if (selectedObject != null)
         {
-            var selectionRenderer = selectedObject.GetComponentInChildren<MeshRenderer>();
-            selectionRenderer.material = tdPaletteMaterial;
+            foreach (var selectionRenderer in selectedObject.GetComponentsInChildren<MeshRenderer>())
+            {
+                selectionRenderer.material = tdPaletteMaterial;
+            }
             selectedObject = null;
         }
     }
