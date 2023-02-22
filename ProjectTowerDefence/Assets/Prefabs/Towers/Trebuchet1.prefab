@@ -66,9 +66,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerId: 2
-  damageBase: 35
+  damageBase: 50
   hitRange: 30
-  maxCooldown: 0
+  maxCooldown: 6
   stats:
     spdLvl: 0
     dmgLvl: 0

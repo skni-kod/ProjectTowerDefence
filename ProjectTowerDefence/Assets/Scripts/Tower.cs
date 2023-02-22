@@ -29,7 +29,6 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        maxCooldown = 1.5f;
         // Ustawienie statystyk wieży
         hitCooldown = maxCooldown;
         // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
