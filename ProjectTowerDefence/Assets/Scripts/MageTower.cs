@@ -6,7 +6,7 @@ using System.Linq;
 public class MageTower : Tower
 {
     [SerializeField] public int maxTargets;
-    void  Start()
+    protected override void Start()
     {
         // Ustawienie statystyk wieży
         this.hitCooldown = maxCooldown;
@@ -15,7 +15,7 @@ public class MageTower : Tower
         this.lastHit = -hitCooldown;
     }
 
-    void Update()
+    protected override void  Update()
     {
         EnemiesDetection();
 
