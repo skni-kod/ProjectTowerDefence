@@ -9,18 +9,22 @@ namespace Assets.Scripts
 {
     public class Trebuchet : Tower
     {
+        private static readonly float shootingAnimationLength = 9.3f;
+        private static readonly float bulletAnimationDelay = 0.1f;
         private Animator animator;
         private GameObject machina;
         [SerializeField] public float rotationStepPerSecond;
         private bool canShootAnim;
         private bool performFire;
-        
+       
 
         protected override void Start()
         {
             base.Start();
             animator = transform.Find("Trebuchet.fbx").GetComponent<Animator>();
+
             transform.Find("Trebuchet.fbx").GetComponent<TrebuchetAnimContr>().setController(this);
+
             //gimnastyka tutaj jest spowodowana faktem że animacje nie były zrobione szkieletami tylko zmiana rotacji poszczególnych części terbusza
             //a unity nie pozwala ingerować w pliki fbx dlatego skryptem zmieniam hierarchie. 
             GameObject treb = transform.Find("Trebuchet.fbx").gameObject;
@@ -30,6 +34,10 @@ namespace Assets.Scripts
             tmp.transform.rotation = Quaternion.Euler(0,-90,0);
             tmp.transform.parent = machina.transform;
             wyrzutnia.transform.parent = tmp.transform;
+
+
+            animator.speed = shootingAnimationLength / maxCooldown;
+
 
         }
 
@@ -55,6 +63,7 @@ namespace Assets.Scripts
             //if tower can fire and have a target
             if (fireTimer <= 0.0 && enemiesToHit.Length > 0)
             {
+
                 //if enemie exists
                 if (currEnemieToHit)
                 {
@@ -73,6 +82,7 @@ namespace Assets.Scripts
                     tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl + damageBase, hitRange / arrowTimeToHit, transform.position + BulletOffset,
                     Quaternion.FromToRotation(Vector3.left, transform.position + BulletOffset - currEnemieToHit.transform.position),
                     currEnemieToHit.gameObject);
+
             }
             else currEnemieToHit = enemiesToHit.ElementAt(0);
         }

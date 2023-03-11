@@ -49,7 +49,7 @@ MonoBehaviour:
   towerId: 0
   damageBase: 15
   hitRange: 15
-  maxCooldown: 0
+  maxCooldown: 2
   stats:
     spdLvl: 0
     dmgLvl: 0
