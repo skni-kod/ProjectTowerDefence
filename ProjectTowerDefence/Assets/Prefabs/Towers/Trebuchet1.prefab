@@ -78,10 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa2dfe82b44e144596121b508e6eb4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerId: 2
+  towerId: 6
   damageBase: 50
   hitRange: 30
-  maxCooldown: 6
+  maxCooldown: 9
   stats:
     spdLvl: 0
     dmgLvl: 0
