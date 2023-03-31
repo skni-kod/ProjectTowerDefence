@@ -17,6 +17,7 @@ public class CameraController : MonoBehaviour
     public float maxX, minX, maxY, minY;
     private bool isMoving;
     private Vector2 newXY;
+    private Rigidbody rb;
     //private void Awake()
     //{
     //    controls = new InputMaster();
@@ -30,30 +31,42 @@ public class CameraController : MonoBehaviour
         vertical.y = 0;
         vertical = Vector3.Normalize(vertical); // normalizacja nie pamietam co to robi xD
         horizontal = Quaternion.Euler(new Vector3(0, 90, 0)) * vertical; // kopiowanie ustawien vertical ze znienionym katem dzialania
-
+        rb = this.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        if (isMoving) { CameraKeyMove(); }
+        
         //return;
-      
+        Vector2 xy = new Vector2(0.0f,0.0f);
          if(Mouse.current.position.ReadValue().x >Screen.width-edgeSize)
         {
-            CameraMouseMove(1,0); // krawedz prawa
+            // krawedz prawa
+            xy += new Vector2(1.0f, 0.0f);
+            isMoving = true;
         }
-        else if (Mouse.current.position.ReadValue().x < edgeSize)
+        if (Mouse.current.position.ReadValue().x < edgeSize)
         {
-            CameraMouseMove(-1,0);//krawedz lewa
+            //krawedz lewa
+            xy += new Vector2(-1.0f, 0.0f);
+            isMoving = true;
         }
-        else if (Mouse.current.position.ReadValue().y > Screen.height - edgeSize)
+        if (Mouse.current.position.ReadValue().y > Screen.height - edgeSize)
         {
-            CameraMouseMove(0,1); // krawedz gorna 
+            // krawedz gorna 
+            xy += new Vector2(0.0f, 1.0f);
+            isMoving = true;
         }
-        else if (Mouse.current.position.ReadValue().y < edgeSize)
+        if (Mouse.current.position.ReadValue().y < edgeSize)
         {
-            CameraMouseMove(0,-1);//krawedz dolna 
+            //krawedz dolna 
+            xy += new Vector2(0.0f, -1.0f);
+            isMoving = true;
         }
+        newXY = (newXY + xy.normalized)/2;
+        newXY = newXY.normalized;
+        isMoving = newXY != Vector2.zero;
+        if (isMoving) { CameraKeyMove(); }
     }
     /// <summary>
     /// poruszanie sie za pomoca strzałek zdefiniowanych w pojectSetting\inputMenager
@@ -64,29 +77,25 @@ public class CameraController : MonoBehaviour
       //  Debug.Log("ruszam sie");
        // return;
         //Vector3 directed = new Vector3(Input.GetAxis("horizontalKey"), 0, Input.GetAxis("verticalKey"));
-        Vector3 horizontalMove = horizontal * moveSpeed * Time.deltaTime * newXY.x;
-        Vector3 verticalMove = vertical * moveSpeed * Time.deltaTime * newXY.y;
+        Vector3 horizontalMove = horizontal * moveSpeed  * newXY.x;
+        Vector3 verticalMove = vertical * moveSpeed  * newXY.y;
         //Debug.Log(Input.GetAxis("verticalKey"));
         //Vector3 heading = Vector3.Normalize(horizontalMove + verticalMove);
 
         // transform.forward = heading;
-        if ((transform.position + horizontalMove).x < maxX && (transform.position + horizontalMove).x > minX) transform.position += horizontalMove;
-        if ((transform.position + verticalMove).z < maxY && (transform.position + verticalMove).z > minY) transform.position += verticalMove;
+        //if ((transform.position + horizontalMove).x < maxX && (transform.position + horizontalMove).x > minX) transform.position += horizontalMove;
+        //if ((transform.position + verticalMove).z < maxY && (transform.position + verticalMove).z > minY) transform.position += verticalMove;
+
+        rb.velocity = horizontalMove+verticalMove;
+
     }
     void OnMovment(InputValue inputValue)
     {
         //  Debug.Log(xy);
         
         Vector2 xy = inputValue.Get<Vector2>();
-        isMoving = xy != Vector2.zero;
         //if (!isMoving) { newXY = Vector2.zero;  }
-        if (xy.x > 0) { newXY.x = 1; }
-        else if (xy.x < 0) { newXY.x = -1; }
-        else { newXY.x = 0; }
-        if (xy.y > 0) { newXY.y = 1; }
-        else if (xy.y < 0) { newXY.y = -1; }
-        else { newXY.y = 0; }
-        newXY = newXY.normalized;
+        newXY = xy.normalized;
 
     }
 
@@ -97,11 +106,12 @@ public class CameraController : MonoBehaviour
     /// <param name="directionY">kierunek poruszania sie w osi y</param>
     void CameraMouseMove(short directionX,short directionY)
     {
-        Vector3 horizontalMove = horizontal * moveSpeed * Time.deltaTime * directionX;
-        Vector3 verticalMove = vertical * moveSpeed * Time.deltaTime * directionY;
+        Vector3 horizontalMove = horizontal * moveSpeed * directionX;
+        Vector3 verticalMove = vertical * moveSpeed * directionY;
         
-     if((transform.position+horizontalMove).x <maxX && (transform.position + horizontalMove).x > minX)   transform.position += horizontalMove;
-        if ((transform.position + verticalMove).z < maxY && (transform.position + verticalMove).z > minY) transform.position += verticalMove;
+    //if((transform.position+horizontalMove).x <maxX && (transform.position + horizontalMove).x > minX)   transform.position += horizontalMove;
+    //if ((transform.position + verticalMove).z < maxY && (transform.position + verticalMove).z > minY) transform.position += verticalMove;
 
+        rb.velocity = horizontalMove+verticalMove;
     }
 }
