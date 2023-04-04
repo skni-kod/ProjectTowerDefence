@@ -87,10 +87,10 @@ MonoBehaviour:
     dmgLvl: 0
   hitCooldown: 0
   lastHit: 0
-  arrowTimeToHit: 0.2
+  arrowTimeToHit: 0.4
   enemiesToHit: []
   BulletOffset: {x: 0, y: 5, z: 0}
-  Arrow: {fileID: 6069580487303557460, guid: 79c7b5b676aa07044bba3429b19faa2c, type: 3}
+  Arrow: {fileID: 6069580487303557460, guid: a1672bf69f4f5764fb0e5a3b4453ed82, type: 3}
   rotationStepPerSecond: 180
 --- !u!65 &6165046502282964397
 BoxCollider:
