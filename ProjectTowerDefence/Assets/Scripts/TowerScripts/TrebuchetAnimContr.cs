@@ -14,12 +14,10 @@ public class TrebuchetAnimContr : MonoBehaviour
         
     }
     private void ThrowRock(){
-        Debug.Log("Gitara siema");
         controller.callFire();
     }
     private void ResetFire(){
         
-        Debug.Log("Gitar Sevus");
         controller.setPerformFire(true);
     }
     public void setController(Trebuchet ctr) {

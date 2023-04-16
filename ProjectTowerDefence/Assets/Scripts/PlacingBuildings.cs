@@ -102,10 +102,11 @@ public class PlacingBuildings : MonoBehaviour
         // Iteracja po każdym trafionym obiekcie
         foreach (RaycastHit hit in hits)
         {   
+            
             // Sprawdza czy trafiony obiekt ma ustawiony tag "Terrain"
             if (hit.collider.CompareTag("Terrain"))
             {
-            
+                poz = hit.point;
             }
             else if (hit.collider.CompareTag("Building") || hit.collider.CompareTag("Towers"))
             {
@@ -117,7 +118,7 @@ public class PlacingBuildings : MonoBehaviour
                 isEmpty = false;
             }
 
-            poz = hit.point;
+
         }
 
         if (isEmpty)
@@ -127,6 +128,7 @@ public class PlacingBuildings : MonoBehaviour
             // Jeśli kliknięty LPM to jest zatwierdzane postawienie budynku
 
             // Tworzenie instancji obiektu w miejscu kursora i z danym obrotem
+
             placedBuilding = Instantiate(objectToPlace, poz, greenPlaceholder.transform.rotation);
             placedBuilding.name = "Tower " + transform.childCount.ToString();
 
