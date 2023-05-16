@@ -84,7 +84,7 @@ public class UpgradingBuildings : MonoBehaviour
 
     protected void PlaceTower()
     {
-        Debug.Log("Here now " + tower.towerId);
+
         newTower = Instantiate(buildingsToPlace[tower.towerId+1], oldTowerPos, oldTowerRot, transform);
         newTower.name = "Tower " + transform.childCount.ToString();
         SetAllChildrenTag(newTower, "Towers");
