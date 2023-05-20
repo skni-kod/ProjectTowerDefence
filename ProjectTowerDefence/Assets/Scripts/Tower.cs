@@ -26,6 +26,9 @@ public class Tower : MonoBehaviour
     [SerializeField] protected Vector3 BulletOffset = new Vector3(0,0,0);
     // arrow prefab
     public GameObject Arrow;
+    public AudioClip placingSound;
+    public AudioClip[] shootSounds;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -37,6 +40,8 @@ public class Tower : MonoBehaviour
         
         cooldownBar = GetComponentInChildren<BarController>();
         //cooldownBar.Initialize();
+
+        AudioSource.PlayClipAtPoint(placingSound, transform.position);
     }
 
     // Update is called once per frame
@@ -76,17 +81,30 @@ public class Tower : MonoBehaviour
                 tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl+damageBase, hitRange/arrowTimeToHit, transform.position+BulletOffset, 
                 Quaternion.FromToRotation(Vector3.left, transform.position+BulletOffset-currEnemieToHit.transform.position),
                 currEnemieToHit.gameObject);
+                PlayShootSound();
             }
             else currEnemieToHit = enemiesToHit.ElementAt(0);
         }
-        
-        
     }
+
     /// <summary>
     /// Aktualizacja paska czasu oczekiwania
     /// </summary>
     protected void CooldownBarUpdate()
     {
         //cooldownBar.SetValue(100 * (1 - ((Time.time - lastHit) / hitCooldown)));
+    }
+
+    protected void PlayShootSound()
+    {
+        PlayShootSound(transform.position);
+    }
+
+    protected void PlayShootSound(Vector3 position)
+    {
+        if (shootSounds.Length > 0)
+        {
+            AudioSource.PlayClipAtPoint(shootSounds[Random.Range(0, shootSounds.Length)], position);
+        }
     }
 }

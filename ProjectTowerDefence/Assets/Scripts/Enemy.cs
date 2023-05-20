@@ -19,6 +19,9 @@ abstract public class Enemy : MonoBehaviour
 
     protected Pathfinding pathfinding;
 
+    public AudioClip[] sounds;
+    private float nextSoundDelay;
+
     public static List<Enemy> listOfEnemies = new List<Enemy>();
 
     [HideInInspector]
@@ -55,6 +58,7 @@ abstract public class Enemy : MonoBehaviour
         if (!IsDead)
         {
             Movement();
+            TryToPlaySound();
         }
 
         // Tymczasowe wyświetlanie ilości zdrowia dla ułatwienia testowania
@@ -137,6 +141,19 @@ abstract public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         listOfEnemies.Remove(this);
+    }
+
+    private void TryToPlaySound()
+    {
+        if (sounds.Length > 0)
+        {
+            nextSoundDelay -= Time.deltaTime;
+            if (nextSoundDelay <= 0)
+            {
+                AudioSource.PlayClipAtPoint(sounds[Random.Range(0, sounds.Length)], transform.position);
+                nextSoundDelay = Random.Range(3.0f, 7.0f);
+            }
+        }
     }
 
 }

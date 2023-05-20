@@ -194,6 +194,11 @@ MonoBehaviour:
   - {fileID: 0}
   BulletOffset: {x: 0, y: 0, z: 0}
   Arrow: {fileID: 8668049595241551565, guid: 450d34b277e3ccf4282379998de0d061, type: 3}
+  placingSound: {fileID: 8300000, guid: a5090ece7753fc24d8a05bb70fb3cfe7, type: 3}
+  shootSounds:
+  - {fileID: 8300000, guid: 4248c37ef2522434ab1bb07eb3c55cde, type: 3}
+  - {fileID: 8300000, guid: ef88007061e52f64d8c6ac5a4b63f74e, type: 3}
+  - {fileID: 8300000, guid: a67a9ec15cca5cf43a4db33b45513e17, type: 3}
   maxTargets: 1
 --- !u!1 &2747638541159565149
 GameObject:
