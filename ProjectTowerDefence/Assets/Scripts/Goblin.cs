@@ -16,11 +16,9 @@ public class Goblin : Enemy
 
     protected override void Update()
     {
-        if (!IsDead)
-        {
-            Movement();
-        }
-        else
+        base.Update();
+
+        if (IsDead)
         {
             DestroyOnDeathAnimationEnd();
         }

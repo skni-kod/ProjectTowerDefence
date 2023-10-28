@@ -11,11 +11,14 @@ namespace Assets.Scripts
     {
         private static readonly float shootingAnimationLength = 9.3f;
         private static readonly float bulletAnimationDelay = 0.1f;
+        private float animatorSpeed;
         private Animator animator;
         private GameObject machina;
         [SerializeField] public float rotationStepPerSecond;
         private bool canShootAnim;
         private bool performFire;
+        public AudioClip loadSound;
+        private bool awaitingLoadSound;
        
 
         protected override void Start()
@@ -35,13 +38,12 @@ namespace Assets.Scripts
             tmp.transform.parent = machina.transform;
             wyrzutnia.transform.parent = tmp.transform;
 
-
-            animator.speed = shootingAnimationLength / maxCooldown;
-
+            animatorSpeed = shootingAnimationLength / maxCooldown;
+            animator.speed = animatorSpeed;
 
         }
 
-        protected override void Update()
+        protected override async void Update()
         {
             base.Update();
             var currentAnimationState = animator.GetCurrentAnimatorStateInfo(0);
@@ -53,7 +55,11 @@ namespace Assets.Scripts
                 //krótko mówiąc, unity jest jakie jest i żeby trebusz obracał się w odpowiednią stronę machina musi być obrócona o -90 stopni. Dlatego rotacja w kierunku musi byc obrócona o -90 stopni
                 //Teoretycznie można to zmienić w prefabie ale mi sie nie chce z tym bawić :). Dziła działa, jak ruszasz to na swoją własną odpowiedzialność
                 machina.transform.rotation = Quaternion.RotateTowards(machina.transform.rotation,  Quaternion.LookRotation(deltaPosition.normalized)*Quaternion.Euler(0,-90,0), rotationStepPerSecond*Time.deltaTime);
-                
+            }
+
+            if (awaitingLoadSound && fireTimer * animatorSpeed <= loadSound.length * 3)
+            {
+                PlayLoadSound();
             }
         }
 
@@ -69,6 +75,8 @@ namespace Assets.Scripts
                 {
                     animator.SetTrigger("Shoot");
                     fireTimer = maxCooldown;
+                    PlayShootSound();
+                    awaitingLoadSound = true;
                 }
                 else currEnemieToHit = enemiesToHit.ElementAt(0);
             }
@@ -77,12 +85,11 @@ namespace Assets.Scripts
             if (currEnemieToHit)
             {
                     
-                    GameObject tmp = Instantiate(Arrow);
-                    //call  constructor of BasicArrow
-                    tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl + damageBase, hitRange / arrowTimeToHit, transform.position + BulletOffset,
-                    Quaternion.FromToRotation(Vector3.left, transform.position + BulletOffset - currEnemieToHit.transform.position),
-                    currEnemieToHit.gameObject);
-
+                GameObject tmp = Instantiate(Arrow);
+                //call  constructor of BasicArrow
+                tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl + damageBase, hitRange / arrowTimeToHit, transform.position + BulletOffset,
+                Quaternion.FromToRotation(Vector3.left, transform.position + BulletOffset - currEnemieToHit.transform.position),
+                currEnemieToHit.gameObject);
             }
             else currEnemieToHit = enemiesToHit.ElementAt(0);
         }
@@ -101,6 +108,12 @@ namespace Assets.Scripts
         public bool getPerformFire(bool setBool)
         {
             return performFire;
+        }
+
+        protected void PlayLoadSound()
+        {
+            AudioSource.PlayClipAtPoint(loadSound, transform.position);
+            awaitingLoadSound = false;
         }
     }
 }

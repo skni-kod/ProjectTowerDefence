@@ -91,7 +91,11 @@ MonoBehaviour:
   enemiesToHit: []
   BulletOffset: {x: 0, y: 5, z: 0}
   Arrow: {fileID: 6069580487303557460, guid: 79c7b5b676aa07044bba3429b19faa2c, type: 3}
+  placingSound: {fileID: 8300000, guid: a5090ece7753fc24d8a05bb70fb3cfe7, type: 3}
+  shootSounds:
+  - {fileID: 8300000, guid: 5216d53a55df27042afdc6c84c16b1ea, type: 3}
   rotationStepPerSecond: 180
+  loadSound: {fileID: 8300000, guid: 0b3a402f693f20345bc9218399d32e93, type: 3}
 --- !u!65 &6165046502282964397
 BoxCollider:
   m_ObjectHideFlags: 0
