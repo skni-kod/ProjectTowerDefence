@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class UiController : MonoBehaviour
 {
@@ -21,6 +23,16 @@ public class UiController : MonoBehaviour
 
     protected Image upgradeButtonImage;
     protected Image destroyButtonImage;
+
+    [SerializeField] protected ResourcesController ownerResources; 
+    [SerializeField] protected Text Gold;
+    [SerializeField] protected Text Wood;
+    [SerializeField] protected Text Supply;
+    [SerializeField] protected Text Mana;
+
+    protected List<int> CurrentResources = new List<int>();
+    protected int MaxSupply;
+    
 
     public void LoadMenu()
     {
@@ -66,6 +78,11 @@ public class UiController : MonoBehaviour
         upgradeButtonImage.color = redColor;
         destroyButtonImage.color = redColor;
 
+        for(int i = 0; i < (int)Resource.ResourcesTypes.End; i++)
+        {
+            CurrentResources.Add(0);
+        }
+
     }
 
     private void Update()
@@ -74,6 +91,18 @@ public class UiController : MonoBehaviour
         {
             
         }*/
+        /*
+        Jeżeli to czytasz to znaczy że stwierdziłeś że linie kodu poniżej są głupie. Problem jest taki, ze nie są 
+        Wartości będą zmieniane bardzo często więc nie ma sensu wrzucać tego w funkcje i zmieniać co zmianę wartości pojedyńczego pola
+        Dlatego łatwiej i lepiej jest zrobić to tym sposobem 
+        Jezeli coś zmienisz, to prosze zrób to tak, żeby to działało 
+        Powodzenia
+        */
+        UpdateResources();
+        Gold.text = "Gold:" + CurrentResources[(int)Resource.ResourcesTypes.Gold].ToString();
+        Wood.text = "Wood:" + CurrentResources[(int)Resource.ResourcesTypes.Wood].ToString();
+        Supply.text = "Supply:" + CurrentResources[(int)Resource.ResourcesTypes.Supply].ToString() + "/" + MaxSupply.ToString();
+        Mana.text = "Mana:" + CurrentResources[(int)Resource.ResourcesTypes.Mana].ToString();
     }
 
     public void UpgradeButtonControl()
@@ -133,4 +162,15 @@ public class UiController : MonoBehaviour
     {
         placingBuildings.buildingId = towerId;
     }
+    private void UpdateResources()
+    {
+        List<Resource> resources = ownerResources.GetResourcesRef();
+        for(int i = 0; i < (int)Resource.ResourcesTypes.End; i++)
+        {
+            CurrentResources[i] = (int)resources[i].amount;
+        }
+        MaxSupply= (int)resources[(int)Resource.ResourcesTypes.Supply].MaxAmmount;
+
+    }
+
 }
