@@ -8,11 +8,12 @@ public class ResourcesProduction : MonoBehaviour {
     [SerializeField] float timeToProduction;
     [SerializeField] List<Resource> produced_Resources;
     [SerializeField] ResourcesController owner;
+
+    
     void Start()
     {
         if(owner!=null)
         {
-            Debug.Log("Mam wadce");
             StartCoroutine(ProduceResource());
         }
     }
@@ -24,7 +25,7 @@ public class ResourcesProduction : MonoBehaviour {
         yield return new WaitForSecondsRealtime(timeToProduction);
         if(owner != null)
         {
-            Debug.Log("Here i am");
+            
             StartCoroutine(ProduceResource());
             owner.AddResourcesAmount(produced_Resources);
         }

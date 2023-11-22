@@ -3913,6 +3913,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeButton: {fileID: 6807917380029169322}
   destroyButton: {fileID: 6807917381556369733}
+  Gold: {fileID: 6807917380352134223}
+  Wood: {fileID: 6807917380677331075}
+  Supply: {fileID: 6807917381460935671}
+  Mana: {fileID: 6807917381179926136}
 --- !u!1 &6807917381641104908
 GameObject:
   m_ObjectHideFlags: 0
