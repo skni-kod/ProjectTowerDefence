@@ -49,7 +49,7 @@ MonoBehaviour:
   towerId: 0
   damageBase: 15
   hitRange: 15
-  maxCooldown: 0
+  maxCooldown: 2
   stats:
     spdLvl: 0
     dmgLvl: 0
@@ -59,6 +59,12 @@ MonoBehaviour:
   enemiesToHit: []
   BulletOffset: {x: 0, y: 5, z: 0}
   Arrow: {fileID: 6069580487303557460, guid: 688ae7fa1db49c342ad96910cc6b7995, type: 3}
+  placingSound: {fileID: 8300000, guid: a5090ece7753fc24d8a05bb70fb3cfe7, type: 3}
+  shootSounds:
+  - {fileID: 8300000, guid: d7ca85987cd2c5041aa55f8a841bfe68, type: 3}
+  - {fileID: 8300000, guid: b71dbc250f5ca074c8c6353b707a24c2, type: 3}
+  - {fileID: 8300000, guid: 7cb7897b57e0158499ee5ffe9715fc74, type: 3}
+  - {fileID: 8300000, guid: 437509e042970e34d97a999b0e83a865, type: 3}
 --- !u!65 &6165046502282964397
 BoxCollider:
   m_ObjectHideFlags: 0

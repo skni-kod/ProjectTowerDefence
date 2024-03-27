@@ -6,16 +6,13 @@ using System.Linq;
 public class MageTower : Tower
 {
     [SerializeField] public int maxTargets;
-    void  Start()
+    protected override void Start()
     {
-        // Ustawienie statystyk wieży
-        this.hitCooldown = maxCooldown;
-        this.arrowTimeToHit = 0.0000001f;
-        // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
-        this.lastHit = -hitCooldown;
+        base.Start();
+        arrowTimeToHit = 0.0000001f;
     }
 
-    void Update()
+    protected override void  Update()
     {
         EnemiesDetection();
 
@@ -37,15 +34,11 @@ public class MageTower : Tower
                     enemiesToHit.ElementAt(i).gameObject.GetComponent<Enemy>().Hit(stats.dmgLvl+damageBase);
                     Debug.Log("Fire"+i);
                     fireTimer = maxCooldown;
-                    Instantiate(Arrow, enemiesToHit.ElementAt(i).gameObject.transform.position+new Vector3(0,100,0), Quaternion.identity);
-
-                                          
-
+                    var enemyPosition = enemiesToHit.ElementAt(i).gameObject.transform.position;
+                    Instantiate(Arrow, enemyPosition + new Vector3(0, 100, 0), Quaternion.identity);
+                    PlayShootSound(enemyPosition);
                 }
-                
             }
-            
-            
         }
     }
 }

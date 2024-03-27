@@ -22,14 +22,16 @@ public class Tower : MonoBehaviour
     [SerializeField] public float arrowTimeToHit;
     protected float fireTimer;
     public Collider[] enemiesToHit;
-    private Collider currEnemieToHit;
-    [SerializeField] private Vector3 BulletOffset = new Vector3(0,0,0);
+    protected Collider currEnemieToHit;
+    [SerializeField] protected Vector3 BulletOffset = new Vector3(0,0,0);
     // arrow prefab
     public GameObject Arrow;
+    public AudioClip placingSound;
+    public AudioClip[] shootSounds;
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        maxCooldown = 1.5f;
         // Ustawienie statystyk wieży
         hitCooldown = maxCooldown;
         // Ustawienie tego na czas "z przeszłości" aby od razu wieża mogła strzelać
@@ -38,10 +40,12 @@ public class Tower : MonoBehaviour
         
         cooldownBar = GetComponentInChildren<BarController>();
         //cooldownBar.Initialize();
+
+        AudioSource.PlayClipAtPoint(placingSound, transform.position);
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         EnemiesDetection();
 
@@ -77,17 +81,30 @@ public class Tower : MonoBehaviour
                 tmp.GetComponent<BasicArrow>().Init(stats.dmgLvl+damageBase, hitRange/arrowTimeToHit, transform.position+BulletOffset, 
                 Quaternion.FromToRotation(Vector3.left, transform.position+BulletOffset-currEnemieToHit.transform.position),
                 currEnemieToHit.gameObject);
+                PlayShootSound();
             }
             else currEnemieToHit = enemiesToHit.ElementAt(0);
         }
-        
-        
     }
+
     /// <summary>
     /// Aktualizacja paska czasu oczekiwania
     /// </summary>
     protected void CooldownBarUpdate()
     {
         //cooldownBar.SetValue(100 * (1 - ((Time.time - lastHit) / hitCooldown)));
+    }
+
+    protected void PlayShootSound()
+    {
+        PlayShootSound(transform.position);
+    }
+
+    protected void PlayShootSound(Vector3 position)
+    {
+        if (shootSounds.Length > 0)
+        {
+            AudioSource.PlayClipAtPoint(shootSounds[Random.Range(0, shootSounds.Length)], position);
+        }
     }
 }

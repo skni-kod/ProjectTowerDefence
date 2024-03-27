@@ -1429,6 +1429,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52cac86f69898c4dbf2144d3172a987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 3a3628108ebdaf1489c8487c8bcb51b1, type: 3}
+  - {fileID: 8300000, guid: 85161509c1a61414980d6bb52ed7a872, type: 3}
+  - {fileID: 8300000, guid: 4d0dbfd49e8d81143894d3fc3b1d69b8, type: 3}
+  - {fileID: 8300000, guid: be6694d061ffd5e4581761b71fbda873, type: 3}
   destination: {x: 0, y: 0, z: 0}
   animator: {fileID: 3768972985742810579}
 --- !u!54 &23889827289746103

@@ -938,6 +938,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52cac86f69898c4dbf2144d3172a987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: fdd5fa62b87ea4c44919de243cb93a9a, type: 3}
+  - {fileID: 8300000, guid: 5b6d8b2adf0563e4aad0a1c7f0d34115, type: 3}
+  - {fileID: 8300000, guid: f70d027be1f08d74384b027be1dabb20, type: 3}
   destination: {x: 0, y: 0, z: 0}
   animator: {fileID: 3768972985742810579}
 --- !u!54 &23889827289746103
