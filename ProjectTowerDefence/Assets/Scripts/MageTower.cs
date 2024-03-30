@@ -34,7 +34,7 @@ public class MageTower : Tower
                 if(enemiesToHit[i])
                 {*/
             int targets = Mathf.Min(enemiesToHit.Length, maxTargets);
-            for (int i = 0; i < maxTargets; i++)
+            for (int i = 0; i < targets; i++)
             {
                 enemiesToHit.ElementAt(i).gameObject.GetComponent<Enemy>().Hit(stats.dmgLvl + damageBase);
                 Debug.Log("Fire" + i);
