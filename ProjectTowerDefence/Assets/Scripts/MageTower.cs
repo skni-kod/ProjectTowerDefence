@@ -27,17 +27,21 @@ public class MageTower : Tower
         //if tower can fire and have a target
         if(fireTimer<=0.0 && enemiesToHit.Length>0)
         {
+            //drobna naprawa zeby nie wyrzucalo IndexOutOfRangeException
+            /*
             for(int i =0; i<maxTargets; i++)
             {
                 if(enemiesToHit[i])
-                {
-                    enemiesToHit.ElementAt(i).gameObject.GetComponent<Enemy>().Hit(stats.dmgLvl+damageBase);
-                    Debug.Log("Fire"+i);
-                    fireTimer = maxCooldown;
-                    var enemyPosition = enemiesToHit.ElementAt(i).gameObject.transform.position;
-                    Instantiate(Arrow, enemyPosition + new Vector3(0, 100, 0), Quaternion.identity);
-                    PlayShootSound(enemyPosition);
-                }
+                {*/
+            int targets = Mathf.Min(enemiesToHit.Length, maxTargets);
+            for (int i = 0; i < maxTargets; i++)
+            {
+                enemiesToHit.ElementAt(i).gameObject.GetComponent<Enemy>().Hit(stats.dmgLvl + damageBase);
+                Debug.Log("Fire" + i);
+                fireTimer = maxCooldown;
+                var enemyPosition = enemiesToHit.ElementAt(i).gameObject.transform.position;
+                Instantiate(Arrow, enemyPosition + new Vector3(0, 100, 0), Quaternion.identity);
+                PlayShootSound(enemyPosition);
             }
         }
     }
